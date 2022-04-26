@@ -23,7 +23,9 @@ class CrearTaulaPuntuacio extends Migration
             ],
             'id_users'          => [
                 'type'           => 'INT',
-                'constraint' => 11
+                'constraint' => 11,
+                'unsigned' => true,
+                'null' => false
             ],
             'codi_establiment'          => [
                 'type'           => 'INT',
