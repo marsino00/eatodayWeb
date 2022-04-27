@@ -32,10 +32,16 @@ $routes->setAutoRoute(false);
 // We get a performance increase by specifying the default
 // route since we don't have to scan directories.
 
-$routes->group("establiment", function ($routes) {
-    $routes->get("list", "ApiEstablimentController::index");
+$routes->group("api", function ($routes) {
+    $routes->group("establiment", function ($routes) {
+        $routes->get("list", "ApisController::index");
+        // $routes->post("add", "ApiNoticiesController::create");
+        $routes->get("show/(:num)", "ApisController::show/$1");
+        $routes->get("obtenirCategories/(:num)", "ApisController::obtenirCategories/$1");
+        // $routes->put("update/(:num)", "ApiNoticiesController::update/$1");
+        // $routes->delete("delete/(:num)", "ApiNoticiesController::delete/$1");
+    });
 });
-
 
 $routes->get('/', 'Home::index');
 // Login/out

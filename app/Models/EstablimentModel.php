@@ -43,4 +43,22 @@ class EstablimentModel extends Model
 
 
     // }
+
+    public function getEstablimentbyId($id = null)
+    {
+        $query = $this->query("SELECT * from establiment where codi_establiment=$id");
+
+        foreach ($query->getResult() as $row) {
+            return $row;
+        }
+    }
+
+    public function getCartabyIdCategoria($id = null)
+    {
+        $query = $this->query("SELECT carta.id_carta,carta.nom,carta.descripcio,carta.actiu FROM categoria INNER JOIN carta  ON categoria.codi_establiment=carta.codi_establiment WHERE establiment.codi_establiment=$id");
+
+        foreach ($query->getResult() as $row) {
+            return $row;
+        }
+    }
 }

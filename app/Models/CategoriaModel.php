@@ -39,4 +39,9 @@ class CategoriaModel extends Model
     protected $afterFind      = [];
     protected $beforeDelete   = [];
     protected $afterDelete    = [];
+
+    public function getCategoriesbyCodiEstabliment($id = null)
+    {
+        return $this->where("codi_establiment", $id)->select("*")->findAll();
+    }
 }

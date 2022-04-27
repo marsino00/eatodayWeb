@@ -25,12 +25,8 @@ class CrearTaulaCarta extends Migration
             'actiu'          => [
                 'type'           => 'TINYINT',
             ],
-            'codi_establiment'          => [
-                'type'           => 'INT',
-            ],
         ]);
         $this->forge->addPrimaryKey('id_carta', true);
-        $this->forge->addForeignKey('codi_establiment', 'establiment', 'codi_establiment');
 
         $this->forge->createTable('carta');
     }
