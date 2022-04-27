@@ -4,17 +4,17 @@ namespace App\Models;
 
 use CodeIgniter\Model;
 
-class Establiment extends Model
+class CartaModel extends Model
 {
     protected $DBGroup          = 'default';
-    protected $table            = 'establiments';
+    protected $table            = 'carta';
     protected $primaryKey       = 'id';
     protected $useAutoIncrement = true;
     protected $insertID         = 0;
     protected $returnType       = 'array';
     protected $useSoftDeletes   = false;
     protected $protectFields    = true;
-    protected $allowedFields    = ["nom_establiment", "tipus_establiment", "descripcio", "pais", "adreca", "telefon", "horari"];
+    protected $allowedFields    = ["nom", "descripcio", "actiu"];
 
     // Dates
     protected $useTimestamps = true;
@@ -39,8 +39,4 @@ class Establiment extends Model
     protected $afterFind      = [];
     protected $beforeDelete   = [];
     protected $afterDelete    = [];
-    // public function create($nom_establiment, $tipus_establiment, $descripcio, $pais, $adreca,$telefon,$horari, $fotografies, $logo){
-
-
-    // }
 }

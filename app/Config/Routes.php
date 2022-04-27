@@ -31,6 +31,12 @@ $routes->setAutoRoute(false);
 
 // We get a performance increase by specifying the default
 // route since we don't have to scan directories.
+
+$routes->group("establiment", function ($routes) {
+    $routes->get("list", "ApiEstablimentController::index");
+});
+
+
 $routes->get('/', 'Home::index');
 // Login/out
 $routes->get('login', 'AuthController::login', ['as' => 'login']);
