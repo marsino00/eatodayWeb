@@ -39,4 +39,14 @@ class PlatModel extends Model
     protected $afterFind      = [];
     protected $beforeDelete   = [];
     protected $afterDelete    = [];
+
+    public function getPlatbyIdCarta($id = null)
+    {
+        $this->select('plat.id_plat,plat.nom,plat.descripcio_breu,plat.descripcio_detallada,plat.preu');
+        $this->from('carta', 'plat');
+        $this->join('carta_plat', 'carta.id_carta=carta_plat.id_carta');
+        $this->join('plat', 'carta_plat.id_plat = plat.id_plat');
+        $this->where('carta.id_carta', 1);
+        return $this->findAll();
+    }
 }

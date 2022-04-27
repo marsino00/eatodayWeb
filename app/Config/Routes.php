@@ -34,14 +34,24 @@ $routes->setAutoRoute(false);
 
 $routes->group("api", function ($routes) {
     $routes->group("establiment", function ($routes) {
-        $routes->get("list", "ApisController::index");
-        // $routes->post("add", "ApiNoticiesController::create");
-        $routes->get("show/(:num)", "ApisController::show/$1");
-        $routes->get("obtenirCategories/(:num)", "ApisController::obtenirCategories/$1");
-        // $routes->put("update/(:num)", "ApiNoticiesController::update/$1");
-        // $routes->delete("delete/(:num)", "ApiNoticiesController::delete/$1");
+        $routes->get("list", "Api" . DIRECTORY_SEPARATOR . "ApiEstablimentController::index");
+        $routes->get("show/(:num)", "Api" . DIRECTORY_SEPARATOR . "ApiEstablimentController::show/$1");
+    });
+    $routes->group("categoria", function ($routes) {
+        $routes->get("list/(:num)", "Api" . DIRECTORY_SEPARATOR . "ApiCategoriaController::show/$1");
+    });
+    $routes->group("carta", function ($routes) {
+        $routes->get("list/(:num)", "Api" . DIRECTORY_SEPARATOR . "ApiCartaController::show/$1");
+    });
+    $routes->group("plat", function ($routes) {
+        $routes->get("list/(:num)", "Api" . DIRECTORY_SEPARATOR . "ApiPlatController::show/$1");
     });
 });
+// $routes->post("add", "ApiNoticiesController::create");
+// $routes->put("update/(:num)", "ApiNoticiesController::update/$1");
+// $routes->delete("delete/(:num)", "ApiNoticiesController::delete/$1");
+
+
 
 $routes->get('/', 'Home::index');
 // Login/out

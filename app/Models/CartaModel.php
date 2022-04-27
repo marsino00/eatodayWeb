@@ -39,4 +39,14 @@ class CartaModel extends Model
     protected $afterFind      = [];
     protected $beforeDelete   = [];
     protected $afterDelete    = [];
+
+    public function getCartabyIdCategoria($id = null)
+    {
+        $this->select('carta.id_carta,carta.nom,carta.descripcio,carta.actiu');
+        $this->from('categoria', 'carta');
+        $this->join('categoria_carta', 'categoria.id_categoria=categoria_carta.id_categoria');
+        $this->join('carta', 'categoria_carta.id_carta = carta.id_carta');
+        $this->where('categoria.id_categoria', $id);
+        return $this->findAll();
+    }
 }

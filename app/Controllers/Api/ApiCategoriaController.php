@@ -1,12 +1,11 @@
 <?php
 
-namespace App\Controllers;
+namespace App\Controllers\Api;
 
-use App\Models\EstablimentModel;
-use App\Models\CategoriaModel;
 use CodeIgniter\RESTful\ResourceController;
+use App\Models\CategoriaModel;
 
-class ApisController extends ResourceController
+class ApiCategoriaController extends ResourceController
 {
     /**
      * Return an array of resource objects, themselves in array format
@@ -15,15 +14,6 @@ class ApisController extends ResourceController
      */
     public function index()
     {
-        $model = new EstablimentModel();
-        $response = [
-            'status' => 200,
-            "error" => false,
-            'messages' => "Llistat d'establiments",
-            'data' => $model->findAll()
-        ];
-
-        return $this->respond($response);
     }
 
     /**
@@ -32,32 +22,6 @@ class ApisController extends ResourceController
      * @return mixed
      */
     public function show($id = null)
-    {
-        $model = new EstablimentModel();
-        $data = $model->getEstablimentbyId($id);
-
-        if (!empty($data)) {
-
-            $response = [
-                'status' => 200,
-                "error" => false,
-                'messages' => 'Establiment trobat',
-                'data' => $data
-            ];
-        } else {
-
-            $response = [
-                'status' => 500,
-                "error" => true,
-                'messages' => "No s'ha trobat cap establiment amb el codi d'establiment indicat",
-                'data' => []
-            ];
-        }
-
-        return $this->respond($response);
-    }
-
-    public function obtenirCategories($id = null)
     {
         $model = new CategoriaModel();
         $data = $model->getCategoriesbyCodiEstabliment($id);
@@ -82,35 +46,6 @@ class ApisController extends ResourceController
 
         return $this->respond($response);
     }
-    public function obtenirCarta($id = null)
-    {
-        $model = new EstablimentModel();
-        $data = $model->getCartabyIdCategoria($id);
-
-        if (!empty($data)) {
-
-            $response = [
-                'status' => 200,
-                "error" => false,
-                'messages' => 'Carta trobada',
-                'data' => $data
-            ];
-        } else {
-
-            $response = [
-                'status' => 500,
-                "error" => true,
-                'messages' => "No s'ha trobat cap carta amb el id de categoria indicat",
-                'data' => []
-            ];
-        }
-
-        return $this->respond($response);
-    }
-
-
-
-
 
     /**
      * Return a new resource object, with default properties
