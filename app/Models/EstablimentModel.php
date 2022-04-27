@@ -43,25 +43,17 @@ class EstablimentModel extends Model
 
 
     // }
-    public function listarArchivos($path)
+    public function obtenirArxius($path)
     {
         if (!file_exists($path)) {
             return [];
         }
-        // Abrimos la carpeta que nos pasan como parámetro
         $dir = opendir($path);
         $arrayElements = [];
-        // Leo todos los ficheros de la carpeta
         while ($elemento = readdir($dir)) {
-            // Tratamos los elementos . y .. que tienen todas las carpetas
             if ($elemento != "." && $elemento != "..") {
-                // Si es una carpeta
                 if (is_dir($path . $elemento)) {
-                    // Muestro la carpeta
-                    // echo "<p><strong>CARPETA: ". $elemento ."</strong></p>";
-                    // Si es un fichero
                 } else {
-                    // Muestro el fichero
                     array_push($arrayElements, $elemento);
                 }
             }
@@ -72,18 +64,17 @@ class EstablimentModel extends Model
 
     public function getFile($codi_establiment, $tipus)
     {
-        $prova = WRITEPATH .  "uploads" . DIRECTORY_SEPARATOR . $codi_establiment . DIRECTORY_SEPARATOR . "fotos" . DIRECTORY_SEPARATOR . $tipus;
-        $llistar = $this->listarArchivos($prova);
-
+        $ruta = WRITEPATH .  "uploads" . DIRECTORY_SEPARATOR . $codi_establiment . DIRECTORY_SEPARATOR . "fotos" . DIRECTORY_SEPARATOR . $tipus;
+        $arrayFotos = $this->obtenirArxius($ruta);
         $fotosEstabliment = [];
-        for ($i = 0; $i < count($llistar); $i++) {
-            $file = new \CodeIgniter\Files\File(WRITEPATH . "uploads" . DIRECTORY_SEPARATOR . $codi_establiment . DIRECTORY_SEPARATOR . "fotos" . DIRECTORY_SEPARATOR . $tipus . DIRECTORY_SEPARATOR . $llistar[$i]);
+        for ($i = 0; $i < count($arrayFotos); $i++) {
+            $file = new \CodeIgniter\Files\File(WRITEPATH . "uploads" . DIRECTORY_SEPARATOR . $codi_establiment . DIRECTORY_SEPARATOR . "fotos" . DIRECTORY_SEPARATOR . $tipus . DIRECTORY_SEPARATOR . $arrayFotos[$i]);
 
-            if (!$file->isFile()) {     // if (!is_file(WRITEPATH . "/uploads/" . $varName)){
+            if (!$file->isFile()) {
                 throw new \CodeIgniter\Exceptions\PageNotFoundException('No found');
             }
 
-            // $filedata = readfile(WRITEPATH . "/uploads/" . $varName);
+
             $filedata = new \SplFileObject($file->getPathname(), "r");
 
             $data1 = $filedata->fread($filedata->getSize());
@@ -97,10 +88,9 @@ class EstablimentModel extends Model
         $query = $this->query("SELECT * from establiment");
         $establiments = [];
         foreach ($query->getResult() as $row) {
-            $photo = $this->getFile($row->codi_establiment, "establiment");
-            $row->fotos = $photo;
+            $photos = $this->getFile($row->codi_establiment, "establiment");
+            $row->fotos = $photos;
             array_push($establiments, $row);
-            // return $row->codi_establiment;
         }
         return $establiments;
     }
