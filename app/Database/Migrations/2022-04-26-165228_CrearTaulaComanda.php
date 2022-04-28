@@ -25,7 +25,11 @@ class CrearTaulaComanda extends Migration
             'codi_taula'          => [
                 'type'           => 'INT',
             ],
+            'created_at datetime default current_timestamp',
+            'deleted_at datetime default null',
+            'updated_at datetime default current_timestamp on update current_timestamp'
         ]);
+
         $this->forge->addPrimaryKey('id_comanda', true);
         $this->forge->addForeignKey('codi_taula', 'taula', 'codi_taula');
         $this->forge->createTable('comanda');

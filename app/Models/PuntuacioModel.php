@@ -39,4 +39,15 @@ class PuntuacioModel extends Model
     protected $afterFind      = [];
     protected $beforeDelete   = [];
     protected $afterDelete    = [];
+
+    public function obtenirPuntuacio($codi_establiment)
+    {
+        $this->select('puntuacio.id_puntuacio,puntuacio.valoracio,puntuacio.comentari,puntuacio.data_publicacio,users.name,users.surnames');
+        $this->from('establiment', 'users');
+        $this->join('puntuacio', 'establiment.codi_establiment=puntuacio.codi_establiment');
+        $this->join('users', 'puntuacio.id_users = users.id');
+        $this->where('establiment.codi_establiment', $codi_establiment);
+
+        return $this->findAll();
+    }
 }

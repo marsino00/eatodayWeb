@@ -7,7 +7,7 @@ use CodeIgniter\Model;
 class PlatComandaModel extends Model
 {
     protected $DBGroup          = 'default';
-    protected $table            = 'platcomanda';
+    protected $table            = 'plat_comanda';
     protected $primaryKey       = 'id';
     protected $useAutoIncrement = true;
     protected $insertID         = 0;
@@ -19,9 +19,9 @@ class PlatComandaModel extends Model
     // Dates
     protected $useTimestamps = false;
     protected $dateFormat    = 'datetime';
-    protected $createdField  = 'created_at';
-    protected $updatedField  = 'updated_at';
-    protected $deletedField  = 'deleted_at';
+    protected $createdField  = 'hora_demanat';
+    protected $updatedField  = 'hora_elaborat';
+    protected $deletedField  = 'hora_lliurat';
 
     // Validation
     protected $validationRules      = [];
@@ -39,4 +39,9 @@ class PlatComandaModel extends Model
     protected $afterFind      = [];
     protected $beforeDelete   = [];
     protected $afterDelete    = [];
+
+    public function getPlatComandabyIdComanda($id = null)
+    {
+        return $this->where("id_comanda", $id)->select("estat_plat,hora_demanat,hora_elaborat,hora_lliurat")->findAll();
+    }
 }

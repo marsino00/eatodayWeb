@@ -39,4 +39,13 @@ class AlergenModel extends Model
     protected $afterFind      = [];
     protected $beforeDelete   = [];
     protected $afterDelete    = [];
+    public function getAlergenbyIdPlat($id = null)
+    {
+        $this->select('alergen.codi_alergen,alergen.descripcio');
+        $this->from('plat', 'alergen');
+        $this->join('plat_alergen', 'plat.id_plat=plat_alergen.id_plat');
+        $this->join('alergen', 'plat_alergen.codi_alergen = alergen.codi_alergen');
+        $this->where('plat.id_plat', $id);
+        return $this->findAll();
+    }
 }

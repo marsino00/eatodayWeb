@@ -46,6 +46,28 @@ $routes->group("api", function ($routes) {
     $routes->group("plat", function ($routes) {
         $routes->get("list/(:num)", "Api" . DIRECTORY_SEPARATOR . "ApiPlatController::show/$1");
     });
+    $routes->group("alergen", function ($routes) {
+        $routes->get("list/(:num)", "Api" . DIRECTORY_SEPARATOR . "ApiAlergenController::show/$1");
+    });
+    $routes->group("suplement", function ($routes) {
+        $routes->get("list/(:num)", "Api" . DIRECTORY_SEPARATOR . "ApiSuplementController::show/$1");
+    });
+    $routes->group("taula", function ($routes) {
+        $routes->get("list/(:num)", "Api" . DIRECTORY_SEPARATOR . "ApiTaulaController::show/$1");
+    });
+    $routes->group("comanda", function ($routes) {
+        $routes->get("list/(:num)", "Api" . DIRECTORY_SEPARATOR . "ApiComandaController::show/$1");
+        $routes->post("add", "Api" . DIRECTORY_SEPARATOR . "ApiComandaController::create");
+    });
+    $routes->group("platcomanda", function ($routes) {
+        $routes->get("list/(:num)", "Api" . DIRECTORY_SEPARATOR . "ApiPlatComandaController::show/$1");
+    });
+    $routes->group("suplementaplicat", function ($routes) {
+        $routes->get("list/(:num)", "Api" . DIRECTORY_SEPARATOR . "ApiSuplementAplicatController::show/$1");
+    });
+    $routes->group("puntuacio", function ($routes) {
+        $routes->get("list/(:num)", "Api" . DIRECTORY_SEPARATOR . "ApiPuntuacioController::show/$1");
+    });
 });
 // $routes->post("add", "ApiNoticiesController::create");
 // $routes->put("update/(:num)", "ApiNoticiesController::update/$1");

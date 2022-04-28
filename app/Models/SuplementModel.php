@@ -39,4 +39,14 @@ class SuplementModel extends Model
     protected $afterFind      = [];
     protected $beforeDelete   = [];
     protected $afterDelete    = [];
+
+    public function getSuplementbyIdPlat($id = null)
+    {
+        $this->select('suplement.id_suplement,suplement.descripcio');
+        $this->from('plat', 'suplement');
+        $this->join('plat_suplement', 'plat.id_plat=plat_suplement.id_plat');
+        $this->join('suplement', 'plat_suplement.id_suplement = suplement.id_suplement');
+        $this->where('plat.id_plat', $id);
+        return $this->findAll();
+    }
 }

@@ -7,7 +7,7 @@ use CodeIgniter\Model;
 class SuplementAplicatModel extends Model
 {
     protected $DBGroup          = 'default';
-    protected $table            = 'suplementaplicat';
+    protected $table            = 'suplement_aplicat';
     protected $primaryKey       = 'id';
     protected $useAutoIncrement = true;
     protected $insertID         = 0;
@@ -39,4 +39,14 @@ class SuplementAplicatModel extends Model
     protected $afterFind      = [];
     protected $beforeDelete   = [];
     protected $afterDelete    = [];
+
+    public function getSuplementbyIdPlatComanda($id = null)
+    {
+        $this->select('suplement_aplicat.id_suplement_aplicat,suplement_aplicat.descripcio');
+        $this->from('plat_comanda', 'suplement_aplicat');
+        $this->join('plat_comanda_suplement_aplicat', 'plat_comanda.id_plat_comanda=plat_comanda_suplement_aplicat.id_plat_comanda');
+        $this->join('suplement_aplicat', 'plat_comanda_suplement_aplicat.id_suplement_aplicat = suplement_aplicat.id_suplement_aplicat');
+        $this->where('plat_comanda.id_plat_comanda', $id);
+        return $this->findAll();
+    }
 }

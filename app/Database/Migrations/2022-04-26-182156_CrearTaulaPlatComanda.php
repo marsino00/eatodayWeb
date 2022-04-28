@@ -26,9 +26,13 @@ class CrearTaulaPlatComanda extends Migration
             ],
             'hora_demanat'          => [
                 'type'           => 'DATETIME',
+                'null'           => true,
+
             ],
             'hora_lliurat'          => [
                 'type'           => 'DATETIME',
+                'null'           => true,
+
             ],
             'hora_elaborat'          => [
                 'type'           => 'DATETIME',

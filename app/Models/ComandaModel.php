@@ -17,7 +17,7 @@ class ComandaModel extends Model
     protected $allowedFields    = ["estat_comanda", "data", "comensals", "codi_taula"];
 
     // Dates
-    protected $useTimestamps = false;
+    protected $useTimestamps = true;
     protected $dateFormat    = 'datetime';
     protected $createdField  = 'created_at';
     protected $updatedField  = 'updated_at';
@@ -39,4 +39,12 @@ class ComandaModel extends Model
     protected $afterFind      = [];
     protected $beforeDelete   = [];
     protected $afterDelete    = [];
+    public function getComandabyCodiTaula($id = null)
+    {
+        return $this->where("codi_taula", $id)->select("*")->findAll();
+    }
+    public function afegirComanda($estat_comanda, $comensals, $codi_taula)
+    {
+        $this->insert(["estat_comanda" => $estat_comanda, "comensals" => $comensals, "codi_taula" => $codi_taula]);
+    }
 }

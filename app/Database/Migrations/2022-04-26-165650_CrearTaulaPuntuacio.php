@@ -21,6 +21,9 @@ class CrearTaulaPuntuacio extends Migration
                 'type'           => 'VARCHAR',
                 'constraint'     => '255',
             ],
+            'data_publicacio'          => [
+                'type'           => 'DATETIME',
+            ],
             'id_users'          => [
                 'type'           => 'INT',
                 'constraint' => 11,
