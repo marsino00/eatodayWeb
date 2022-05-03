@@ -26,6 +26,10 @@ class Filters extends BaseConfig
         'login'      => \Myth\Auth\Filters\LoginFilter::class,
         'role'       => \Myth\Auth\Filters\RoleFilter::class,
         'permission' => \Myth\Auth\Filters\PermissionFilter::class,
+        'Cors' => CorsFilter::class,
+        'jwt' => JWTFilter::class,
+
+
     ];
 
     /**
@@ -36,6 +40,8 @@ class Filters extends BaseConfig
      */
     public $globals = [
         'before' => [
+            'csrf' => ['except' => ['api/*', 'fileconnector', 'ajax/blog']],
+            'Cors',
             // 'honeypot',
             // 'csrf',
             // 'invalidchars',

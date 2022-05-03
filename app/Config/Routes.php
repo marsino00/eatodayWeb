@@ -34,8 +34,9 @@ $routes->setAutoRoute(false);
 
 $routes->group("api", function ($routes) {
     $routes->group("establiment", function ($routes) {
-        $routes->get("list", "Api" . DIRECTORY_SEPARATOR . "ApiEstablimentController::index");
+        // $routes->get("list", "Api" . DIRECTORY_SEPARATOR . "ApiEstablimentController::index");
         // $routes->get("show/(:num)", "Api" . DIRECTORY_SEPARATOR . "ApiEstablimentController::show/$1");
+        $routes->match(['get', 'options'], "list", "Api" . DIRECTORY_SEPARATOR . "ApiEstablimentController::index");
         $routes->match(['get', 'options'], "show/(:num)", "Api" . DIRECTORY_SEPARATOR . "ApiEstablimentController::show/$1");
     });
     $routes->group("categoria", function ($routes) {
@@ -70,12 +71,10 @@ $routes->group("api", function ($routes) {
         $routes->get("list/(:num)", "Api" . DIRECTORY_SEPARATOR . "ApiPuntuacioController::show/$1");
     });
 });
-// $routes->post("add", "ApiNoticiesController::create");
-// $routes->put("update/(:num)", "ApiNoticiesController::update/$1");
-// $routes->delete("delete/(:num)", "ApiNoticiesController::delete/$1");
 
 
 
+$routes->get('/login', 'Home::index');
 $routes->get('/', 'Home::index');
 // Login/out
 $routes->get('login', 'AuthController::login', ['as' => 'login']);
