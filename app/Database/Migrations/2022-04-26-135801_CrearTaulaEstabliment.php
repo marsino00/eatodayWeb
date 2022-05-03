@@ -46,6 +46,18 @@ class CrearTaulaEstabliment extends Migration
                 'type'           => 'VARCHAR',
                 'constraint'     => '255',
             ],
+            'rs_facebook'          => [
+                'type'           => 'VARCHAR',
+                'constraint'     => '255',
+            ],
+            'rs_instagram'          => [
+                'type'           => 'VARCHAR',
+                'constraint'     => '255',
+            ],
+            'rs_twitter'          => [
+                'type'           => 'VARCHAR',
+                'constraint'     => '255',
+            ],
         ]);
         $this->forge->addPrimaryKey('codi_establiment', true);
 

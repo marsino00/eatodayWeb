@@ -18,6 +18,7 @@ class AfegirPlatSeeder extends Seeder
                 'descripcio_breu'  => $fake->realText(50), //$desc => $fake->text(100)
                 'descripcio_detallada'  => $fake->realText(100), //$desc => $fake->text(100)
                 'preu'  => $fake->randomDigit(),
+                'tipus'  => "Beguda",
             ];
 
             $this->db->table('plat')->insert($data);

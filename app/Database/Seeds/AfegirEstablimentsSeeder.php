@@ -21,6 +21,9 @@ class AfegirEstablimentsSeeder extends Seeder
                 'adreca'  => $fake->address(), //$desc => $fake->text(100)
                 'telefon'  => $fake->phoneNumber(), //$desc => $fake->text(100)
                 'horari'  => $fake->realText(30), //$desc => $fake->text(100)
+                'rs_facebook'  => $fake->realText(30), //$desc => $fake->text(100)
+                'rs_instagram'  => $fake->realText(30), //$desc => $fake->text(100)
+                'rs_twitter'  => $fake->realText(30), //$desc => $fake->text(100)
             ];
 
             $this->db->table('establiment')->insert($data);
