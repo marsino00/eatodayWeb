@@ -25,6 +25,5 @@ class InstallSeeder extends Seeder
         $this->call("AddAuthGroups");
         $this->call("AddAuthPermissions");
         $this->call("AddAuthUsers");
-        $this->call("AddWorkersJobs");
     }
 }

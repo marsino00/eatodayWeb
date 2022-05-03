@@ -19,31 +19,58 @@ class AddAuthUsers extends Seeder
             'username' => 'admin',
             'email' => 'admin@me.local',
             'name' => 'Josep M',
-            'surname' => 'FR',
-            'alias' => 'JmFXR',
+            'surnames' => 'FR',
+            'codi_establiment' => '1',
+            'id_comanda' => '1',
+            'codi_establiment' => '1',
         ];
         $user = new User($row);
         $userId = $users->insert($user);
-        $authorize->addUserToGroup($userId, 'administradors');
-        $authorize->addUserToGroup($userId, 'usuaris');
+        $authorize->addUserToGroup($userId, 'administrador principal');
 
-
-        $user->username = 'user';
-        $user->email = 'user@me.local';
-        $user->name = 'Angels';
-        $user->surname = 'Cerveró';
-        $user->alias = 'Angels';
-
-        $userId = $users->insert($user);
-        $authorize->addUserToGroup($userId, 'usuaris');
-
-        $user->username = 'convidat';
-        $user->email = 'convidat@me.local';
-        $user->name = 'Andreu';
-        $user->surname = 'Ribes';
-        $user->alias = 'Andreu Ribes';
+        $row = [
+            'active'   => 1,
+            'password' => '1234',
+            'username' => 'responsable',
+            'email' => 'roger@roger.com',
+            'name' => 'Roger',
+            'surnames' => 'M P',
+            'codi_establiment' => '2',
+            'id_comanda' => '2',
+        ];
+        $user = new User($row);
 
         $userId = $users->insert($user);
-        $authorize->addUserToGroup($userId, 'convidats');
+        $authorize->addUserToGroup($userId, 'responsable del restaurant');
+
+        $row = [
+            'active'   => 1,
+            'password' => '1234',
+            'username' => 'cambrer',
+            'email' => 'd@d.com',
+            'name' => 'David',
+            'surnames' => 'R F',
+            'codi_establiment' => '3',
+            'id_comanda' => '3',
+        ];
+        $user = new User($row);
+
+        $userId = $users->insert($user);
+        $authorize->addUserToGroup($userId, 'usuari cambrer');
+
+        $row = [
+            'active'   => 1,
+            'password' => '1234',
+            'username' => 'maitre',
+            'email' => 'ma@ma.com',
+            'name' => 'Maria Àngels',
+            'surnames' => 'C',
+            'codi_establiment' => '4',
+            'id_comanda' => '4',
+        ];
+        $user = new User($row);
+
+        $userId = $users->insert($user);
+        $authorize->addUserToGroup($userId, 'usuari maitre');
     }
 }
