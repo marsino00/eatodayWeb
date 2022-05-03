@@ -21,7 +21,7 @@ class AddAuthUsers extends Seeder
             'name' => 'Josep M',
             'surnames' => 'FR',
             'codi_establiment' => '1',
-            'id_comanda' => '1',
+            // 'id_comanda' => '1',
             'codi_establiment' => '1',
         ];
         $user = new User($row);
@@ -36,7 +36,7 @@ class AddAuthUsers extends Seeder
             'name' => 'Roger',
             'surnames' => 'M P',
             'codi_establiment' => '2',
-            'id_comanda' => '2',
+            // 'id_comanda' => '2',
         ];
         $user = new User($row);
 
@@ -51,7 +51,8 @@ class AddAuthUsers extends Seeder
             'name' => 'David',
             'surnames' => 'R F',
             'codi_establiment' => '3',
-            'id_comanda' => '3',
+            // 'id_comanda' => '3',
+
         ];
         $user = new User($row);
 
@@ -66,7 +67,7 @@ class AddAuthUsers extends Seeder
             'name' => 'Maria Àngels',
             'surnames' => 'C',
             'codi_establiment' => '4',
-            'id_comanda' => '4',
+            // 'id_comanda' => '4',
         ];
         $user = new User($row);
 

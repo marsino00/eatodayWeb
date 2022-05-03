@@ -31,11 +31,13 @@ $routes->setAutoRoute(false);
 
 // We get a performance increase by specifying the default
 // route since we don't have to scan directories.
+$routes->match(['get', 'options'], "show/(:num)", "Api" . DIRECTORY_SEPARATOR . "ApiEstablimentController::show/$1");
 
 $routes->group("api", function ($routes) {
     $routes->group("establiment", function ($routes) {
         $routes->get("list", "Api" . DIRECTORY_SEPARATOR . "ApiEstablimentController::index");
-        $routes->get("show/(:num)", "Api" . DIRECTORY_SEPARATOR . "ApiEstablimentController::show/$1");
+        // $routes->get("show/(:num)", "Api" . DIRECTORY_SEPARATOR . "ApiEstablimentController::show/$1");
+        $routes->match(['get', 'options'], "show/(:num)", "Api" . DIRECTORY_SEPARATOR . "ApiEstablimentController::show/$1");
     });
     $routes->group("categoria", function ($routes) {
         $routes->get("list/(:num)", "Api" . DIRECTORY_SEPARATOR . "ApiCategoriaController::show/$1");
