@@ -27,7 +27,8 @@ class CrearTaulaPlat extends Migration
                 'constraint'     => '255',
             ],
             'preu'          => [
-                'type'           => 'FLOAT',
+                'type'           => 'DECIMAL',
+                'constraint'     => '4,2',
             ],
         ]);
         $this->forge->addPrimaryKey('id_plat', true);

@@ -3,6 +3,8 @@
 namespace App\Database\Seeds;
 
 use CodeIgniter\Database\Seeder;
+use Myth\Auth\Entities\User;
+use Myth\Auth\Models\UserModel;
 
 class AddAuthUsers extends Seeder
 {
