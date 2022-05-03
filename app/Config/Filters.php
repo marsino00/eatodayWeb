@@ -27,7 +27,7 @@ class Filters extends BaseConfig
         'role'       => \Myth\Auth\Filters\RoleFilter::class,
         'permission' => \Myth\Auth\Filters\PermissionFilter::class,
         'Cors' => CorsFilter::class,
-        'jwt' => JWTFilter::class,
+        // 'jwt' => JWTFilter::class,
 
 
     ];
