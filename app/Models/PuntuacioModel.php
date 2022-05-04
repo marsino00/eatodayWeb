@@ -50,4 +50,12 @@ class PuntuacioModel extends Model
 
         return $this->findAll();
     }
+    public function getPuntuacio($codi_establiment)
+    {
+        $query = $this->query("SELECT cast(avg(valoracio) as DECIMAL (2,1)) AS vm from puntuacio where codi_establiment=$codi_establiment");
+
+        foreach ($query->getResult() as $row) {
+            return $row;
+        }
+    }
 }

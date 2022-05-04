@@ -4,6 +4,8 @@ namespace App\Models;
 
 use CodeIgniter\Model;
 
+use App\Models\PuntuacioModel;
+
 class EstablimentModel extends Model
 {
     protected $DBGroup          = 'default';
@@ -89,6 +91,8 @@ class EstablimentModel extends Model
         $establiments = [];
         foreach ($query->getResult() as $row) {
             $photos = $this->getFile($row->codi_establiment, "establiment");
+            $pm = new PuntuacioModel();
+            $row->valoracio_mitjana = $pm->getPuntuacio($row->codi_establiment);
             $row->fotos = $photos;
             array_push($establiments, $row);
         }
