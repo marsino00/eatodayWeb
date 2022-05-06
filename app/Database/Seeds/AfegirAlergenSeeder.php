@@ -11,10 +11,22 @@ class AfegirAlergenSeeder extends Seeder
     {
         $fake = Factory::create("es_ES");
 
-        for ($i = 1; $i < 11; $i++) {
+        $cont  = [
+            'codi_alergen' => 1,
+            'descripcio'  => 'gluten',
+        ];
+
+        $this->db->table('alergen')->insert($cont);
+
+        for ($i = 2; $i < 11; $i++) {
+
             $data = [
-                'codi_alergen' => $i, //$title => $fake->sentence(6)
-                'descripcio'  => $fake->realText(50), //$desc => $fake->text(100)
+                'codi_alergen' => $i,
+                'descripcio'  => $fake->text(10),
+            ];
+            $cont  = [
+                'codi_alergen' => 1,
+                'descripcio'  => 'gluten',
             ];
 
             $this->db->table('alergen')->insert($data);
