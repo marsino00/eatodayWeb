@@ -15,7 +15,7 @@ class AfegirPlatComandaSuplementAplicatSeeder extends Seeder
         for ($i = 2; $i < 11; $i++) {
             $data = [
                 'id_plat_comanda_suplement_aplicat' => $i, //$title => $fake->sentence(6)
-                'id_plat_comanda' => $i, //$title => $fake->sentence(6)
+                'id_plat_comanda' => 1, //$title => $fake->sentence(6)
                 'id_suplement_aplicat' => $i, //$title => $fake->sentence(6)
             ];
 

@@ -15,7 +15,7 @@ class AfegirCartaPlatSeeder extends Seeder
         for ($i = 1; $i < 11; $i++) {
             $data = [
                 'id_carta_plat' => $i, //$title => $fake->sentence(6)
-                'id_carta'  => $i, //$desc => $fake->text(100)
+                'id_carta'  => 1, //$desc => $fake->text(100)
                 'id_plat' => $i,  //$title => $fake->sentence(6)
 
             ];

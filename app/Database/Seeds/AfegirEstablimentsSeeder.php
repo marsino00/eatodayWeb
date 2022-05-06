@@ -15,7 +15,7 @@ class AfegirEstablimentsSeeder extends Seeder
             'nom_establiment' => 'Burguer King',  //$title => $fake->sentence(6)
             'tipus_establiment'  => 'Menjar ràpid', //$desc => $fake->text(100)
             'descripcio'  => 'Establiment de menjar ràpid especialitzat en hamburgueses', //$desc => $fake->text(100)
-            'pais'  => '$fake->country()', //$desc => $fake->text(100)
+            'pais'  => $fake->country(), //$desc => $fake->text(100)
             'adreca'  => $fake->address(), //$desc => $fake->text(100)
             'telefon'  => $fake->phoneNumber(), //$desc => $fake->text(100)
             'horari'  => '9:00-21:00', //$desc => $fake->text(100)

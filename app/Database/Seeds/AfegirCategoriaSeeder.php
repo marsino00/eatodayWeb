@@ -25,7 +25,7 @@ class AfegirCategoriaSeeder extends Seeder
                 'nom' => $fake->realText(10),  //$title => $fake->sentence(6)
                 'descripcio'  => $fake->realText(50), //$desc => $fake->text(100)
                 'actiu'  => 1,
-                'codi_establiment'  => $i //$desc => $fake->text(100)
+                'codi_establiment'  => 1 //$desc => $fake->text(100)
             ];
 
             $this->db->table('categoria')->insert($data);

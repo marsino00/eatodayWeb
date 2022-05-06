@@ -14,7 +14,7 @@ class AfegirTaulaSeeder extends Seeder
         for ($i = 1; $i < 11; $i++) {
             $data = [
                 'codi_taula' => $i, //$title => $fake->sentence(6)
-                'codi_establiment'  => $i, //$desc => $fake->text(100)
+                'codi_establiment'  => 1, //$desc => $fake->text(100)
             ];
 
             $this->db->table('taula')->insert($data);

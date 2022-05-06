@@ -14,7 +14,7 @@ class AfegirPlatAlergenSeeder extends Seeder
         for ($i = 1; $i < 11; $i++) {
             $data = [
                 'id_plat_alergen' => $i, //$title => $fake->sentence(6)
-                'id_plat' => $i,  //$title => $fake->sentence(6)
+                'id_plat' => 1,  //$title => $fake->sentence(6)
                 'codi_alergen'  => $i, //$desc => $fake->text(100)
 
             ];

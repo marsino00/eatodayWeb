@@ -28,7 +28,7 @@ class AfegirPuntuacioSeeder extends Seeder
                 'comentari'  => $fake->realText(50), //$desc => $fake->text(100)
                 'data_publicacio'  => $fake->date(), //$desc => $fake->text(100)
                 'id_users'  => $fake->numberBetween(1, 4),
-                'codi_establiment'  => $i,
+                'codi_establiment'  => 1,
             ];
 
             $this->db->table('puntuacio')->insert($data);
