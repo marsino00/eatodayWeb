@@ -42,7 +42,7 @@ class PuntuacioModel extends Model
 
     public function obtenirPuntuacio($codi_establiment)
     {
-        $this->select('puntuacio.id_puntuacio,puntuacio.valoracio,puntuacio.comentari,puntuacio.data_publicacio,users.name,users.surnames');
+        $this->select("puntuacio.id_puntuacio,puntuacio.valoracio,puntuacio.comentari,date_format(puntuacio.data_publicacio, '%d/%m/%Y') as data_publicacio,users.name,users.surnames");
         $this->from('establiment', 'users');
         $this->join('puntuacio', 'establiment.codi_establiment=puntuacio.codi_establiment');
         $this->join('users', 'puntuacio.id_users = users.id');

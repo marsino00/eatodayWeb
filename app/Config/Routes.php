@@ -74,7 +74,7 @@ $routes->group("api", function ($routes) {
 
 
 
-$routes->get('/login', 'Home::index');
+// $routes->get('/login', 'Home::index');
 $routes->get('/', 'Home::index');
 // Login/out
 $routes->get('login', 'AuthController::login', ['as' => 'login']);
