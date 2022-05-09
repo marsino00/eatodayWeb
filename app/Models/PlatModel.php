@@ -60,13 +60,13 @@ class PlatModel extends Model
     }
 
 
-    public function getFile($codi_establiment, $tipus)
+    public function getFile($codi_establiment, $tipus, $id_plat)
     {
-        $ruta = WRITEPATH .  "uploads" . DIRECTORY_SEPARATOR . $codi_establiment . DIRECTORY_SEPARATOR . "fotos" . DIRECTORY_SEPARATOR . $tipus;
+        $ruta = WRITEPATH .  "uploads" . DIRECTORY_SEPARATOR . $codi_establiment . DIRECTORY_SEPARATOR . "fotos" . DIRECTORY_SEPARATOR . $tipus . DIRECTORY_SEPARATOR . $id_plat;
         $arrayFotos = $this->obtenirArxius($ruta);
         $fotosEstabliment = [];
         for ($i = 0; $i < count($arrayFotos); $i++) {
-            $file = new \CodeIgniter\Files\File(WRITEPATH . "uploads" . DIRECTORY_SEPARATOR . $codi_establiment . DIRECTORY_SEPARATOR . "fotos" . DIRECTORY_SEPARATOR . $tipus . DIRECTORY_SEPARATOR . $arrayFotos[$i]);
+            $file = new \CodeIgniter\Files\File(WRITEPATH . "uploads" . DIRECTORY_SEPARATOR . $codi_establiment . DIRECTORY_SEPARATOR . "fotos" . DIRECTORY_SEPARATOR . $tipus . DIRECTORY_SEPARATOR . $id_plat . DIRECTORY_SEPARATOR . $arrayFotos[$i]);
 
             if (!$file->isFile()) {
                 throw new \CodeIgniter\Exceptions\PageNotFoundException('No found');
@@ -90,10 +90,26 @@ class PlatModel extends Model
         $this->join('plat', 'carta_plat.id_plat = plat.id_plat');
         $this->where('carta.id_carta', $id);
         $queryPlats = $this->findAll();
+
+
+        $this->select('establiment.codi_establiment');
+        $this->from('carta', 'plat');
+        $this->join('carta_plat', 'carta.id_carta=carta_plat.id_carta');
+        $this->join('plat', 'carta_plat.id_plat = plat.id_plat');
+        $this->join('categoria_carta', 'categoria_carta.id_carta=carta.id_carta');
+        $this->join('categoria', 'categoria.id_categoria = categoria_carta.id_carta');
+        $this->join('establiment', 'categoria.codi_establiment = establiment.codi_establiment');
+        $this->where('plat.id_plat', $id);
+        $queryEstabliment = $this->findAll();
+        $establiment = "";
+        foreach ($queryEstabliment as $row) {
+            $establiment = $row;
+        }
+        // dd($query);
         $plats = [];
 
         foreach ($queryPlats as $row) {
-            $photos = $this->getFile($row["id_plat"], "plats");
+            $photos = $this->getFile($establiment["codi_establiment"], "plats", $row["id_plat"]);
             $row["fotos"] = $photos;
             array_push($plats, $row);
         }

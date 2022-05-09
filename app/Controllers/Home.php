@@ -6,6 +6,6 @@ class Home extends BaseController
 {
     public function index()
     {
-        return view('login/login');
+        return view('plantilla_eatoday_web/index');
     }
 }

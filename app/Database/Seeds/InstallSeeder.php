@@ -21,7 +21,6 @@ class InstallSeeder extends Seeder
         $this->call("AfegirPlatComandaSeeder");
         $this->call("AfegirSuplementAplicatSeeder");
         $this->call("AfegirPlatComandaSuplementAplicatSeeder");
-
         $this->call("AddAuthGroups");
         $this->call("AddAuthPermissions");
         $this->call("AddAuthUsers");
