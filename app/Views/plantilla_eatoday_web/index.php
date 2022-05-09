@@ -29,25 +29,7 @@
 
   <!-- Template Main CSS File -->
   <link href="assets/css/style.css" rel="stylesheet">
-  <script>
-    obtenirEstabliments();
 
-    function obtenirEstabliments() {
-      var myHeaders = new Headers();
-      myHeaders.append("Cookie", "ci_session=ppkii8asklu3hft850re0tfpjqruh905");
-
-      var requestOptions = {
-        method: 'GET',
-        headers: myHeaders,
-        redirect: 'follow'
-      };
-
-      fetch("api/establiment/list", requestOptions)
-        .then(response => response.text())
-        .then(result => console.log(JSON.parse(result).data[0]))
-        .catch(error => console.log('error', error));
-    }
-  </script>
 </head>
 
 <body>
@@ -174,15 +156,15 @@
       <div class="container" data-aos="fade-up">
 
         <div class="section-title">
-          <h2>Why Us</h2>
-          <p>Why Choose Our Restaurant</p>
+          <h2>Establiments</h2>
+          <p>Els nostres establiments</p>
         </div>
 
-        <div class="row">
+        <div id="establiments" class="row">
 
           <div class="col-lg-4">
             <div class="box" data-aos="zoom-in" data-aos-delay="100">
-              <span>01</span>
+              <span id="aaaa">01</span>
               <h4>Lorem Ipsum</h4>
               <p>Ulamco laboris nisi ut aliquip ex ea commodo consequat. Et consectetur ducimus vero placeat</p>
             </div>
@@ -198,7 +180,7 @@
           </div>
 
           <div class="col-lg-4 mt-4 mt-lg-0">
-            <div class="box" data-aos="zoom-in" data-aos-delay="300">
+            <div class="box" data-aos="zoom-in" data-aos-delay="50">
               <span>03</span>
               <h4> Ad ad velit qui</h4>
               <p>Molestiae officiis omnis illo asperiores. Aut doloribus vitae sunt debitis quo vel nam quis</p>
@@ -1020,7 +1002,58 @@
 
   <!-- Template Main JS File -->
   <script src="assets/js/main.js"></script>
+  <script>
+    obtenirEstabliments();
 
+    function obtenirEstabliments() {
+      var myHeaders = new Headers();
+      myHeaders.append("Cookie", "ci_session=ppkii8asklu3hft850re0tfpjqruh905");
+
+      var requestOptions = {
+        method: 'GET',
+        headers: myHeaders,
+        redirect: 'follow'
+      };
+
+      fetch("api/establiment/list", requestOptions)
+        .then(response => response.text())
+        .then(result => {
+          console.log(JSON.parse(result).data[0].nom_establiment);
+
+          for (let index = 0; index < 3; index++) {
+            let div = document.createElement("div");
+            div.setAttribute("class", "col-lg-4 mt-4 mt-lg-0");
+            let divChild = document.createElement("div");
+            divChild.setAttribute("class", "box");
+            divChild.setAttribute("data-aos", "zoom-in");
+            divChild.setAttribute("data-aos-delay", "200");
+            let span = document.createElement("span");
+            span.textContent = JSON.parse(result).data[index].nom_establiment;
+            divChild.appendChild(span);
+            let h4 = document.createElement("h4");
+            h4.textContent = JSON.parse(result).data[index].tipus_establiment;
+            divChild.appendChild(h4);
+            let p = document.createElement("p");
+            p.textContent = JSON.parse(result).data[index].descripcio;
+            divChild.appendChild(p);
+            div.appendChild(divChild);
+            document.getElementById("establiments").appendChild(div);
+            console.log(document.getElementById("establiments"));
+
+          }
+          // <div class="col-lg-4 mt-4 mt-lg-0">
+          //   <div class="box" data-aos="zoom-in" data-aos-delay="200">
+          //     <span>02</span>
+          //     <h4>Repellat Nihil</h4>
+          //     <p>Dolorem est fugiat occaecati voluptate velit esse. Dicta veritatis dolor quod et vel dire leno para
+          //       dest</p>
+          //   </div>
+          // </div>
+
+        })
+        .catch(error => console.log('error', error));
+    }
+  </script>
 </body>
 
 </html>

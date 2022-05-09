@@ -105,7 +105,6 @@ class PlatModel extends Model
         foreach ($queryEstabliment as $row) {
             $establiment = $row;
         }
-        // dd($query);
         $plats = [];
 
         foreach ($queryPlats as $row) {
