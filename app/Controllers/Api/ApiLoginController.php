@@ -93,7 +93,6 @@ class ApiLoginController extends ResourceController
             'email'    => 'required|valid_email|is_unique[users.email]',
             'username' => 'required|alpha_numeric_space|min_length[3]|max_length[30]|is_unique[users.username]',
             'password'     => 'required|min_length[8]',
-            'pass_confirm' => 'required|matches[password]',
         ];
         if (!$this->validate($rules)) {
 
