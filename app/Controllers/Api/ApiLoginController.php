@@ -36,7 +36,7 @@ class ApiLoginController extends ResourceController
 
         $credentials = [
             'email' => $this->request->getVar('email'),
-            'password' => $this->request->getVar('password_hash')
+            'password' => $this->request->getVar('password')
         ];
 
         $ver = $auth->attempt($credentials, false);
@@ -44,7 +44,7 @@ class ApiLoginController extends ResourceController
 
         $rules = [
             'email' => 'required',
-            'password_hash' => 'required|min_length[4]'
+            'password' => 'required|min_length[4]'
         ];
         if (!$this->validate($rules)) return $this->fail($this->validator->getErrors());
         $model = new UserModel();
@@ -55,11 +55,11 @@ class ApiLoginController extends ResourceController
 
         $credentials = [
             'email' => $this->request->getVar('email'),
-            'password' => $this->request->getVar('password_hash')
+            'password' => $this->request->getVar('password')
         ];
 
         $verify = $auth->attempt($credentials, false);
-        if (!$verify) return $this->fail($user->password_hash);
+        if (!$verify) return $this->fail("Error al iniciar sessió");
 
         /****************** GENERATE TOKEN ********************/
         helper("jwt");
