@@ -22,7 +22,7 @@ class ApiComandaController extends ResourceController
      *
      * @return mixed
      */
-    public function show($id = null)
+    public function showByTable($id = null)
     {
         $model = new ComandaModel();
         $data = $model->getComandabyCodiTaula($id);
@@ -47,7 +47,31 @@ class ApiComandaController extends ResourceController
 
         return $this->respond($response);
     }
+    public function showByUser($id = null)
+    {
+        $model = new ComandaModel();
+        $data = $model->getComandabyUser($id);
 
+        if (!empty($data)) {
+
+            $response = [
+                'status' => 200,
+                "error" => false,
+                'messages' => 'Comanda trobada',
+                'data' => $data
+            ];
+        } else {
+
+            $response = [
+                'status' => 500,
+                "error" => true,
+                'messages' => "No s'ha trobat cap Comanda amb el usuari indicat",
+                'data' => []
+            ];
+        }
+
+        return $this->respond($response);
+    }
 
     /**
      * Return a new resource object, with default properties
@@ -134,7 +158,7 @@ class ApiComandaController extends ResourceController
                     'message' => 'Estat Comanda canviat correctament',
                     'data' => [
                         'id_comanda' => $id,
-                        'password' => $estat_comanda
+                        'Estat comanda' => $estat_comanda
                     ]
                 ];
             } else {

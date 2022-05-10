@@ -45,7 +45,7 @@ class ComandaModel extends Model
     }
     public function getComandabyUser($id = null)
     {
-        return $this->where("codi_taula", $id)->select("*")->findAll();
+        return $this->where("id_users", $id)->select("*")->findAll();
     }
 
     public function afegirComanda($estat_comanda, $comensals, $codi_taula)
@@ -54,10 +54,6 @@ class ComandaModel extends Model
     }
     public function changeEstatComanda($id, $estat_comanda)
     {
-        // // $data = [
-        // //     'id' => $id,
-        // //     'estat_comanda' =>  $estat_comanda,
-        // ];
 
         $this->set('estat_comanda', $estat_comanda)->where('id_comanda', $id)->update();
     }
