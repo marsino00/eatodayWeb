@@ -43,9 +43,16 @@ class ComandaModel extends Model
     {
         return $this->where("codi_taula", $id)->select("*")->findAll();
     }
-    public function getComandabyUser($id = null)
+    public function getComandabyUser($email = null)
     {
-        return $this->where("id_users", $id)->select("*")->findAll();
+        $this->select('comanda.id_comanda,comanda.estat_comanda,comanda.comensals,comanda.codi_taula,');
+        $this->from('comanda', 'users');
+        $this->join('users', 'users.id=comanda.id_users');
+        $this->where('users.email', $email);
+        return $this->findAll();
+
+
+        // return $this->where("email", $email)->select("*")->findAll();
     }
 
     public function afegirComanda($estat_comanda, $comensals, $codi_taula)

@@ -59,7 +59,7 @@ $routes->group("api", function ($routes) {
     });
     $routes->group("comanda", function ($routes) {
         $routes->get("getByTable/(:num)", "Api" . DIRECTORY_SEPARATOR . "ApiComandaController::showByTable/$1");
-        $routes->get("getByUser/(:num)", "Api" . DIRECTORY_SEPARATOR . "ApiComandaController::showByUser/$1");
+        $routes->get("getByUser/(:segment)", "Api" . DIRECTORY_SEPARATOR . "ApiComandaController::showByUser/$1");
         $routes->post("add", "Api" . DIRECTORY_SEPARATOR . "ApiComandaController::create");
         $routes->post("update/(:num)", "Api" . DIRECTORY_SEPARATOR . "ApiComandaController::updateEstatComanda/$1");
     });
