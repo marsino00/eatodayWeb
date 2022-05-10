@@ -22,7 +22,7 @@ class AddAuthUsers extends Seeder
             'surnames' => 'FR',
             'codi_establiment' => '1',
             // 'id_comanda' => '1',
-            'codi_establiment' => '1',
+            // 'codi_establiment' => '1',
         ];
         $user = new User($row);
         $userId = $users->insert($user);

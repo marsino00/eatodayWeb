@@ -60,15 +60,21 @@ $routes->group("api", function ($routes) {
     $routes->group("comanda", function ($routes) {
         $routes->get("list/(:num)", "Api" . DIRECTORY_SEPARATOR . "ApiComandaController::show/$1");
         $routes->post("add", "Api" . DIRECTORY_SEPARATOR . "ApiComandaController::create");
+        $routes->post("canviarEstatComanda/(:num)", "Api" . DIRECTORY_SEPARATOR . "ApiComandaController::updateEstatComanda/$1");
     });
     $routes->group("platcomanda", function ($routes) {
         $routes->get("list/(:num)", "Api" . DIRECTORY_SEPARATOR . "ApiPlatComandaController::show/$1");
+        $routes->post("add", "Api" . DIRECTORY_SEPARATOR . "ApiPlatComandaController::create");
     });
     $routes->group("suplementaplicat", function ($routes) {
         $routes->get("list/(:num)", "Api" . DIRECTORY_SEPARATOR . "ApiSuplementAplicatController::show/$1");
+        $routes->post("add", "Api" . DIRECTORY_SEPARATOR . "ApiSuplementAplicatController::create");
     });
     $routes->group("puntuacio", function ($routes) {
         $routes->get("list/(:num)", "Api" . DIRECTORY_SEPARATOR . "ApiPuntuacioController::show/$1");
+    });
+    $routes->group("user", function ($routes) {
+        $routes->match(['options', 'post'], "login", "Api" . DIRECTORY_SEPARATOR . "ApiLoginController::login");
     });
 });
 

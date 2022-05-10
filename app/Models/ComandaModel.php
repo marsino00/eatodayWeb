@@ -43,8 +43,22 @@ class ComandaModel extends Model
     {
         return $this->where("codi_taula", $id)->select("*")->findAll();
     }
+    public function getComandabyUser($id = null)
+    {
+        return $this->where("codi_taula", $id)->select("*")->findAll();
+    }
+
     public function afegirComanda($estat_comanda, $comensals, $codi_taula)
     {
         $this->insert(["estat_comanda" => $estat_comanda, "comensals" => $comensals, "codi_taula" => $codi_taula]);
+    }
+    public function changeEstatComanda($id, $estat_comanda)
+    {
+        $data = [
+            'id' => $id,
+            'estat_comanda' =>  $estat_comanda,
+        ];
+
+        $this->save($data);
     }
 }

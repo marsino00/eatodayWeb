@@ -65,7 +65,41 @@ class ApiSuplementAplicatController extends ResourceController
      */
     public function create()
     {
-        //
+        $rules = [
+            'descripcio' => 'required',
+            'preu' => 'required',
+        ];
+
+        if (!$this->validate($rules)) {
+
+            $response = [
+                'status' => 500,
+                'error' => true,
+                'message' => $this->validator->getErrors(),
+                'data' => []
+            ];
+        } else {
+
+            $model = new SuplementAplicatModel();
+
+            $descripcio = $this->request->getVar('descripcio');
+            $preu = $this->request->getVar('preu');
+
+
+            $model->afegirSuplementAplicat($descripcio, $preu);
+
+            $response = [
+                'status' => 200,
+                'error' => false,
+                'message' => 'Suplement Aplicat creat',
+                'data' => [
+                    'descripcio' => $descripcio,
+                    'preu' => $preu
+                ]
+            ];
+        }
+
+        return $this->respondCreated($response);
     }
 
     /**

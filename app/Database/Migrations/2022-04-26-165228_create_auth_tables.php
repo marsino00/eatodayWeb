@@ -18,7 +18,6 @@ class CreateAuthTables extends Migration
             'name'         => ['type' => 'varchar', 'constraint' => 30, 'null' => true],
             'surnames'         => ['type' => 'varchar', 'constraint' => 30, 'null' => true],
             'codi_establiment'         => ['type' => 'int', 'constraint' => 11, 'null' => true],
-            'id_comanda'         => ['type' => 'int', 'constraint' => 11, 'null' => true],
             'password_hash'    => ['type' => 'varchar', 'constraint' => 255],
             'reset_hash'       => ['type' => 'varchar', 'constraint' => 255, 'null' => true],
             'reset_at'         => ['type' => 'datetime', 'null' => true],
@@ -37,7 +36,6 @@ class CreateAuthTables extends Migration
         $this->forge->addUniqueKey('email');
         $this->forge->addUniqueKey('username');
         $this->forge->addForeignKey('codi_establiment', 'establiment', 'codi_establiment');
-        $this->forge->addForeignKey('id_comanda', 'comanda', 'id_comanda');
 
         $this->forge->createTable('users', true);
 

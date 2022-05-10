@@ -121,4 +121,11 @@ class UserModel extends Model
 
         return $data;
     }
+    public function getUserByMailOrUsername($email)
+    {
+
+        // return $this->where('email',$email)->first();
+
+        return $this->orWhere('email', $email)->first();
+    }
 }

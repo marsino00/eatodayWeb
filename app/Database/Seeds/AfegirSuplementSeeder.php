@@ -12,7 +12,8 @@ class AfegirSuplementSeeder extends Seeder
         $fake = Factory::create("es_ES");
         $data = [
             'id_suplement' => 1, //$title => $fake->sentence(6)
-            'descripcio'  => 'Maionesa', //$desc => $fake->text(100)
+            'descripcio'  => 'Maionesa',
+            'preu' => '3,00'
         ];
 
         $this->db->table('suplement')->insert($data);
@@ -20,6 +21,7 @@ class AfegirSuplementSeeder extends Seeder
             $data = [
                 'id_suplement' => $i, //$title => $fake->sentence(6)
                 'descripcio'  => $fake->realText(50), //$desc => $fake->text(100)
+                'preu' => $fake->randomFloat()
             ];
 
             $this->db->table('suplement')->insert($data);

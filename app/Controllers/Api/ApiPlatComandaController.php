@@ -65,7 +65,44 @@ class ApiPlatComandaController extends ResourceController
      */
     public function create()
     {
-        //
+        $rules = [
+            'id_plat' => 'required',
+            'id_comanda' => 'required',
+            'estat_plat' => 'required'
+        ];
+
+        if (!$this->validate($rules)) {
+
+            $response = [
+                'status' => 500,
+                'error' => true,
+                'message' => $this->validator->getErrors(),
+                'data' => []
+            ];
+        } else {
+
+            $model = new PlatComandaModel();
+
+            $id_plat = $this->request->getVar('id_plat');
+            $id_comanda = $this->request->getVar('id_comanda');
+            $estat_plat = $this->request->getVar('estat_plat');
+
+
+            $model->afegirPlatComanda($id_plat, $id_comanda, $estat_plat);
+
+            $response = [
+                'status' => 200,
+                'error' => false,
+                'message' => 'PlatComanda creat',
+                'data' => [
+                    'id_plat' => $id_plat,
+                    'id_comanda' => $id_comanda,
+                    'estat_plat' => $estat_plat
+                ]
+            ];
+        }
+
+        return $this->respondCreated($response);
     }
 
     /**

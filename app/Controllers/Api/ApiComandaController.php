@@ -105,7 +105,51 @@ class ApiComandaController extends ResourceController
 
         return $this->respondCreated($response);
     }
+    public function updateEstatComanda($id = null)
+    {
+        $rules = [
+            'estat_comanda' => 'required',
+        ];
 
+
+        if (!$this->validate($rules)) {
+
+            $response = [
+                'status' => 500,
+                'error' => true,
+                'message' => $this->validator->getErrors(),
+                'data' => []
+            ];
+        } else {
+
+            $model = new ComandaModel();
+
+            if ($model->find($id)) {
+                $estat_comanda = $this->request->getVar('estat_comanda');
+                $model->changeEstatComanda($id, $estat_comanda);
+
+                $response = [
+                    'status' => 200,
+                    'error' => false,
+                    'message' => 'Estat Comanda canviat correctament',
+                    'data' => [
+                        'id' => $id,
+                        'password' => $estat_comanda
+                    ]
+                ];
+            } else {
+
+                $response = [
+                    'status' => 500,
+                    "error" => true,
+                    'messages' => "No s'ha trobat comanda",
+                    'data' => []
+                ];
+            }
+        }
+
+        return $this->respondUpdated($response);
+    }
     /**
      * Return the editable properties of a resource object
      *

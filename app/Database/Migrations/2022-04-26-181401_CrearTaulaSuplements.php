@@ -18,6 +18,10 @@ class CrearTaulaSuplements extends Migration
                 'type'           => 'VARCHAR',
                 'constraint'     => '255',
             ],
+            'preu'          => [
+                'type'           => 'DECIMAL',
+                'constraint'     => '4,2',
+            ],
         ]);
         $this->forge->addPrimaryKey('id_suplement', true);
         $this->forge->createTable('suplement');

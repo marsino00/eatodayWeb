@@ -14,7 +14,7 @@ class SuplementModel extends Model
     protected $returnType       = 'array';
     protected $useSoftDeletes   = false;
     protected $protectFields    = true;
-    protected $allowedFields    = ["descripcio"];
+    protected $allowedFields    = ["descripcio", "preu"];
 
     // Dates
     protected $useTimestamps = false;
@@ -42,7 +42,7 @@ class SuplementModel extends Model
 
     public function getSuplementbyIdPlat($id = null)
     {
-        $this->select('suplement.id_suplement,suplement.descripcio');
+        $this->select('suplement.id_suplement,suplement.descripcio,suplement.preu');
         $this->from('plat', 'suplement');
         $this->join('plat_suplement', 'plat.id_plat=plat_suplement.id_plat');
         $this->join('suplement', 'plat_suplement.id_suplement = suplement.id_suplement');

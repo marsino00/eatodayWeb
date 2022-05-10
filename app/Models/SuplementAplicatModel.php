@@ -14,7 +14,7 @@ class SuplementAplicatModel extends Model
     protected $returnType       = 'array';
     protected $useSoftDeletes   = false;
     protected $protectFields    = true;
-    protected $allowedFields    = ["descripcio"];
+    protected $allowedFields    = ["descripcio", "preu"];
 
     // Dates
     protected $useTimestamps = false;
@@ -42,11 +42,16 @@ class SuplementAplicatModel extends Model
 
     public function getSuplementbyIdPlatComanda($id = null)
     {
-        $this->select('suplement_aplicat.id_suplement_aplicat,suplement_aplicat.descripcio');
+        $this->select('suplement_aplicat.id_suplement_aplicat,suplement_aplicat.descripcio,suplement_aplicat.preu');
         $this->from('plat_comanda', 'suplement_aplicat');
         $this->join('plat_comanda_suplement_aplicat', 'plat_comanda.id_plat_comanda=plat_comanda_suplement_aplicat.id_plat_comanda');
         $this->join('suplement_aplicat', 'plat_comanda_suplement_aplicat.id_suplement_aplicat = suplement_aplicat.id_suplement_aplicat');
         $this->where('plat_comanda.id_plat_comanda', $id);
         return $this->findAll();
+    }
+
+    public function afegirSuplementAplicat($descripcio, $preu)
+    {
+        $this->insert(["descripcio" => $descripcio, "preu" => $preu]);
     }
 }
