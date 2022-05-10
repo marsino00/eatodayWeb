@@ -5,6 +5,8 @@ namespace App\Controllers\Api;
 use App\Controllers\AuthController;
 use CodeIgniter\RESTful\ResourceController;
 use App\Models\UserModel;
+use Myth\Auth\Entities\User;
+use Myth\Auth\Password;
 
 class ApiLoginController extends ResourceController
 {
@@ -29,8 +31,6 @@ class ApiLoginController extends ResourceController
     public function login()
     {
         helper("form");
-
-
 
         $auth = service('authentication');
 
@@ -84,6 +84,51 @@ class ApiLoginController extends ResourceController
         ];
         return $this->respondCreated($response);
     }
+
+    public function register()
+    {
+
+        // Validate basics first since some password rules rely on these fields
+        $rules = [
+            'email'    => 'required|valid_email|is_unique[users.email]',
+            'username' => 'required|alpha_numeric_space|min_length[3]|max_length[30]|is_unique[users.username]',
+            'password'     => 'required|min_length[8]',
+            'pass_confirm' => 'required|matches[password]',
+        ];
+        if (!$this->validate($rules)) {
+
+            $response = [
+                'status' => 500,
+                'error' => true,
+                'message' => $this->validator->getErrors(),
+                'data' => []
+            ];
+        } else {
+
+            $model = new UserModel();
+
+            $email = $this->request->getVar('email');
+            $username = $this->request->getVar('username');
+            $password = $this->request->getVar('password');
+            $model->crearUsuari($email, $username, Password::hash($password));
+
+            $response = [
+                'status' => 200,
+                'error' => false,
+                'message' => 'Usuari creat',
+                'data' => [
+                    'email' => $email,
+                    'username' => $username,
+                ]
+            ];
+        }
+
+        return $this->respondCreated($response);
+    }
+
+
+
+
     /**
      * Return the properties of a resource object
      *

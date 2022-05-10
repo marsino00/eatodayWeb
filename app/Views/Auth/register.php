@@ -315,9 +315,7 @@
         <form action="<?= route_to('register') ?>" method="post">
             <?= csrf_field() ?>
             <input type="text" id="login" class="fadeIn second <?php if (session('errors.email')) : ?>is-invalid<?php endif ?>" name="email" aria-describedby="emailHelp" placeholder="Email" value="<?= old('email') ?>">
-
             <input type="text" id="password" class="fadeIn third <?php if (session('errors.username')) : ?>is-invalid<?php endif ?>" name="username" placeholder="Nom d'usuari" value="<?= old('username') ?>">
-
             <input type="text" name="password" class="fadeIn third <?php if (session('errors.password')) : ?>is-invalid<?php endif ?>" placeholder="Contrasenya" autocomplete="off">
             <input type="text" name="pass_confirm" class="fadeIn third <?php if (session('errors.pass_confirm')) : ?>is-invalid<?php endif ?>" placeholder="Torna a introduir la contrasenya" autocomplete="off">
 

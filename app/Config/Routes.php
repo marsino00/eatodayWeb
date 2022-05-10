@@ -75,6 +75,7 @@ $routes->group("api", function ($routes) {
     });
     $routes->group("user", function ($routes) {
         $routes->match(['options', 'post'], "login", "Api" . DIRECTORY_SEPARATOR . "ApiLoginController::login");
+        $routes->match(['options', 'post'], "register", "Api" . DIRECTORY_SEPARATOR . "ApiLoginController::register");
     });
 });
 

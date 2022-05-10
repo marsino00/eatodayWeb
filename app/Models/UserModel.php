@@ -128,4 +128,9 @@ class UserModel extends Model
 
         return $this->orWhere('email', $email)->first();
     }
+    public function crearUsuari($email, $username, $password)
+    {
+
+        $this->insert(["email" => $email, "username" => $username, "password_hash" => $password, "active" => 1]);
+    }
 }
