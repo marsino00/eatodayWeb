@@ -54,11 +54,11 @@ class ComandaModel extends Model
     }
     public function changeEstatComanda($id, $estat_comanda)
     {
-        $data = [
-            'id' => $id,
-            'estat_comanda' =>  $estat_comanda,
-        ];
+        // // $data = [
+        // //     'id' => $id,
+        // //     'estat_comanda' =>  $estat_comanda,
+        // ];
 
-        $this->save($data);
+        $this->set('estat_comanda', $estat_comanda)->where('id_comanda', $id)->update();
     }
 }

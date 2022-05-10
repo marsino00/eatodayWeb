@@ -60,7 +60,7 @@ $routes->group("api", function ($routes) {
     $routes->group("comanda", function ($routes) {
         $routes->get("list/(:num)", "Api" . DIRECTORY_SEPARATOR . "ApiComandaController::show/$1");
         $routes->post("add", "Api" . DIRECTORY_SEPARATOR . "ApiComandaController::create");
-        $routes->post("canviarEstatComanda/(:num)", "Api" . DIRECTORY_SEPARATOR . "ApiComandaController::updateEstatComanda/$1");
+        $routes->post("update/(:num)", "Api" . DIRECTORY_SEPARATOR . "ApiComandaController::updateEstatComanda/$1");
     });
     $routes->group("platcomanda", function ($routes) {
         $routes->get("list/(:num)", "Api" . DIRECTORY_SEPARATOR . "ApiPlatComandaController::show/$1");

@@ -124,7 +124,7 @@ class ApiComandaController extends ResourceController
 
             $model = new ComandaModel();
 
-            if ($model->find($id)) {
+            if ($model->findAll($id)) {
                 $estat_comanda = $this->request->getVar('estat_comanda');
                 $model->changeEstatComanda($id, $estat_comanda);
 
@@ -133,7 +133,7 @@ class ApiComandaController extends ResourceController
                     'error' => false,
                     'message' => 'Estat Comanda canviat correctament',
                     'data' => [
-                        'id' => $id,
+                        'id_comanda' => $id,
                         'password' => $estat_comanda
                     ]
                 ];
