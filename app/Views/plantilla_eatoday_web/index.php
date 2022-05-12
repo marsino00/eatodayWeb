@@ -90,7 +90,7 @@
         </ul>
         <i class="bi bi-list mobile-nav-toggle"></i>
       </nav><!-- .navbar -->
-      <a href="#book-a-table" class="book-a-table-btn scrollto d-none d-lg-flex">Book a table</a>
+      <a href="./login" class="book-a-table-btn scrollto d-none d-lg-flex">Iniciar sessió</a>
 
     </div>
   </header><!-- End Header -->
