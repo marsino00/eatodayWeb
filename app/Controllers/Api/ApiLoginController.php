@@ -202,6 +202,41 @@ class ApiLoginController extends ResourceController
 
         return $this->respondCreated($response);
     }
+    public function getUserByEmail($email = null)
+    {
+        // Validate basics first since some password rules rely on these fields
+        $rules = [
+            'email'    => 'required',
+        ];
+        if (!$this->validate($rules)) {
+
+            $response = [
+                'status' => 500,
+                'error' => true,
+                'message' => $this->validator->getErrors(),
+                'data' => []
+            ];
+        } else {
+
+            $model = new UserModel();
+
+            $email = $this->request->getVar('email');
+            $name = $this->request->getVar('name');
+            $surnames = $this->request->getVar('surnames');
+            // , $name, $surnames
+            $data = $model->obtenirUsuari($email);
+            $response = [
+                'status' => 200,
+                'error' => false,
+                'message' => 'Usuari obtingut',
+                'data' => [
+                    $data
+                ]
+            ];
+        }
+
+        return $this->respondCreated($response);
+    }
 
     /**
      * Return the properties of a resource object

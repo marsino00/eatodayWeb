@@ -143,4 +143,12 @@ class UserModel extends Model
     {
         $this->set(['name' => $name, 'surnames' => $surnames])->where('email', $email)->update();
     }
+
+    public function obtenirUsuari($email)
+    {
+        $query = $this->query("SELECT id,email,username,name,surnames  FROM users WHERE email='$email'");
+        foreach ($query->getResult() as $row) {
+            return $row;
+        }
+    }
 }
