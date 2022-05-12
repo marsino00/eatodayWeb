@@ -151,4 +151,13 @@ class UserModel extends Model
             return $row;
         }
     }
+    public function obtenirRols($email)
+    {
+        $this->select('auth_groups.name');
+        $this->from('users', 'groups');
+        $this->join('auth_groups_users', 'users.id=auth_groups_users.user_id');
+        $this->join('auth_groups', 'auth_groups_users.group_id=auth_groups.id');
+        $this->where('users.email', $email);
+        return $this->findAll();
+    }
 }
