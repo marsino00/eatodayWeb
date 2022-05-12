@@ -77,8 +77,12 @@ $routes->group("api", function ($routes) {
         $routes->match(['options', 'post'], "register", "Api" . DIRECTORY_SEPARATOR . "ApiLoginController::register");
         $routes->match(['options', 'post'], "modifyPassword", "Api" . DIRECTORY_SEPARATOR . "ApiLoginController::modifyPassword", ["filter" => "jwt"]);
         $routes->match(['options', 'post'], "modifyUser", "Api" . DIRECTORY_SEPARATOR . "ApiLoginController::modifyUser", ["filter" => "jwt"]);
+
         $routes->match(['options', 'post', 'get'], "getUser", "Api" . DIRECTORY_SEPARATOR . "ApiLoginController::getUserByEmail", ["filter" => "jwt"]);
-        $routes->match(['options', 'post'], "getRoles", "Api" . DIRECTORY_SEPARATOR . "ApiLoginController::getGroupsByEmail", ["filter" => "jwt"]);
+
+        $routes->options("getUser", "Api" . DIRECTORY_SEPARATOR . "ApiLoginController::getUserByEmail");
+        $routes->post("getUser", "Api" . DIRECTORY_SEPARATOR . "ApiLoginController::getUserByEmail", ["filter" => "jwt"]);
+
     });
 });
 
@@ -86,6 +90,10 @@ $routes->group("api", function ($routes) {
 
 // $routes->get('/login', 'Home::index');
 $routes->get('/', 'Home::index');
+$routes->get('/establiments', 'Home::establiments');
+$routes->get('/establiments/(:num)', 'Home::establiments/$1');
+
+
 // Login/out
 $routes->get('login', 'AuthController::login', ['as' => 'login']);
 $routes->post('login', 'AuthController::attemptLogin');
