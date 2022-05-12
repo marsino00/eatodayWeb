@@ -5,6 +5,7 @@ namespace App\Models;
 use CodeIgniter\Model;
 use Myth\Auth\Authorization\GroupModel;
 use Myth\Auth\Entities\User;
+use Myth\Auth\Password;
 
 class UserModel extends Model
 {
@@ -132,5 +133,14 @@ class UserModel extends Model
     {
 
         $this->insert(["email" => $email, "username" => $username, "password_hash" => $password, "active" => 1]);
+    }
+
+    public function modificarContrasenya($email, $password)
+    {
+        $this->set('password_hash', Password::hash($password))->where('email', $email)->update();
+    }
+    public function modificarUsuari($email, $name, $surnames)
+    {
+        $this->set(['name' => $name, 'surnames' => $surnames])->where('email', $email)->update();
     }
 }

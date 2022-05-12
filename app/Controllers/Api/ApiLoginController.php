@@ -125,8 +125,83 @@ class ApiLoginController extends ResourceController
         return $this->respondCreated($response);
     }
 
+    public function modifyPassword()
+    {
+        // Validate basics first since some password rules rely on these fields
+        $rules = [
+            'email'    => 'required',
+            'password' => 'required'
+        ];
+        if (!$this->validate($rules)) {
 
+            $response = [
+                'status' => 500,
+                'error' => true,
+                'message' => $this->validator->getErrors(),
+                'data' => []
+            ];
+        } else {
 
+            $model = new UserModel();
+
+            $email = $this->request->getVar('email');
+            $password = $this->request->getVar('password');
+            // $name = $this->request->getVar('name');
+            // $surnames = $this->request->getVar('surnames');
+            // , $name, $surnames
+            $model->modificarContrasenya($email, $password);
+            $response = [
+                'status' => 200,
+                'error' => false,
+                'message' => 'Contrasenya canviada correctament',
+                'data' => [
+                    'email' => $email,
+                    // 'name' => $name,
+                    // 'surnames' => $surnames,
+                ]
+            ];
+        }
+
+        return $this->respondCreated($response);
+    }
+
+    public function modifyUser()
+    {
+        // Validate basics first since some password rules rely on these fields
+        $rules = [
+            'email'    => 'required',
+        ];
+        if (!$this->validate($rules)) {
+
+            $response = [
+                'status' => 500,
+                'error' => true,
+                'message' => $this->validator->getErrors(),
+                'data' => []
+            ];
+        } else {
+
+            $model = new UserModel();
+
+            $email = $this->request->getVar('email');
+            $name = $this->request->getVar('name');
+            $surnames = $this->request->getVar('surnames');
+            // , $name, $surnames
+            $model->modificarUsuari($email, $name, $surnames);
+            $response = [
+                'status' => 200,
+                'error' => false,
+                'message' => 'Usuari modificat correctament',
+                'data' => [
+                    'email' => $email,
+                    'name' => $name,
+                    'surnames' => $surnames,
+                ]
+            ];
+        }
+
+        return $this->respondCreated($response);
+    }
 
     /**
      * Return the properties of a resource object

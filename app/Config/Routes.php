@@ -34,8 +34,6 @@ $routes->setAutoRoute(false);
 
 $routes->group("api", function ($routes) {
     $routes->group("establiment", function ($routes) {
-        // $routes->get("list", "Api" . DIRECTORY_SEPARATOR . "ApiEstablimentController::index");
-        // $routes->get("show/(:num)", "Api" . DIRECTORY_SEPARATOR . "ApiEstablimentController::show/$1");
         $routes->match(['get', 'options'], "list", "Api" . DIRECTORY_SEPARATOR . "ApiEstablimentController::index");
         $routes->match(['get', 'options'], "show/(:num)", "Api" . DIRECTORY_SEPARATOR . "ApiEstablimentController::show/$1");
     });
@@ -77,6 +75,8 @@ $routes->group("api", function ($routes) {
     $routes->group("user", function ($routes) {
         $routes->match(['options', 'post'], "login", "Api" . DIRECTORY_SEPARATOR . "ApiLoginController::login");
         $routes->match(['options', 'post'], "register", "Api" . DIRECTORY_SEPARATOR . "ApiLoginController::register");
+        $routes->match(['options', 'post'], "modifyPassword", "Api" . DIRECTORY_SEPARATOR . "ApiLoginController::modifyPassword", ["filter" => "jwt"]);
+        $routes->match(['options', 'post'], "modifyUser", "Api" . DIRECTORY_SEPARATOR . "ApiLoginController::modifyUser", ["filter" => "jwt"]);
     });
 });
 
