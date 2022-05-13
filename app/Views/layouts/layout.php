@@ -55,28 +55,8 @@
                     <li><a class="nav-link scrollto <?php if (str_contains(base_url(), "#about")) echo 'active'; ?>" href="<?= base_url() . '#about' ?>">Valors</a></li>
 
                     <li><a class="nav-link scrollto <?php if (str_contains(base_url(), "establiments")) echo 'active'; ?>" href="<?= base_url() . '/establiments' ?> ">Establiments</a></li>
-                    <li><a class="nav-link scrollto <?php if (str_contains(base_url(), "#specials")) echo 'active'; ?>" href="<?= base_url() . '#specials' ?>">Specials</a></li>
-                    <li><a class="nav-link scrollto <?php if (str_contains(base_url(), "#events")) echo 'active'; ?>" href="<?= base_url() . '#events' ?>">Events</a></li>
-                    <li><a class="nav-link scrollto <?php if (str_contains(base_url(), "#chefs")) echo 'active'; ?>" href="<?= base_url() . '#chefs' ?>">Chefs</a></li>
-                    <li><a class="nav-link scrollto <?php if (str_contains(base_url(), "#gallery")) echo 'active'; ?>" href="<?= base_url() . '#gallery' ?>">Gallery</a></li>
-                    <li class="dropdown"><a href="#"><span>Drop Down</span> <i class="bi bi-chevron-down"></i></a>
-                        <ul>
-                            <li><a href="#">Drop Down 1</a></li>
-                            <li class="dropdown"><a href="#"><span>Deep Drop Down</span> <i class="bi bi-chevron-right"></i></a>
-                                <ul>
-                                    <li><a href="#">Deep Drop Down 1</a></li>
-                                    <li><a href="#">Deep Drop Down 2</a></li>
-                                    <li><a href="#">Deep Drop Down 3</a></li>
-                                    <li><a href="#">Deep Drop Down 4</a></li>
-                                    <li><a href="#">Deep Drop Down 5</a></li>
-                                </ul>
-                            </li>
-                            <li><a href="#">Drop Down 2</a></li>
-                            <li><a href="#">Drop Down 3</a></li>
-                            <li><a href="#">Drop Down 4</a></li>
-                        </ul>
-                    </li>
-                    <li><a class="nav-link scrollto<?php if (str_contains(base_url(), "#contact")) echo 'active'; ?>" href="<?= base_url() . '#contact' ?>">Contact</a></li>
+                    <li><a class="nav-link scrollto <?php if (str_contains(base_url(), "#specials")) echo 'active'; ?>" href="<?= base_url() . '#specials' ?>">Plans</a></li>
+                    <li><a class="nav-link scrollto<?php if (str_contains(base_url(), "#contact")) echo 'active'; ?>" href="<?= base_url() . '#contact' ?>">Contactar</a></li>
                 </ul>
                 <i class="bi bi-list mobile-nav-toggle"></i>
             </nav><!-- .navbar -->

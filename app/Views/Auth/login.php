@@ -318,7 +318,7 @@
             <div class="invalid-feedback">
                 <?= session('errors.login') ?>
             </div>
-            <input type="text" id="password" name="password" class="fadeIn third <?php if (session('errors.password')) : ?>is-invalid<?php endif ?>" name="login" placeholder="Contrasenya">
+            <input style="-webkit-text-security: disc;" type="text" id="password" name="password" class="fadeIn third <?php if (session('errors.password')) : ?>is-invalid<?php endif ?>" name="login" placeholder="Contrasenya">
             <div class="invalid-feedback">
                 <?= session('errors.password') ?>
             </div>
