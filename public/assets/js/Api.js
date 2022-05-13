@@ -38,6 +38,18 @@ class Api {
           divChild.appendChild(p);
           div.appendChild(a);
           a.appendChild(divChild);
+          let p2 = document.createElement("p");
+          let i = document.createElement("i");
+          i.setAttribute("class", "bi bi-star-fill");
+          if (JSON.parse(result).data[index].valoracio_mitjana.vm != null) {
+            p2.textContent =
+              JSON.parse(result).data[index].valoracio_mitjana.vm + " ";
+          } else {
+            p2.textContent = "No hi ha valoracions ";
+          }
+
+          p2.appendChild(i);
+          divChild.appendChild(p2);
           establiments.appendChild(div);
         }
       })
@@ -72,9 +84,9 @@ class Api {
 
           // let img = document.createElement("img");
           var img = new Image();
-          img.onload = function () {
-            callback(img);
-          };
+          // img.onload = function () {
+          //   callback(img);
+          // };
           img.src =
             "data:image/png;base64," + JSON.parse(result).data[0].fotos[index];
           img.setAttribute("id", "slide-" + index);
@@ -142,7 +154,10 @@ class Api {
         li4.textContent =
           "Valoració mitjana: " +
           JSON.parse(result).data[0].valoracio_mitjana.vm +
-          "/5";
+          "/5 ";
+        let i5 = document.createElement("i");
+        i5.setAttribute("class", "bi bi-star-fill");
+        li4.appendChild(i5);
         ul.appendChild(li4);
         // li.appendChild(icon);
         diVEstabliment.appendChild(ul);
@@ -150,6 +165,46 @@ class Api {
         divGeneral.appendChild(div2);
         divGeneral.appendChild(div3);
         diVEstabliment.appendChild(divGeneral);
+      })
+      .catch((error) => console.log("error", error));
+  }
+  static obtenirValoracions(divValoracions) {
+    var myHeaders = new Headers();
+    myHeaders.append("Cookie", "ci_session=7fqf75p13gs9a0kr2ul5go4068u404h9");
+
+    var requestOptions = {
+      method: "GET",
+      headers: myHeaders,
+      redirect: "follow",
+    };
+
+    fetch("/api/puntuacio/list/1", requestOptions)
+      .then((response) => response.text())
+      .then((result) => {
+        for (let index = 0; index < JSON.parse(result).data.length; index++) {
+          let div = document.createElement("div");
+
+          let h1 = document.createElement("h1");
+          h1.textContent =
+            JSON.parse(result).data[index].name +
+            " " +
+            JSON.parse(result).data[index].surnames;
+          div.appendChild(h1);
+          let h6 = document.createElement("h6");
+          h6.textContent = JSON.parse(result).data[index].data_publicacio;
+          div.appendChild(h6);
+          let p = document.createElement("p");
+          div.setAttribute("class", "col-lg-6 menu-item filter-starters");
+          p.textContent = JSON.parse(result).data[index].comentari;
+          div.appendChild(p);
+          let h3 = document.createElement("h3");
+          h3.textContent = JSON.parse(result).data[index].valoracio;
+          let i5 = document.createElement("i");
+          i5.setAttribute("class", "bi bi-star-fill");
+          h3.appendChild(i5);
+          div.appendChild(h3);
+          divValoracions.appendChild(div);
+        }
       })
       .catch((error) => console.log("error", error));
   }

@@ -87,7 +87,7 @@
 </style>
 <?= $this->endSection() ?>
 <?= $this->section('sections') ?>
-<section id="about" class="about">
+<section id="establiment" class="about">
     <div class="container" data-aos="fade-up">
         <div class="row">
             <div class="col-lg-6 order-1 order-lg-2" data-aos="zoom-in" data-aos-delay="100">
@@ -101,15 +101,44 @@
         </div>
     </div>
 </section>
+<section id="menu" class="menu section-bg">
+    <div class="container" data-aos="fade-up">
+
+        <div class="section-title">
+            <p>Valoracions</p>
+        </div>
+
+        <div id="divValoracions" class="row menu-container" data-aos="fade-up" data-aos-delay="200">
+
+            <!-- <div class="col-lg-6 menu-item filter-starters">
+          <img src="assets/img/menu/lobster-bisque.jpg" class="menu-img" alt="">
+          <div class="menu-content">
+            <a href="#">Lobster Bisque</a><span>$5.95</span>
+          </div>
+          <div class="menu-ingredients">
+            Lorem, deren, trataro, filede, nerada
+          </div>
+        </div> -->
+
+
+
+        </div>
+
+    </div>
+</section><!-- End Menu Section -->
 <?= $this->endSection() ?>
 <?= $this->section('js') ?>
 <script src="/assets/js/Api.js"></script>
 <script>
     typeof document;
 
-    divEstabliment = document.getElementById("establiments")
-    slider = document.getElementById("slider")
-    slides = document.getElementById("slides")
+    divEstabliment = document.getElementById("establiments");
+    slider = document.getElementById("slider");
+    slides = document.getElementById("slides");
+    divValoracions = document.getElementById("divValoracions");
+    console.log(divValoracions);
     Api.obtenirUnEstabliment(<?= $codi_establiment ?>, divEstabliment, slider, slides);
+
+    Api.obtenirValoracions(divValoracions);
 </script>
 <?= $this->endSection() ?>
