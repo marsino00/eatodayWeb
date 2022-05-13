@@ -70,7 +70,7 @@
 
       <div id="establiments" class="row">
       </div>
-      <a style="color:white" href="./establiments">Veure més</a>
+      <a style="color:white" href="./establiments">Veure'ls tots</a>
     </div>
   </section><!-- End Why Us Section -->
 

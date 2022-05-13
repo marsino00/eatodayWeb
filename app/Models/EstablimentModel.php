@@ -102,10 +102,17 @@ class EstablimentModel extends Model
     public function getEstablimentbyId($id = null)
     {
         $query = $this->query("SELECT * from establiment where codi_establiment=$id");
+        $establiments = [];
 
         foreach ($query->getResult() as $row) {
-            return $row;
+            $photos = $this->getFile($row->codi_establiment, "establiment");
+            $pm = new PuntuacioModel();
+            $row->valoracio_mitjana = $pm->getPuntuacio($row->codi_establiment);
+
+            $row->fotos = $photos;
+            array_push($establiments, $row);
         }
+        return $establiments;
     }
 
     public function getCartabyIdCategoria($id = null)

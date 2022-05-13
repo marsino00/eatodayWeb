@@ -14,6 +14,9 @@ class Home extends BaseController
         if ($codi_establiment == null) {
             echo view('plantilla_eatoday_web/establiments');
         } else {
+
+
+
             echo view('plantilla_eatoday_web/establiment', $data);
         }
     }

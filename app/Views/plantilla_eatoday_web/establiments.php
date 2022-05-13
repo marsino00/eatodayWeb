@@ -5,7 +5,6 @@
     <div class="container" data-aos="fade-up">
 
         <div class="section-title">
-            <h2>Establiments</h2>
             <p>Els nostres establiments</p>
         </div>
 
