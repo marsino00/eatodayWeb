@@ -2,6 +2,7 @@
 
 namespace Config;
 
+use App\Filters\JWTFilter;
 use CodeIgniter\Config\BaseConfig;
 use CodeIgniter\Filters\CSRF;
 use CodeIgniter\Filters\DebugToolbar;
@@ -9,7 +10,6 @@ use CodeIgniter\Filters\Honeypot;
 use CodeIgniter\Filters\InvalidChars;
 use CodeIgniter\Filters\SecureHeaders;
 use App\Filters\CorsFilter;
-use App\Filters\JWTFilter;
 
 class Filters extends BaseConfig
 {

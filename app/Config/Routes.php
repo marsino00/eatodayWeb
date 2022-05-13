@@ -75,6 +75,7 @@ $routes->group("api", function ($routes) {
     $routes->group("user", function ($routes) {
         $routes->match(['options', 'post'], "login", "Api" . DIRECTORY_SEPARATOR . "ApiLoginController::login");
         $routes->match(['options', 'post'], "register", "Api" . DIRECTORY_SEPARATOR . "ApiLoginController::register");
+
         $routes->options("modifyPassword", "Api" . DIRECTORY_SEPARATOR . "ApiLoginController::modifyPassword");
         $routes->post("modifyPassword", "Api" . DIRECTORY_SEPARATOR . "ApiLoginController::modifyPassword", ["filter" => "jwt"]);
         $routes->options("modifyUser", "Api" . DIRECTORY_SEPARATOR . "ApiLoginController::modifyUser");
@@ -83,6 +84,7 @@ $routes->group("api", function ($routes) {
         $routes->post("getUser", "Api" . DIRECTORY_SEPARATOR . "ApiLoginController::getUserByEmail", ["filter" => "jwt"]);
         $routes->options("getRoles", "Api" . DIRECTORY_SEPARATOR . "ApiLoginController::getGroupsByEmail");
         $routes->post("getRoles", "Api" . DIRECTORY_SEPARATOR . "ApiLoginController::getGroupsByEmail", ["filter" => "jwt"]);
+
     });
 });
 
