@@ -1,4 +1,12 @@
 <?= $this->extend('layouts/layout') ?>
+<?= $this->section('css') ?>
+<style>
+    h4:hover {
+        color: tomato;
+    }
+</style>
+<?= $this->endSection() ?>
+
 <?= $this->section('sections') ?>
 
 <section id="categoria" class="menu section-bg">

@@ -324,6 +324,7 @@ class Api {
             "data:image/png;base64," +
             JSON.parse(result).data[index].fotos[index];
           img.setAttribute("class", "menu-img");
+          img.style = "border:0px";
           div.appendChild(img);
           let div2 = document.createElement("div");
           div2.setAttribute("class", "menu-content");
@@ -339,7 +340,10 @@ class Api {
             "/plats/" +
             JSON.parse(result).data[index].id_plat;
           a.style = "color:white";
-          a.textContent = JSON.parse(result).data[index].nom;
+          let h4 = document.createElement("h4");
+
+          h4.textContent = JSON.parse(result).data[index].nom;
+          a.appendChild(h4);
           let span = document.createElement("span");
           span.textContent = JSON.parse(result).data[index].preu + " €";
           div2.appendChild(a);

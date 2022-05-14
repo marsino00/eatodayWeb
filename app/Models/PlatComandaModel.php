@@ -48,6 +48,7 @@ class PlatComandaModel extends Model
         $this->join('plat_comanda', 'plat_comanda.id_plat=plat.id_plat');
         $this->where('plat_comanda.id_comanda', $id);
         $queryPlats = $this->findAll();
+        return $queryPlats;
         foreach ($queryPlats as $row) {
             return $row;
         }
