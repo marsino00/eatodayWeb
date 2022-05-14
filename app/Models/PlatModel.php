@@ -118,12 +118,50 @@ class PlatModel extends Model
     public function getPlatbyIdPlatComanda($id = null)
     {
         $this->select('plat.id_plat,plat.nom,plat.descripcio_breu,plat.descripcio_detallada,plat.preu');
-        $this->from('plat', 'plat_comanda');
+        $this->from('carta', 'plat');
+        $this->join('carta_plat', 'carta.id_carta=carta_plat.id_carta');
+        $this->join('plat', 'carta_plat.id_plat = plat.id_plat');
         $this->join('plat_comanda', 'plat_comanda.id_plat=plat.id_plat');
         $this->where('plat_comanda.id_plat_comanda', $id);
         $queryPlats = $this->findAll();
-        foreach ($queryPlats as $row) {
-            return $row;
+
+
+        $this->select('establiment.codi_establiment');
+        $this->from('carta', 'plat');
+        $this->join('carta_plat', 'carta.id_carta=carta_plat.id_carta');
+        $this->join('plat', 'carta_plat.id_plat = plat.id_plat');
+        $this->join('categoria_carta', 'categoria_carta.id_carta=carta.id_carta');
+        $this->join('categoria', 'categoria.id_categoria = categoria_carta.id_carta');
+        $this->join('establiment', 'categoria.codi_establiment = establiment.codi_establiment');
+        $this->join('plat_comanda', 'plat_comanda.id_plat=plat.id_plat');
+        $this->where('plat_comanda.id_plat_comanda', $id);
+        $queryEstabliment = $this->findAll();
+        $establiment = "";
+        foreach ($queryEstabliment as $row) {
+            $establiment = $row;
         }
+        $plats = [];
+
+        foreach ($queryPlats as $row) {
+            $photos = $this->getFile($establiment["codi_establiment"], "plats", $row["id_plat"]);
+            $row["fotos"] = $photos;
+            array_push($plats, $row);
+        }
+        return $plats;
+
+
+
+
+
+
+
+        // $this->select('plat.id_plat,plat.nom,plat.descripcio_breu,plat.descripcio_detallada,plat.preu');
+        // $this->from('plat', 'plat_comanda');
+        // $this->join('plat_comanda', 'plat_comanda.id_plat=plat.id_plat');
+        // $this->where('plat_comanda.id_plat_comanda', $id);
+        // $queryPlats = $this->findAll();
+        // foreach ($queryPlats as $row) {
+        //     return $row;
+        // }
     }
 }

@@ -94,6 +94,7 @@ class ApiComandaController extends ResourceController
             'estat_comanda' => 'required',
             'comensals' => 'required',
             'codi_taula' => 'required',
+            'id_users' => 'required',
         ];
 
         if (!$this->validate($rules)) {
@@ -111,9 +112,10 @@ class ApiComandaController extends ResourceController
             $estat_comanda = $this->request->getVar('estat_comanda');
             $comensals = $this->request->getVar('comensals');
             $codi_taula = $this->request->getVar('codi_taula');
+            $id_users = $this->request->getVar('id_users');
 
 
-            $model->afegirComanda($estat_comanda, $comensals, $codi_taula);
+            $model->afegirComanda($estat_comanda, $comensals, $codi_taula, $id_users);
 
             $response = [
                 'status' => 200,
@@ -122,7 +124,8 @@ class ApiComandaController extends ResourceController
                 'data' => [
                     'estat_comanda' => $estat_comanda,
                     'comensals' => $comensals,
-                    'codi_taula' => $codi_taula
+                    'codi_taula' => $codi_taula,
+                    'id_users' => $id_users
                 ]
             ];
         }

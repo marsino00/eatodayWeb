@@ -49,9 +49,9 @@ class PlatComandaModel extends Model
         $this->where('plat_comanda.id_comanda', $id);
         $queryPlats = $this->findAll();
         return $queryPlats;
-        foreach ($queryPlats as $row) {
-            return $row;
-        }
+        // foreach ($queryPlats as $row) {
+        //     return $row;
+        // }
         // return $this->where("id_comanda", $id)->select("estat_plat,hora_demanat,hora_elaborat,hora_lliurat,id_plat_comanda")->findAll();
     }
     public function afegirPlatComanda($id_plat, $id_comanda, $estat_plat)
