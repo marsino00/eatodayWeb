@@ -45,6 +45,7 @@ $routes->group("api", function ($routes) {
     });
     $routes->group("plat", function ($routes) {
         $routes->get("list/(:num)", "Api" . DIRECTORY_SEPARATOR . "ApiPlatController::show/$1");
+        $routes->get("getPlatbyPlatComanda/(:num)", "Api" . DIRECTORY_SEPARATOR . "ApiPlatController::getPlatbyIdPlatComanda/$1");
     });
     $routes->group("alergen", function ($routes) {
         $routes->get("list/(:num)", "Api" . DIRECTORY_SEPARATOR . "ApiAlergenController::show/$1");
@@ -84,7 +85,6 @@ $routes->group("api", function ($routes) {
         $routes->post("getUser", "Api" . DIRECTORY_SEPARATOR . "ApiLoginController::getUserByEmail", ["filter" => "jwt"]);
         $routes->options("getRoles", "Api" . DIRECTORY_SEPARATOR . "ApiLoginController::getGroupsByEmail");
         $routes->post("getRoles", "Api" . DIRECTORY_SEPARATOR . "ApiLoginController::getGroupsByEmail", ["filter" => "jwt"]);
-
     });
 });
 
@@ -94,6 +94,9 @@ $routes->group("api", function ($routes) {
 $routes->get('/', 'Home::index');
 $routes->get('/establiments', 'Home::establiments');
 $routes->get('/establiments/(:num)', 'Home::establiments/$1');
+$routes->get('/establiments/(:num)/categories/(:num)', 'Home::categories/$1/$2');
+$routes->get('/establiments/(:num)/categories/(:num)/cartes/(:num)', 'Home::cartes/$1/$2/$3');
+$routes->get('/establiments/(:num)/categories/(:num)/cartes/(:num)/plats/(:num)', 'Home::plats/$1/$2/$3/$4');
 
 
 // Login/out

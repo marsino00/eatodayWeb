@@ -80,13 +80,7 @@ class Api {
         ) {
           let a = document.createElement("a");
           a.href = "#slide-" + index;
-          // var image = new Image();
-
-          // let img = document.createElement("img");
           var img = new Image();
-          // img.onload = function () {
-          //   callback(img);
-          // };
           img.src =
             "data:image/png;base64," + JSON.parse(result).data[0].fotos[index];
           img.setAttribute("id", "slide-" + index);
@@ -151,10 +145,15 @@ class Api {
         ul.appendChild(li2);
         li3.textContent = "Horari: " + JSON.parse(result).data[0].horari;
         ul.appendChild(li3);
-        li4.textContent =
-          "Valoració mitjana: " +
-          JSON.parse(result).data[0].valoracio_mitjana.vm +
-          "/5 ";
+        if (JSON.parse(result).data[0].valoracio_mitjana.vm != null) {
+          li4.textContent =
+            "Valoració mitjana: " +
+            JSON.parse(result).data[0].valoracio_mitjana.vm +
+            "/5 ";
+        } else {
+          li4.textContent = "Valoració mitjana: Sense valoracions";
+        }
+
         let i5 = document.createElement("i");
         i5.setAttribute("class", "bi bi-star-fill");
         li4.appendChild(i5);
@@ -168,7 +167,52 @@ class Api {
       })
       .catch((error) => console.log("error", error));
   }
-  static obtenirValoracions(divValoracions) {
+  static obtenirCategories(codi_establiment, divCategories) {
+    var myHeaders = new Headers();
+    myHeaders.append("Cookie", "ci_session=pibnbs85019rdkc3iobh854m0qg4n6uc");
+
+    var requestOptions = {
+      method: "GET",
+      headers: myHeaders,
+      redirect: "follow",
+    };
+
+    fetch("/api/categoria/list/" + codi_establiment, requestOptions)
+      .then((response) => response.text())
+      .then((result) => {
+        for (let index = 0; index < JSON.parse(result).data.length; index++) {
+          let div = document.createElement("div");
+
+          let h4 = document.createElement("h4");
+          h4.textContent = JSON.parse(result).data[index].nom + " ";
+          let p = document.createElement("p");
+          let i = document.createElement("i");
+          i.setAttribute("class", "bi bi-arrow-right-circle");
+          i.style = "font-size: 20px;color: tomato;";
+
+          h4.appendChild(i);
+          let a = document.createElement("a");
+          let hr = document.createElement("hr");
+          p.textContent = JSON.parse(result).data[index].descripcio;
+          // div.appendChild(h4);
+          a.href =
+            "/establiments/" +
+            codi_establiment +
+            "/categories/" +
+            JSON.parse(result).data[index].id_categoria;
+          a.style = "color:white";
+
+          a.appendChild(h4);
+          div.appendChild(a);
+          div.appendChild(p);
+          div.appendChild(hr);
+          divCategories.appendChild(div);
+        }
+      })
+      .catch((error) => console.log("error", error));
+  }
+
+  static obtenirValoracions(codi_establiment, divValoracions) {
     var myHeaders = new Headers();
     myHeaders.append("Cookie", "ci_session=7fqf75p13gs9a0kr2ul5go4068u404h9");
 
@@ -178,7 +222,7 @@ class Api {
       redirect: "follow",
     };
 
-    fetch("/api/puntuacio/list/1", requestOptions)
+    fetch("/api/puntuacio/list/" + codi_establiment, requestOptions)
       .then((response) => response.text())
       .then((result) => {
         for (let index = 0; index < JSON.parse(result).data.length; index++) {
@@ -200,10 +244,112 @@ class Api {
           let h3 = document.createElement("h3");
           h3.textContent = JSON.parse(result).data[index].valoracio;
           let i5 = document.createElement("i");
+          let hr = document.createElement("hr");
           i5.setAttribute("class", "bi bi-star-fill");
           h3.appendChild(i5);
           div.appendChild(h3);
+          div.appendChild(hr);
           divValoracions.appendChild(div);
+        }
+      })
+      .catch((error) => console.log("error", error));
+  }
+
+  static obtenirCartes(codi_establiment, id_categoria, divCartes) {
+    var myHeaders = new Headers();
+    myHeaders.append("Cookie", "ci_session=pibnbs85019rdkc3iobh854m0qg4n6uc");
+
+    var requestOptions = {
+      method: "GET",
+      headers: myHeaders,
+      redirect: "follow",
+    };
+
+    fetch("/api/carta/list/" + id_categoria, requestOptions)
+      .then((response) => response.text())
+      .then((result) => {
+        for (let index = 0; index < JSON.parse(result).data.length; index++) {
+          let div = document.createElement("div");
+
+          let h4 = document.createElement("h4");
+          h4.textContent = JSON.parse(result).data[index].nom + " ";
+          let p = document.createElement("p");
+          let i = document.createElement("i");
+          i.setAttribute("class", "bi bi-arrow-right-circle");
+          i.style = "font-size: 20px;color: tomato;";
+
+          h4.appendChild(i);
+          let a = document.createElement("a");
+          let hr = document.createElement("hr");
+          p.textContent = JSON.parse(result).data[index].descripcio;
+          // div.appendChild(h4);
+          a.href =
+            "/establiments/" +
+            codi_establiment +
+            "/categories/" +
+            id_categoria +
+            "/cartes/" +
+            JSON.parse(result).data[index].id_carta;
+          a.style = "color:white";
+
+          a.appendChild(h4);
+          div.appendChild(a);
+          div.appendChild(p);
+          div.appendChild(hr);
+          divCartes.appendChild(div);
+        }
+      })
+      .catch((error) => console.log("error", error));
+  }
+
+  static obtenirPlats(codi_establiment, id_categoria, id_carta, divPlats) {
+    var myHeaders = new Headers();
+    myHeaders.append("Cookie", "ci_session=pibnbs85019rdkc3iobh854m0qg4n6uc");
+
+    var requestOptions = {
+      method: "GET",
+      headers: myHeaders,
+      redirect: "follow",
+    };
+
+    fetch("/api/plat/list/" + id_carta, requestOptions)
+      .then((response) => response.text())
+      .then((result) => {
+        for (let index = 0; index < JSON.parse(result).data.length; index++) {
+          let div = document.createElement("div");
+          div.setAttribute("class", "col-lg-6 menu-item");
+
+          var img = new Image();
+          img.src =
+            "data:image/png;base64," +
+            JSON.parse(result).data[index].fotos[index];
+          img.setAttribute("class", "menu-img");
+          div.appendChild(img);
+          let div2 = document.createElement("div");
+          div2.setAttribute("class", "menu-content");
+
+          let a = document.createElement("a");
+          a.href =
+            "/establiments/" +
+            codi_establiment +
+            "/categories/" +
+            id_categoria +
+            "/cartes/" +
+            id_carta +
+            "/plats/" +
+            JSON.parse(result).data[index].id_plat;
+          a.style = "color:white";
+          a.textContent = JSON.parse(result).data[index].nom;
+          let span = document.createElement("span");
+          span.textContent = JSON.parse(result).data[index].preu + " €";
+          div2.appendChild(a);
+          div2.appendChild(span);
+          let div3 = document.createElement("div");
+          div3.setAttribute("class", "menu-ingredients");
+          div3.textContent = JSON.parse(result).data[index].descripcio_breu;
+          div.appendChild(div2);
+          div.appendChild(div3);
+          divPlats.appendChild(div);
         }
       })
       .catch((error) => console.log("error", error));

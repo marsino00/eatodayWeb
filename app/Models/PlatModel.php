@@ -114,4 +114,16 @@ class PlatModel extends Model
         }
         return $plats;
     }
+
+    public function getPlatbyIdPlatComanda($id = null)
+    {
+        $this->select('plat.id_plat,plat.nom,plat.descripcio_breu,plat.descripcio_detallada,plat.preu');
+        $this->from('plat', 'plat_comanda');
+        $this->join('plat_comanda', 'plat_comanda.id_plat=plat.id_plat');
+        $this->where('plat_comanda.id_plat_comanda', $id);
+        $queryPlats = $this->findAll();
+        foreach ($queryPlats as $row) {
+            return $row;
+        }
+    }
 }

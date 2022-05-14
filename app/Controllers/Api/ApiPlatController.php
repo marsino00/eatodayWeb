@@ -47,6 +47,33 @@ class ApiPlatController extends ResourceController
 
         return $this->respond($response);
     }
+    public function getPlatbyIdPlatComanda($id = null)
+    {
+        $model = new PlatModel();
+        $data = $model->getPlatbyIdPlatComanda($id);
+
+        if (!empty($data)) {
+
+            $response = [
+                'status' => 200,
+                "error" => false,
+                'messages' => 'Plats trobats',
+                'data' => $data
+            ];
+        } else {
+
+            $response = [
+                'status' => 500,
+                "error" => true,
+                'messages' => "No s'ha trobat cap plat amb el id indicat",
+                'data' => []
+            ];
+        }
+
+        return $this->respond($response);
+    }
+
+
 
     /**
      * Return a new resource object, with default properties

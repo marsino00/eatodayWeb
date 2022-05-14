@@ -1,6 +1,10 @@
 <?= $this->extend('layouts/layout') ?>
 <?= $this->section('css') ?>
 <style>
+    h4:hover {
+        color: tomato;
+    }
+
     i[class^='bi bi-'],
     i [class*='bi bi-'] {
         font-size: 50px;
@@ -101,7 +105,21 @@
         </div>
     </div>
 </section>
-<section id="menu" class="menu section-bg">
+<section id="categoria" class="menu section-bg">
+    <div class="container" data-aos="fade-up">
+
+        <div class="section-title">
+            <p>Categories</p>
+        </div>
+        <div id="divCategories">
+
+
+
+        </div>
+    </div>
+</section>
+
+<section id="menu" class="events">
     <div class="container" data-aos="fade-up">
 
         <div class="section-title">
@@ -136,9 +154,10 @@
     slider = document.getElementById("slider");
     slides = document.getElementById("slides");
     divValoracions = document.getElementById("divValoracions");
-    console.log(divValoracions);
+    divCategories = document.getElementById("divCategories");
     Api.obtenirUnEstabliment(<?= $codi_establiment ?>, divEstabliment, slider, slides);
 
-    Api.obtenirValoracions(divValoracions);
+    Api.obtenirCategories(<?= $codi_establiment ?>, divCategories);
+    Api.obtenirValoracions(<?= $codi_establiment ?>, divValoracions);
 </script>
 <?= $this->endSection() ?>
