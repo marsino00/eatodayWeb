@@ -95,7 +95,19 @@ class AuthController extends Controller
 
 		$redirectURL = session('redirect_url') ?? site_url('/');
 		unset($_SESSION['redirect_url']);
+		helper("jwt");
+		$APIGroupConfig = "default";
+		$cfgAPI = new \Config\APIJwt($APIGroupConfig);
 
+		$data = array(
+			"uid" => $this->auth->user()->id,
+			"name" => $this->auth->user()->username,
+			"email" => $this->auth->user()->email
+		);
+
+		$token = newTokenJWT($cfgAPI->config(), $data);
+		$session = \Config\Services::session();
+		$session->set('login_token', $token);
 		return redirect()->to($redirectURL)->withCookies()->with('message', lang('Auth.loginSuccess'));
 	}
 
@@ -105,6 +117,7 @@ class AuthController extends Controller
 	public function logout()
 	{
 		if ($this->auth->check()) {
+			$_SESSION['login_token'];
 			$this->auth->logout();
 		}
 

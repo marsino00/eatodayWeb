@@ -19,6 +19,7 @@
         &copy;2022 eatoday
     </div>
     </footer> -->
+    <?= $this->renderSection('js') ?>
 
 </body>
 

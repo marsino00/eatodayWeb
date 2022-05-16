@@ -358,4 +358,133 @@ class Api {
       })
       .catch((error) => console.log("error", error));
   }
+  static obtenirAlergens(id_plat, divAlergens) {
+    var myHeaders = new Headers();
+    myHeaders.append("Cookie", "ci_session=7fqf75p13gs9a0kr2ul5go4068u404h9");
+
+    var requestOptions = {
+      method: "GET",
+      headers: myHeaders,
+      redirect: "follow",
+    };
+
+    fetch("/api/alergen/list/" + id_plat, requestOptions)
+      .then((response) => response.text())
+      .then((result) => {
+        for (let index = 0; index < JSON.parse(result).data.length; index++) {
+          let h5 = document.createElement("h5");
+          h5.textContent = JSON.parse(result).data[index].descripcio;
+          divAlergens.appendChild(h5);
+          let hr = document.createElement("hr");
+          divAlergens.appendChild(hr);
+        }
+      })
+      .catch((error) => console.log("error", error));
+  }
+  static obtenirSuplements(id_plat, divSuplements) {
+    var myHeaders = new Headers();
+    myHeaders.append("Cookie", "ci_session=7fqf75p13gs9a0kr2ul5go4068u404h9");
+
+    var requestOptions = {
+      method: "GET",
+      headers: myHeaders,
+      redirect: "follow",
+    };
+
+    fetch("/api/suplement/list/" + id_plat, requestOptions)
+      .then((response) => response.text())
+      .then((result) => {
+        for (let index = 0; index < JSON.parse(result).data.length; index++) {
+          let h5 = document.createElement("h5");
+          h5.textContent = JSON.parse(result).data[index].descripcio;
+          let span = document.createElement("span");
+          span.textContent = JSON.parse(result).data[index].preu;
+          // h5.appendChild(span);
+
+          let hr = document.createElement("hr");
+          divSuplements.appendChild(h5);
+          divSuplements.appendChild(span);
+          divSuplements.appendChild(hr);
+        }
+      })
+      .catch((error) => console.log("error", error));
+  }
+
+  static obtenirPlat(id_carta, id_plat, divPlatImg, divPlatInfo) {
+    var myHeaders = new Headers();
+    myHeaders.append("Cookie", "ci_session=pibnbs85019rdkc3iobh854m0qg4n6uc");
+
+    var requestOptions = {
+      method: "GET",
+      headers: myHeaders,
+      redirect: "follow",
+    };
+
+    fetch("/api/plat/list/" + id_carta, requestOptions)
+      .then((response) => response.text())
+      .then((result) => {
+        let obj = JSON.parse(result).data[id_plat - 1];
+        // for (let index = 0; index < JSON.parse(result).data.length; index++) {
+        let img = document.createElement("img");
+        img.src = "data:image/png;base64," + obj.fotos[0];
+        divPlatImg.appendChild(img);
+        let h3 = document.createElement("h1");
+        h3.textContent = obj.nom;
+        let p = document.createElement("p");
+        p.textContent = obj.preu;
+        let p2 = document.createElement("p");
+        p2.textContent = obj.descripcio_detallada;
+        divPlatInfo.appendChild(h3);
+        divPlatInfo.appendChild(p);
+        divPlatInfo.appendChild(p2);
+      })
+      .catch((error) => console.log("error", error));
+  }
+
+  static canviarContrasenya(token, email, newPassword) {
+    var myHeaders = new Headers();
+
+    myHeaders.append("Authorization", "Bearer " + token);
+    myHeaders.append("Content-Type", "application/json");
+
+    var raw = JSON.stringify({
+      email: email,
+      password: newPassword,
+    });
+
+    var requestOptions = {
+      method: "POST",
+      headers: myHeaders,
+      body: raw,
+      redirect: "follow",
+    };
+
+    fetch("/api/user/modifyPassword", requestOptions)
+      .then((response) => response.text())
+      .then((result) => console.log(result))
+      .catch((error) => console.log("error", error));
+  }
+
+  static canviarUser(token, email, name, surnames) {
+    var myHeaders = new Headers();
+    myHeaders.append("Authorization", "Bearer " + token);
+    myHeaders.append("Content-Type", "application/json");
+
+    var raw = JSON.stringify({
+      email: email,
+      name: name,
+      surnames: surnames,
+    });
+    var requestOptions = {
+      method: "POST",
+      headers: myHeaders,
+      body: raw,
+      redirect: "follow",
+    };
+
+    fetch("/api/user/modifyUser", requestOptions)
+      .then((response) => response.text())
+      .then((result) => console.log(result))
+      .catch((error) => console.log("error", error));
+  }
 }
