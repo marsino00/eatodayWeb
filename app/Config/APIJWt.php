@@ -80,7 +80,7 @@ class APIJwt extends BaseConfig
         'audience'     => "daw-company.user-db",
         'subject'      => "secure.jwt.v1.daw",
         'autoRenew'    => true,
-        'oneTimeToken' => false,
+        'oneTimeToken' => true,
         'renewTokenField' => 'refreshToken',
         'includePolicy' => true,
     ];
