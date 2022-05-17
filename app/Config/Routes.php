@@ -57,6 +57,7 @@ $routes->group("api", function ($routes) {
         $routes->get("list/(:num)", "Api\ApiTaulaController::show/$1");
     });
     $routes->group("comanda", function ($routes) {
+        $routes->get("list", "Api\ApiComandaController::index");
         $routes->get("getByTable/(:num)", "Api\ApiComandaController::showByTable/$1");
         $routes->match(['get', 'options'], "getByClient/(:segment)", "Api\ApiComandaController::showByClient/$1");
         $routes->options("add", "Api\ApiComandaController::create");

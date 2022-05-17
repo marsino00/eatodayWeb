@@ -14,7 +14,16 @@ class ApiComandaController extends ResourceController
      */
     public function index()
     {
-        //
+
+        $model = new ComandaModel();
+        $response = [
+            'status' => 200,
+            "error" => false,
+            'messages' => "Llistat de comandes no finalitzades",
+            'data' => $model->getAllComandes()
+        ];
+
+        return $this->respond($response);
     }
 
     /**

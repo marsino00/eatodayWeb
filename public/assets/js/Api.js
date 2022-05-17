@@ -453,10 +453,14 @@ class Api {
       .catch((error) => console.log("error", error));
   }
 
-  static canviarContrasenya(token, email, newPassword) {
+  static canviarContrasenya(email, newPassword) {
     var myHeaders = new Headers();
 
-    myHeaders.append("Authorization", "Bearer " + token);
+    myHeaders.append(
+      "Authorization",
+      "Bearer " + window.sessionStorage.getItem("token")
+      // "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJleHAiOjE2NTI4MDk1MTYsImlzcyI6ImRhdy1jb21wYW55IiwiYXVkIjoiZGF3LWNvbXBhbnkudXNlci1kYiIsInN1YiI6InNlY3VyZS5qd3QudjEuZGF3IiwibmJmIjoxNjUyODA3NzE2LCJpYXQiOjE2NTI4MDc3MTYsImp0aSI6IjMwMzJlMzMxLTFjMGItNGViMS1iMmQ0LWQxYzg0Mzc0Mzc1YyIsInVpZCI6IjMiLCJuYW1lIjoiY2FtYnJlciIsImVtYWlsIjoiZEBkLmNvbSJ9.LfNqQpOM3PZcgEyaJQEJZzLTL9T9lzdawd34zGop-vY"
+    );
     myHeaders.append("Content-Type", "application/json");
 
     var raw = JSON.stringify({
@@ -472,17 +476,21 @@ class Api {
     };
 
     fetch("/api/user/modifyPassword", requestOptions)
-      .then((response) => alert(JSON.stringify(response.text())))
+      .then((response) => response.text())
       .then((result) => {
         console.log(result);
+        window.sessionStorage.setItem("token", JSON.parse(result).refreshToken);
+        alert("Contrasenya canviada correctament");
       })
-      // alert("Contrasenya canviada correctament"))
       .catch((error) => alert(error));
   }
 
-  static canviarUser(token, email, name, surnames) {
+  static canviarUser(email, name, surnames) {
     var myHeaders = new Headers();
-    myHeaders.append("Authorization", "Bearer " + token);
+    myHeaders.append(
+      "Authorization",
+      "Bearer " + window.sessionStorage.getItem("token")
+    );
     myHeaders.append("Content-Type", "application/json");
 
     var raw = JSON.stringify({
@@ -499,7 +507,34 @@ class Api {
 
     fetch("/api/user/modifyUser", requestOptions)
       .then((response) => response.text())
-      .then((result) => alert("Dades actualitzades correctament"))
+      .then((result) => {
+        alert("Dades actualitzades correctament");
+        window.sessionStorage.setItem("token", JSON.parse(result).refreshToken);
+      })
+      .catch((error) => console.log("error", error));
+  }
+  static logIn(email, password) {
+    var myHeaders = new Headers();
+    myHeaders.append("Content-Type", "application/json");
+    myHeaders.append("Cookie", "ci_session=ek2mm3m1101kkuv516q7ubkici930na2");
+
+    var raw = JSON.stringify({
+      email: email,
+      password: password,
+    });
+
+    var requestOptions = {
+      method: "POST",
+      headers: myHeaders,
+      body: raw,
+      redirect: "follow",
+    };
+
+    fetch("/api/user/login", requestOptions)
+      .then((response) => response.text())
+      .then((result) => {
+        window.sessionStorage.setItem("token", JSON.parse(result).token);
+      })
       .catch((error) => console.log("error", error));
   }
 }

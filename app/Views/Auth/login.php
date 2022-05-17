@@ -343,7 +343,12 @@
 <?= $this->endSection() ?>
 
 <?= $this->section('js') ?>
+<script src="/assets/js/Api.js"></script>
 <script>
-    window.sessionStorage.setItem("")
+    document.getElementById("login").addEventListener("click", function() {
+        var loginUser = document.getElementById("loginUser").value;
+        var password = document.getElementById("password").value;
+        Api.logIn(loginUser, password);
+    })
 </script>
 <?= $this->endSection() ?>

@@ -61,7 +61,7 @@
                 <i class="bi bi-list mobile-nav-toggle"></i>
             </nav><!-- .navbar -->
             <a href="<?= $ruta ?>" class="book-a-table-btn scrollto d-none d-lg-flex"><?= $text ?></a>
-            <a href="<?= $ruta2 ?>" class="book-a-table-btn scrollto d-none d-lg-flex"><?= $text2 ?></a>
+            <a href="<?= $ruta2 ?>" id="<?= $text2 ?>" class="book-a-table-btn scrollto d-none d-lg-flex"><?= $text2 ?></a>
 
         </div>
     </header><!-- End Header -->
@@ -92,7 +92,11 @@
 
     <!-- Template Main JS File -->
     <script src="/assets/js/main.js"></script>
-
+    <script>
+        document.getElementById("<?= $text2 ?>").addEventListener("click", function() {
+            window.sessionStorage.removeItem("token");
+        })
+    </script>
     <?= $this->renderSection('js') ?>
 
 </body>

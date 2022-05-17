@@ -70,10 +70,10 @@
 <script src="/assets/js/Api.js"></script>
 <script>
     document.getElementById("canviarPass").addEventListener("click", function() {
-        Api.canviarContrasenya("<?= $_SESSION['login_token'] ?>", " <?= $usuari->email ?>", document.getElementById("newPassword").value)
+        Api.canviarContrasenya(" <?= $usuari->email ?>", document.getElementById("newPassword").value)
     })
     document.getElementById("canviarUser").addEventListener("click", function() {
-        Api.canviarUser("<?= $_SESSION['login_token'] ?>", " <?= $usuari->email ?>", document.getElementById("name").value, document.getElementById("surnames").value)
+        Api.canviarUser(" <?= $usuari->email ?>", document.getElementById("name").value, document.getElementById("surnames").value)
     })
 
 

@@ -39,6 +39,15 @@ class ComandaModel extends Model
     protected $afterFind      = [];
     protected $beforeDelete   = [];
     protected $afterDelete    = [];
+    public function getAllComandes()
+    {
+        $query = $this->query("SELECT * from comanda WHERE estat_comanda!='FINALITZADA' && estat_comanda!='NOPAGADA'");
+        $comandes = [];
+        foreach ($query->getResult() as $row) {
+            array_push($comandes, $row);
+        }
+        return $comandes;
+    }
     public function getComandabyCodiTaula($id = null)
     {
         return $this->where("codi_taula", $id)->select("*")->findAll();
