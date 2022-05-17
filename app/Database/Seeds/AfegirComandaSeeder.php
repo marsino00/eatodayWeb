@@ -15,7 +15,7 @@ class AfegirComandaSeeder extends Seeder
             'codi_taula' => 1, //$title => $fake->sentence(6)
             'estat_comanda'  => "COMANDA", //$desc => $fake->text(100)
             'comensals' => $fake->numberBetween(1, 6),
-            'id_users' => 1,
+            'id_client' => 1,
         ];
 
         $this->db->table('comanda')->insert($data);
@@ -25,7 +25,7 @@ class AfegirComandaSeeder extends Seeder
                 'codi_taula' => $i, //$title => $fake->sentence(6)
                 'estat_comanda'  => "FACTURA", //$desc => $fake->text(100)
                 'comensals' => $fake->numberBetween(1, 6),
-                'id_users' => 1,
+                'id_client' => 1,
 
             ];
 

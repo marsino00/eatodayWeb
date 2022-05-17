@@ -74,7 +74,6 @@ class ApiPlatComandaController extends ResourceController
         }
 
 
-
         $response = [
             'status' => 200,
             'error' => false,

@@ -14,7 +14,7 @@ class ComandaModel extends Model
     protected $returnType       = 'array';
     protected $useSoftDeletes   = true;
     protected $protectFields    = true;
-    protected $allowedFields    = ["estat_comanda", "data", "comensals", "codi_taula", "id_users"];
+    protected $allowedFields    = ["estat_comanda", "data", "comensals", "codi_taula", "id_client", "id_cambrer"];
 
     // Dates
     protected $useTimestamps = true;
@@ -55,10 +55,10 @@ class ComandaModel extends Model
         // return $this->where("email", $email)->select("*")->findAll();
     }
 
-    public function afegirComanda($estat_comanda, $comensals, $codi_taula, $id_users)
+    public function afegirComanda($estat_comanda, $comensals, $codi_taula, $id_client)
     {
-        $this->insert(["estat_comanda" => $estat_comanda, "comensals" => $comensals, "codi_taula" => $codi_taula, "id_users" => $id_users]);
-        return $this;
+        $this->insert(["estat_comanda" => $estat_comanda, "comensals" => $comensals, "codi_taula" => $codi_taula, "id_client" => $id_client]);
+        return $this->insertID;
     }
     public function changeEstatComanda($id, $estat_comanda)
     {
