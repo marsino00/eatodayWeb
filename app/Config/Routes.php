@@ -58,7 +58,7 @@ $routes->group("api", function ($routes) {
     });
     $routes->group("comanda", function ($routes) {
         $routes->get("getByTable/(:num)", "Api\ApiComandaController::showByTable/$1");
-        $routes->match(['get', 'options'], "getByUser/(:segment)", "Api\ApiComandaController::showByUser/$1");
+        $routes->match(['get', 'options'], "getByClient/(:segment)", "Api\ApiComandaController::showByClient/$1");
         $routes->options("add", "Api\ApiComandaController::create");
         $routes->post("add", "Api\ApiComandaController::create", ["filter" => "jwt"]);
         $routes->post("update/(:num)", "Api\ApiComandaController::updateEstatComanda/$1");

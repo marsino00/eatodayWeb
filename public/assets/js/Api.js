@@ -315,14 +315,21 @@ class Api {
     fetch("/api/plat/list/" + id_carta, requestOptions)
       .then((response) => response.text())
       .then((result) => {
+        console.log("holaaaa");
+
         for (let index = 0; index < JSON.parse(result).data.length; index++) {
           let div = document.createElement("div");
           div.setAttribute("class", "col-lg-6 menu-item");
-
           var img = new Image();
-          img.src =
-            "data:image/png;base64," +
-            JSON.parse(result).data[index].fotos[index];
+
+          if (JSON.parse(result).data[index].fotos[0] == undefined) {
+            img.src = "/assets/img/eatoday_logo_white.png";
+          } else {
+            img.src =
+              "data:image/png;base64," +
+              JSON.parse(result).data[index].fotos[0];
+          }
+
           img.setAttribute("class", "menu-img");
           img.style = "border:0px";
           div.appendChild(img);
@@ -427,6 +434,11 @@ class Api {
         // for (let index = 0; index < JSON.parse(result).data.length; index++) {
         let img = document.createElement("img");
         img.src = "data:image/png;base64," + obj.fotos[0];
+        if (obj.fotos[0] == undefined) {
+          img.src = "/assets/img/eatoday_logo_white.png";
+        } else {
+          img.src = "data:image/png;base64," + obj.fotos[0];
+        }
         divPlatImg.appendChild(img);
         let h3 = document.createElement("h1");
         h3.textContent = obj.nom;
@@ -460,9 +472,12 @@ class Api {
     };
 
     fetch("/api/user/modifyPassword", requestOptions)
-      .then((response) => console.log(response.text()))
-      .then((result) => alert("Contrasenya canviada correctament"))
-      .catch((error) => console.log("error", error));
+      .then((response) => alert(JSON.stringify(response.text())))
+      .then((result) => {
+        console.log(result);
+      })
+      // alert("Contrasenya canviada correctament"))
+      .catch((error) => alert(error));
   }
 
   static canviarUser(token, email, name, surnames) {

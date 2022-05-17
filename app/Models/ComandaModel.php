@@ -43,11 +43,11 @@ class ComandaModel extends Model
     {
         return $this->where("codi_taula", $id)->select("*")->findAll();
     }
-    public function getComandabyUser($email = null)
+    public function getComandabyClient($email = null)
     {
-        $this->select('comanda.id_comanda,comanda.estat_comanda,comanda.comensals,comanda.codi_taula,');
+        $this->select('comanda.id_comanda,comanda.estat_comanda,comanda.comensals,comanda.codi_taula');
         $this->from('comanda', 'users');
-        $this->join('users', 'users.id=comanda.id_users');
+        $this->join('users', 'users.id=comanda.id_client');
         $this->where('users.email', $email);
         return $this->findAll();
 

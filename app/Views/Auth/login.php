@@ -341,3 +341,9 @@
     </div>
 </div>
 <?= $this->endSection() ?>
+
+<?= $this->section('js') ?>
+<script>
+    window.sessionStorage.setItem("")
+</script>
+<?= $this->endSection() ?>
