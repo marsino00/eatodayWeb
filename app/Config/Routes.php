@@ -34,58 +34,58 @@ $routes->setAutoRoute(false);
 
 $routes->group("api", function ($routes) {
     $routes->group("establiment", function ($routes) {
-        $routes->match(['get', 'options'], "list", "Api" . DIRECTORY_SEPARATOR . "ApiEstablimentController::index");
-        $routes->match(['get', 'options'], "show/(:num)", "Api" . DIRECTORY_SEPARATOR . "ApiEstablimentController::show/$1");
+        $routes->match(['get', 'options'], "list", "Api\ApiEstablimentController::index");
+        $routes->match(['get', 'options'], "show/(:num)", "Api\ApiEstablimentController::show/$1");
     });
     $routes->group("categoria", function ($routes) {
-        $routes->get("list/(:num)", "Api" . DIRECTORY_SEPARATOR . "ApiCategoriaController::show/$1");
+        $routes->get("list/(:num)", "Api\ApiCategoriaController::show/$1");
     });
     $routes->group("carta", function ($routes) {
-        $routes->get("list/(:num)", "Api" . DIRECTORY_SEPARATOR . "ApiCartaController::show/$1");
+        $routes->get("list/(:num)", "Api\ApiCartaController::show/$1");
     });
     $routes->group("plat", function ($routes) {
-        $routes->get("list/(:num)", "Api" . DIRECTORY_SEPARATOR . "ApiPlatController::show/$1");
-        $routes->get("getPlatbyPlatComanda/(:num)", "Api" . DIRECTORY_SEPARATOR . "ApiPlatController::getPlatbyIdPlatComanda/$1");
+        $routes->get("list/(:num)", "Api\ApiPlatController::show/$1");
+        $routes->get("getPlatbyPlatComanda/(:num)", "Api\ApiPlatController::getPlatbyIdPlatComanda/$1");
     });
     $routes->group("alergen", function ($routes) {
-        $routes->get("list/(:num)", "Api" . DIRECTORY_SEPARATOR . "ApiAlergenController::show/$1");
+        $routes->get("list/(:num)", "Api\ApiAlergenController::show/$1");
     });
     $routes->group("suplement", function ($routes) {
-        $routes->get("list/(:num)", "Api" . DIRECTORY_SEPARATOR . "ApiSuplementController::show/$1");
+        $routes->get("list/(:num)", "Api\ApiSuplementController::show/$1");
     });
     $routes->group("taula", function ($routes) {
-        $routes->get("list/(:num)", "Api" . DIRECTORY_SEPARATOR . "ApiTaulaController::show/$1");
+        $routes->get("list/(:num)", "Api\ApiTaulaController::show/$1");
     });
     $routes->group("comanda", function ($routes) {
-        $routes->get("getByTable/(:num)", "Api" . DIRECTORY_SEPARATOR . "ApiComandaController::showByTable/$1");
-        $routes->match(['get', 'options'], "getByUser/(:segment)", "Api" . DIRECTORY_SEPARATOR . "ApiComandaController::showByUser/$1");
-        $routes->options("add", "Api" . DIRECTORY_SEPARATOR . "ApiComandaController::create");
-        $routes->post("add", "Api" . DIRECTORY_SEPARATOR . "ApiComandaController::create", ["filter" => "jwt"]);
-        $routes->post("update/(:num)", "Api" . DIRECTORY_SEPARATOR . "ApiComandaController::updateEstatComanda/$1");
+        $routes->get("getByTable/(:num)", "Api\ApiComandaController::showByTable/$1");
+        $routes->match(['get', 'options'], "getByUser/(:segment)", "Api\ApiComandaController::showByUser/$1");
+        $routes->options("add", "Api\ApiComandaController::create");
+        $routes->post("add", "Api\ApiComandaController::create", ["filter" => "jwt"]);
+        $routes->post("update/(:num)", "Api\ApiComandaController::updateEstatComanda/$1");
     });
     $routes->group("platcomanda", function ($routes) {
-        $routes->get("list/(:num)", "Api" . DIRECTORY_SEPARATOR . "ApiPlatComandaController::show/$1");
-        $routes->post("add", "Api" . DIRECTORY_SEPARATOR . "ApiPlatComandaController::create");
+        $routes->get("list/(:num)", "Api\ApiPlatComandaController::show/$1");
+        $routes->post("add", "Api\ApiPlatComandaController::create");
     });
     $routes->group("suplementaplicat", function ($routes) {
-        $routes->get("list/(:num)", "Api" . DIRECTORY_SEPARATOR . "ApiSuplementAplicatController::show/$1");
-        $routes->post("add", "Api" . DIRECTORY_SEPARATOR . "ApiSuplementAplicatController::create");
+        $routes->get("list/(:num)", "Api\ApiSuplementAplicatController::show/$1");
+        $routes->post("add", "Api\ApiSuplementAplicatController::create");
     });
     $routes->group("puntuacio", function ($routes) {
-        $routes->get("list/(:num)", "Api" . DIRECTORY_SEPARATOR . "ApiPuntuacioController::show/$1");
+        $routes->get("list/(:num)", "Api\ApiPuntuacioController::show/$1");
     });
     $routes->group("user", function ($routes) {
-        $routes->match(['options', 'post'], "login", "Api" . DIRECTORY_SEPARATOR . "ApiLoginController::login");
-        $routes->match(['options', 'post'], "register", "Api" . DIRECTORY_SEPARATOR . "ApiLoginController::register");
+        $routes->match(['options', 'post'], "login", "Api\ApiLoginController::login");
+        $routes->match(['options', 'post'], "register", "Api\ApiLoginController::register");
 
-        $routes->options("modifyPassword", "Api" . DIRECTORY_SEPARATOR . "ApiLoginController::modifyPassword");
-        $routes->post("modifyPassword", "Api" . DIRECTORY_SEPARATOR . "ApiLoginController::modifyPassword", ["filter" => "jwt"]);
-        $routes->options("modifyUser", "Api" . DIRECTORY_SEPARATOR . "ApiLoginController::modifyUser");
-        $routes->post("modifyUser", "Api" . DIRECTORY_SEPARATOR . "ApiLoginController::modifyUser", ["filter" => "jwt"]);
-        $routes->options("getUser", "Api" . DIRECTORY_SEPARATOR . "ApiLoginController::getUserByEmail");
-        $routes->post("getUser", "Api" . DIRECTORY_SEPARATOR . "ApiLoginController::getUserByEmail", ["filter" => "jwt"]);
-        $routes->options("getRoles", "Api" . DIRECTORY_SEPARATOR . "ApiLoginController::getGroupsByEmail");
-        $routes->post("getRoles", "Api" . DIRECTORY_SEPARATOR . "ApiLoginController::getGroupsByEmail", ["filter" => "jwt"]);
+        $routes->options("modifyPassword", "Api\ApiLoginController::modifyPassword");
+        $routes->post("modifyPassword", "Api\ApiLoginController::modifyPassword", ["filter" => "jwt"]);
+        $routes->options("modifyUser", "Api\ApiLoginController::modifyUser");
+        $routes->post("modifyUser", "Api\ApiLoginController::modifyUser", ["filter" => "jwt"]);
+        $routes->options("getUser", "Api\ApiLoginController::getUserByEmail");
+        $routes->post("getUser", "Api\ApiLoginController::getUserByEmail", ["filter" => "jwt"]);
+        $routes->options("getRoles", "Api\ApiLoginController::getGroupsByEmail");
+        $routes->post("getRoles", "Api\ApiLoginController::getGroupsByEmail", ["filter" => "jwt"]);
     });
 });
 
@@ -94,6 +94,7 @@ $routes->group("api", function ($routes) {
 // $routes->get('/login', 'Home::index');
 $routes->get('/', 'Home::index');
 $routes->get('/perfil', 'PerfilController::index');
+$routes->get('/introduirCodi', 'ClientController::insertarCodi');
 $routes->get('/establiments', 'Home::establiments');
 $routes->get('/establiments/(:num)', 'Home::establiments/$1');
 $routes->get('/establiments/(:num)/categories/(:num)', 'Home::categories/$1/$2');

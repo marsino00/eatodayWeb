@@ -65,42 +65,22 @@ class ApiPlatComandaController extends ResourceController
      */
     public function create()
     {
-        $rules = [
-            'id_plat' => 'required',
-            'id_comanda' => 'required',
-            'estat_plat' => 'required'
-        ];
+        $model = new PlatComandaModel();
 
-        if (!$this->validate($rules)) {
-
-            $response = [
-                'status' => 500,
-                'error' => true,
-                'message' => $this->validator->getErrors(),
-                'data' => []
-            ];
-        } else {
-
-            $model = new PlatComandaModel();
-
-            $id_plat = $this->request->getVar('id_plat');
-            $id_comanda = $this->request->getVar('id_comanda');
-            $estat_plat = $this->request->getVar('estat_plat');
-
-
-            $model->afegirPlatComanda($id_plat, $id_comanda, $estat_plat);
-
-            $response = [
-                'status' => 200,
-                'error' => false,
-                'message' => 'PlatComanda creat',
-                'data' => [
-                    'id_plat' => $id_plat,
-                    'id_comanda' => $id_comanda,
-                    'estat_plat' => $estat_plat
-                ]
-            ];
+        $data = $this->request->getVar('data');
+        $array =  json_decode(json_encode($data, true));
+        for ($i = 0; $i < count($array); $i++) {
+            $model->afegirPlatComanda($array[$i]->{'id_plat'}, $array[$i]->{'id_comanda'}, $array[$i]->{'estat_plat'});
         }
+
+
+
+        $response = [
+            'status' => 200,
+            'error' => false,
+            'message' => 'PlatComanda creat',
+
+        ];
 
         return $this->respondCreated($response);
     }

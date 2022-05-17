@@ -28,7 +28,7 @@
       <div class="row">
         <div class="col-lg-6 order-1 order-lg-2" data-aos="zoom-in" data-aos-delay="100">
           <div class="about-img">
-            <img src="assets/img/eatoday_logo_white.png" alt="">
+            <img src="/assets/img/eatoday_logo_white.png" alt="">
           </div>
         </div>
         <div class="col-lg-6 pt-4 pt-lg-0 order-2 order-lg-1 content">
@@ -208,7 +208,7 @@
                 quam, ultricies eget id, aliquam eget nibh et. Maecen aliquam, risus at semper.
                 <i class="bx bxs-quote-alt-right quote-icon-right"></i>
               </p>
-              <img src="assets/img/testimonials/testimonials-1.jpg" class="testimonial-img" alt="">
+              <img src="/assets/img/testimonials/testimonials-1.jpg" class="testimonial-img" alt="">
               <h3>Saul Goodman</h3>
             </div>
           </div><!-- End testimonial item -->
@@ -221,7 +221,7 @@
                 quorum velit fore eram velit sunt aliqua noster fugiat irure amet legam anim culpa.
                 <i class="bx bxs-quote-alt-right quote-icon-right"></i>
               </p>
-              <img src="assets/img/testimonials/testimonials-2.jpg" class="testimonial-img" alt="">
+              <img src="/assets/img/testimonials/testimonials-2.jpg" class="testimonial-img" alt="">
               <h3>Sara Wilsson</h3>
             </div>
           </div>
@@ -234,7 +234,7 @@
                 tempor labore quem eram duis noster aute amet eram fore quis sint minim.
                 <i class="bx bxs-quote-alt-right quote-icon-right"></i>
               </p>
-              <img src="assets/img/testimonials/testimonials-3.jpg" class="testimonial-img" alt="">
+              <img src="/assets/img/testimonials/testimonials-3.jpg" class="testimonial-img" alt="">
               <h3>Jena Karlis</h3>
             </div>
           </div>
@@ -247,7 +247,7 @@
                 minim dolor enim duis veniam ipsum anim magna sunt elit fore quem dolore labore illum veniam.
                 <i class="bx bxs-quote-alt-right quote-icon-right"></i>
               </p>
-              <img src="assets/img/testimonials/testimonials-4.jpg" class="testimonial-img" alt="">
+              <img src="/assets/img/testimonials/testimonials-4.jpg" class="testimonial-img" alt="">
               <h3>Matt Brandon</h3>
             </div>
           </div>
@@ -260,7 +260,7 @@
                 labore duis sunt culpa nulla illum cillum fugiat legam esse veniam culpa fore nisi cillum quid.
                 <i class="bx bxs-quote-alt-right quote-icon-right"></i>
               </p>
-              <img src="assets/img/testimonials/testimonials-5.jpg" class="testimonial-img" alt="">
+              <img src="/assets/img/testimonials/testimonials-5.jpg" class="testimonial-img" alt="">
               <h3>John Larson</h3>
             </div>
           </div>
@@ -337,7 +337,7 @@
 
 <?= $this->endSection() ?>
 <?= $this->section('js') ?>
-<script src="assets/js/Api.js"></script>
+<script src="/assets/js/Api.js"></script>
 <script>
   let establiments = document.getElementById("establiments");
   Api.obtenirEstabliments(establiments, "home");

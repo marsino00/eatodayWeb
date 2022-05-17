@@ -99,7 +99,7 @@ class PlatModel extends Model
         $this->join('categoria_carta', 'categoria_carta.id_carta=carta.id_carta');
         $this->join('categoria', 'categoria.id_categoria = categoria_carta.id_carta');
         $this->join('establiment', 'categoria.codi_establiment = establiment.codi_establiment');
-        $this->where('plat.id_plat', $id);
+        $this->where('carta.id_carta', $id);
         $queryEstabliment = $this->findAll();
         $establiment = "";
         foreach ($queryEstabliment as $row) {

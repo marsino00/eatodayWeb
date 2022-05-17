@@ -460,8 +460,8 @@ class Api {
     };
 
     fetch("/api/user/modifyPassword", requestOptions)
-      .then((response) => response.text())
-      .then((result) => console.log(result))
+      .then((response) => console.log(response.text()))
+      .then((result) => alert("Contrasenya canviada correctament"))
       .catch((error) => console.log("error", error));
   }
 
@@ -484,7 +484,7 @@ class Api {
 
     fetch("/api/user/modifyUser", requestOptions)
       .then((response) => response.text())
-      .then((result) => console.log(result))
+      .then((result) => alert("Dades actualitzades correctament"))
       .catch((error) => console.log("error", error));
   }
 }
