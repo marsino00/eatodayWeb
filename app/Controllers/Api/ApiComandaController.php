@@ -47,10 +47,10 @@ class ApiComandaController extends ResourceController
 
         return $this->respond($response);
     }
-    public function showByUser($id = null)
+    public function showByClient($id = null)
     {
         $model = new ComandaModel();
-        $data = $model->getComandabyUser($id);
+        $data = $model->getComandabyClient($id);
 
         if (!empty($data)) {
 
