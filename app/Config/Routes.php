@@ -66,7 +66,8 @@ $routes->group("api", function ($routes) {
     });
     $routes->group("platcomanda", function ($routes) {
         $routes->get("list/(:num)", "Api\ApiPlatComandaController::show/$1");
-        $routes->post("add", "Api\ApiPlatComandaController::create");
+        $routes->options("add", "Api\ApiPlatComandaController::create");
+        $routes->post("add", "Api\ApiPlatComandaController::create", ["filter" => "jwt"]);
     });
     $routes->group("suplementaplicat", function ($routes) {
         $routes->get("list/(:num)", "Api\ApiSuplementAplicatController::show/$1");
