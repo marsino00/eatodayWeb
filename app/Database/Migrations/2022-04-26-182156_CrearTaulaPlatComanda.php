@@ -24,11 +24,14 @@ class CrearTaulaPlatComanda extends Migration
                 'type'           => 'VARCHAR',
                 'constraint'     => '255',
             ],
-            'hora_demanat'          => [
-                'type'           => 'DATETIME',
-                'null'           => true,
+            // 'hora_demanat'          => [
+            //     'type'           => 'DATETIME',
+            //     'null'           => true,
+            //     'default' =>        'CURRENT_TIMESTAMP'
 
-            ],
+            // ],
+            'hora_demanat datetime default current_timestamp',
+
             'hora_lliurat'          => [
                 'type'           => 'DATETIME',
                 'null'           => true,
@@ -36,6 +39,7 @@ class CrearTaulaPlatComanda extends Migration
             ],
             'hora_elaborat'          => [
                 'type'           => 'DATETIME',
+                'null'           => true,
             ],
 
         ]);

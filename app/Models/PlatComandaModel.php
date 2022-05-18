@@ -49,11 +49,20 @@ class PlatComandaModel extends Model
         $this->where('plat_comanda.id_comanda', $id);
         $queryPlats = $this->findAll();
         return $queryPlats;
-        // foreach ($queryPlats as $row) {
-        //     return $row;
-        // }
-        // return $this->where("id_comanda", $id)->select("estat_plat,hora_demanat,hora_elaborat,hora_lliurat,id_plat_comanda")->findAll();
     }
+    public function getSuplementAplicatByPlatComanda($id_plat_comanda)
+    {
+        $this->select('suplement_aplicat.id_suplement_aplicat,suplement_aplicat.descripcio,suplement_aplicat.preu');
+        $this->from('plat_comanda', 'suplement_aplicat');
+        $this->join('plat_comanda_suplement_aplicat', 'plat_comanda.id_plat_comanda=plat_comanda_suplement_aplicat.id_plat_comanda');
+        $this->join('suplement_aplicat', 'plat_comanda_suplement_aplicat.id_suplement_aplicat = suplement_aplicat.id_suplement_aplicat');
+        $this->where('plat_comanda.id_plat_comanda', $id_plat_comanda);
+        return $this->findAll();
+    }
+
+
+
+
     public function afegirPlatComanda($id_plat, $id_comanda, $estat_plat)
     {
         $this->insert(["id_plat" => $id_plat, "id_comanda" => $id_comanda, "estat_plat" => $estat_plat]);

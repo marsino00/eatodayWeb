@@ -28,14 +28,19 @@ class ApiPlatComandaController extends ResourceController
     {
         $model = new PlatComandaModel();
         $data = $model->getPlatComandabyIdComanda($id);
-
+        $array =  json_decode(json_encode($data, true));
+        for ($i = 0; $i < count($array); $i++) {
+            $array[$i]->suplements = $model->getSuplementAplicatByPlatComanda($array[$i]->id_plat_comanda);
+        }
         if (!empty($data)) {
 
             $response = [
                 'status' => 200,
                 "error" => false,
                 'messages' => 'Plats Comanda trobats',
-                'data' => $data
+                'data' => $array,
+                // 'aaaaaaaa' => $aaaaaaaa
+
             ];
         } else {
 
