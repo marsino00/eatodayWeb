@@ -41,37 +41,39 @@
 <?= $this->section('js') ?>
 <script src="/assets/js/Api.js"></script>
 <script>
-    var cistella = JSON.parse(localStorage.getItem("cistella"));
-    var llistatCistella = document.getElementById("llistatCistella");
-    for (let index = 0; index < cistella.length; index++) {
-        var seccioCistella = document.getElementById("seccioCistella");
-        var div = document.createElement("div");
-        div.setAttribute("class", "card my-5");
-        var div2 = document.createElement("div");
-        div2.setAttribute("class", "container");
-        div2.style = "display:flex;justify-content: space-between;";
-        var div3 = document.createElement("div");
-        var h4 = document.createElement("h4");
-        h4.style = "color:tomato";
+    if (JSON.parse(localStorage.getItem("cistella"))) {
+        var cistella = JSON.parse(localStorage.getItem("cistella"));
+        var llistatCistella = document.getElementById("llistatCistella");
+        for (let index = 0; index < cistella.length; index++) {
+            var seccioCistella = document.getElementById("seccioCistella");
+            var div = document.createElement("div");
+            div.setAttribute("class", "card my-5");
+            var div2 = document.createElement("div");
+            div2.setAttribute("class", "container");
+            div2.style = "display:flex;justify-content: space-between;";
+            var div3 = document.createElement("div");
+            var h4 = document.createElement("h4");
+            h4.style = "color:tomato";
 
-        h4.textContent = cistella[index].nom;
-        var p = document.createElement("p");
-        // console.log(cistella[index].descripcio)
-        p.textContent = cistella[index].descripcio;
-        p.style = "color:black"
-        var span = document.createElement("span");
-        span.style = "color: black;align-self: center;";
-        span.textContent = cistella[index].preu + " €";
-        div3.appendChild(h4);
-        div3.appendChild(p);
-        div2.appendChild(div3);
-        div2.appendChild(span);
-        div.appendChild(div2);
-        var hr = document.createElement("hr");
+            h4.textContent = cistella[index].nom;
+            var p = document.createElement("p");
+            // console.log(cistella[index].descripcio)
+            p.textContent = cistella[index].descripcio;
+            p.style = "color:black"
+            var span = document.createElement("span");
+            span.style = "color: black;align-self: center;";
+            span.textContent = cistella[index].preu + " €";
+            div3.appendChild(h4);
+            div3.appendChild(p);
+            div2.appendChild(div3);
+            div2.appendChild(span);
+            div.appendChild(div2);
+            var hr = document.createElement("hr");
 
-        seccioCistella.appendChild(div);
-        seccioCistella.appendChild(hr);
-
+            seccioCistella.appendChild(div);
+            seccioCistella.appendChild(hr);
+        }
+    } else {
 
     }
 </script>
