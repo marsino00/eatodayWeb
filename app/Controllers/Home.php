@@ -20,8 +20,7 @@ class Home extends BaseController
                 array_push($rolsaux, $rol);
             }
             $data["rols"] = $rolsaux;
-
-            // dd($data["rol"]);
+            $data["usuari"] = $auth->user();
             $data["ruta"] = base_url() . "/perfil";
             $data["text"] = "El meu perfil";
             $data["ruta2"] = base_url() . "/logout";
@@ -33,6 +32,7 @@ class Home extends BaseController
             $data["text2"] = "Registrar-se";
             $data["rols"] = "";
         }
+
         return $data;
     }
 
@@ -83,5 +83,10 @@ class Home extends BaseController
         $data["id_plat"] = $id_plat;
 
         echo view('eatoday_web/plat', $data);
+    }
+    public function cistella()
+    {
+        $data = $this->mirarSessióIniciada();
+        echo view('eatoday_web/cistella', $data);
     }
 }

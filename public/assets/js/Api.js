@@ -372,10 +372,30 @@ class Api {
           div3.setAttribute("class", "menu-ingredients");
           div3.textContent =
             JSON.parse(result).data[index].descripcio_breu + " ";
-
+          // console.log(JSON.parse(window.localStorage.getItem("cistella")));
           if (esClient) {
             button.addEventListener("click", function () {
-              afegirElementALaComanda();
+              var cistella = [];
+              if (window.localStorage.getItem("cistella")) {
+                for (
+                  let index = 0;
+                  index <
+                  JSON.parse(window.localStorage.getItem("cistella")).length;
+                  index++
+                ) {
+                  cistella.push(
+                    JSON.parse(window.localStorage.getItem("cistella"))[index]
+                  );
+                }
+              }
+              var plat = {
+                nom: JSON.parse(result).data[index].nom,
+                preu: JSON.parse(result).data[index].preu,
+                descripcio: JSON.parse(result).data[index].descripcio_breu,
+              };
+              cistella.push(plat);
+              window.localStorage.setItem("cistella", JSON.stringify(cistella));
+              alert("Plat afegit correctament a la cistella");
             });
             button.textContent = "Afegir";
             div3.appendChild(button);
@@ -480,9 +500,30 @@ class Api {
         divPlatInfo.appendChild(p);
         divPlatInfo.appendChild(p2);
         let button = document.createElement("button");
+        console.log(JSON.parse(window.localStorage.getItem("cistella")));
         if (esClient) {
           button.addEventListener("click", function () {
-            afegirElementALaComanda();
+            var cistella = [];
+            if (window.localStorage.getItem("cistella")) {
+              for (
+                let index = 0;
+                index <
+                JSON.parse(window.localStorage.getItem("cistella")).length;
+                index++
+              ) {
+                cistella.push(
+                  JSON.parse(window.localStorage.getItem("cistella"))[index]
+                );
+                alert("Plat afegit correctament a la cistella");
+              }
+            }
+            var plat = {
+              nom: obj.nom,
+              preu: obj.preu,
+              descripcio: obj.descripcio_breu,
+            };
+            cistella.push(plat);
+            window.localStorage.setItem("cistella", JSON.stringify(cistella));
           });
           button.textContent = "Afegir";
           divPlatInfo.appendChild(button);
