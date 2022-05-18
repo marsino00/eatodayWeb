@@ -12,7 +12,16 @@ class Home extends BaseController
         $auth = service('authentication');
 
         if ($auth->check()) {
-            $data["rol"] = $auth->user()->getRoles();
+
+            $rols = $auth->user()->getRoles();
+            $rolsaux = [];
+            foreach ($rols as $rol) {
+                # code...
+                array_push($rolsaux, $rol);
+            }
+            $data["rols"] = $rolsaux;
+
+            // dd($data["rol"]);
             $data["ruta"] = base_url() . "/perfil";
             $data["text"] = "El meu perfil";
             $data["ruta2"] = base_url() . "/logout";
@@ -22,6 +31,7 @@ class Home extends BaseController
             $data["text"] = "Iniciar sessió";
             $data["ruta2"] = base_url() . "/register";
             $data["text2"] = "Registrar-se";
+            $data["rols"] = "";
         }
         return $data;
     }

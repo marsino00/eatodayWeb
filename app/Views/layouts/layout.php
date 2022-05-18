@@ -57,6 +57,7 @@
                     <li><a class="nav-link scrollto <?php if (str_contains(base_url(), "establiments")) echo 'active'; ?>" href="<?= base_url() . '/establiments' ?> ">Establiments</a></li>
                     <li><a class="nav-link scrollto <?php if (str_contains(base_url(), "#specials")) echo 'active'; ?>" href="<?= base_url() . '#specials' ?>">Donar-se d'alta</a></li>
                     <li><a class="nav-link scrollto<?php if (str_contains(base_url(), "#contact")) echo 'active'; ?>" href="<?= base_url() . '#contact' ?>">Contactar</a></li>
+                    <li><a class="nav-link scrollto<?php if (str_contains(base_url(), "introduirCodi")) echo 'active'; ?>" href="<?= base_url() . '/insertarCodi' ?>">Insertar codi</a></li>
                 </ul>
                 <i class="bi bi-list mobile-nav-toggle"></i>
             </nav><!-- .navbar -->

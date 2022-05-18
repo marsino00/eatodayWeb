@@ -57,7 +57,7 @@
     divPlatImg = document.getElementById("divPlatImg");
     divPlatInfo = document.getElementById("divPlatInfo");
 
-    Api.obtenirPlat(<?= $id_carta ?>, <?= $id_plat ?>, divPlatImg, divPlatInfo);
+    Api.obtenirPlat(<?= $id_carta ?>, <?= $id_plat ?>, divPlatImg, divPlatInfo, <?= json_encode($rols); ?>);
 
     Api.obtenirAlergens(<?= $id_plat ?>, divAlergens)
     Api.obtenirSuplements(<?= $id_plat ?>, divSuplements);

@@ -26,6 +26,6 @@
 <script>
     divCartes = document.getElementById("divCartes");
 
-    Api.obtenirPlats(<?= $codi_establiment ?>, <?= $id_categoria ?>, <?= $id_carta ?>, divPlats);
+    Api.obtenirPlats(<?= $codi_establiment ?>, <?= $id_categoria ?>, <?= $id_carta ?>, divPlats, <?= json_encode($rols); ?>);
 </script>
 <?= $this->endSection() ?>

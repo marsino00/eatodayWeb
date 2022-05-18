@@ -302,7 +302,13 @@ class Api {
       .catch((error) => console.log("error", error));
   }
 
-  static obtenirPlats(codi_establiment, id_categoria, id_carta, divPlats) {
+  static obtenirPlats(
+    codi_establiment,
+    id_categoria,
+    id_carta,
+    divPlats,
+    rols
+  ) {
     var myHeaders = new Headers();
     myHeaders.append("Cookie", "ci_session=pibnbs85019rdkc3iobh854m0qg4n6uc");
 
@@ -315,8 +321,13 @@ class Api {
     fetch("/api/plat/list/" + id_carta, requestOptions)
       .then((response) => response.text())
       .then((result) => {
-        console.log("holaaaa");
-
+        var esClient = false;
+        for (var i = 0; i < rols.length; i++) {
+          console.log(rols[i]);
+          if (rols[i] == "usuari client") {
+            esClient = true;
+          }
+        }
         for (let index = 0; index < JSON.parse(result).data.length; index++) {
           let div = document.createElement("div");
           div.setAttribute("class", "col-lg-6 menu-item");
@@ -353,11 +364,23 @@ class Api {
           a.appendChild(h4);
           let span = document.createElement("span");
           span.textContent = JSON.parse(result).data[index].preu + " €";
+
           div2.appendChild(a);
           div2.appendChild(span);
+          let button = document.createElement("button");
           let div3 = document.createElement("div");
           div3.setAttribute("class", "menu-ingredients");
-          div3.textContent = JSON.parse(result).data[index].descripcio_breu;
+          div3.textContent =
+            JSON.parse(result).data[index].descripcio_breu + " ";
+
+          if (esClient) {
+            button.addEventListener("click", function () {
+              afegirElementALaComanda();
+            });
+            button.textContent = "Afegir";
+            div3.appendChild(button);
+          }
+
           div.appendChild(div2);
           div.appendChild(div3);
           divPlats.appendChild(div);
@@ -417,7 +440,7 @@ class Api {
       .catch((error) => console.log("error", error));
   }
 
-  static obtenirPlat(id_carta, id_plat, divPlatImg, divPlatInfo) {
+  static obtenirPlat(id_carta, id_plat, divPlatImg, divPlatInfo, rols) {
     var myHeaders = new Headers();
     myHeaders.append("Cookie", "ci_session=pibnbs85019rdkc3iobh854m0qg4n6uc");
 
@@ -430,6 +453,13 @@ class Api {
     fetch("/api/plat/list/" + id_carta, requestOptions)
       .then((response) => response.text())
       .then((result) => {
+        var esClient = false;
+        for (var i = 0; i < rols.length; i++) {
+          console.log(rols[i]);
+          if (rols[i] == "usuari client") {
+            esClient = true;
+          }
+        }
         let obj = JSON.parse(result).data[id_plat - 1];
         // for (let index = 0; index < JSON.parse(result).data.length; index++) {
         let img = document.createElement("img");
@@ -449,6 +479,14 @@ class Api {
         divPlatInfo.appendChild(h3);
         divPlatInfo.appendChild(p);
         divPlatInfo.appendChild(p2);
+        let button = document.createElement("button");
+        if (esClient) {
+          button.addEventListener("click", function () {
+            afegirElementALaComanda();
+          });
+          button.textContent = "Afegir";
+          divPlatInfo.appendChild(button);
+        }
       })
       .catch((error) => console.log("error", error));
   }
