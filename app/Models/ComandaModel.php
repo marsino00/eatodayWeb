@@ -59,9 +59,6 @@ class ComandaModel extends Model
         $this->join('users', 'users.id=comanda.id_client');
         $this->where('users.email', $email);
         return $this->findAll();
-
-
-        // return $this->where("email", $email)->select("*")->findAll();
     }
 
     public function afegirComanda($estat_comanda, $comensals, $codi_taula, $id_client)

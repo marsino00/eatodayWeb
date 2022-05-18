@@ -23,11 +23,11 @@
         <div class="php-email-form my-5">
             <div class="row">
                 <div class="col-md-6 form-group">
-                    <input type="text" name="codi" class="form-control" id="codi" maxlength="11" placeholder="codi_establiment - codi_taula" required>
+                    <input type="text" name="codi" class="form-control" id="codi" maxlength="9" placeholder="codi_establiment - codi_taula" required>
                 </div>
 
             </div>
-            <div class="text-center"><button id="canviarPass" type="submit">Entrar amb codi</button></div>
+            <div class="text-center"><button id="entrarCodi" type="submit">Entrar amb codi</button></div>
 
         </div>
         <hr class="my-5">
@@ -41,14 +41,17 @@
 <?= $this->section('js') ?>
 <script src="/assets/js/Api.js"></script>
 <script>
+    document.getElementById("entrarCodi").addEventListener("click", function() {
+        var codi_establiment = document.getElementById("codi").value.split("-")[0];
+        window.sessionStorage.setItem("taula", document.getElementById("codi").value.split("-")[1]);
+        window.location = '/establiments/' + codi_establiment;
+    })
     var codi = document.getElementById("codi");
     codi.addEventListener("keyup", function(evt) {
         if (codi.value.length == 4) {
-            codi.value = codi.value + " - ";
+            codi.value = codi.value + "-";
             console.log(codi.value.length);
         }
     });
-
-    // console.log(codi.value.length);
 </script>
 <?= $this->endSection() ?>

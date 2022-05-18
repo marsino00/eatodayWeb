@@ -102,6 +102,9 @@
             </div>
             <div id="establiments" class="col-lg-6 pt-4 pt-lg-0 order-2 order-lg-1 content">
             </div>
+            <div id="divTaules">
+                <span style="float: left;">Codi taula:&nbsp; </span>
+            </div>
         </div>
     </div>
 </section>
@@ -112,9 +115,6 @@
             <p>Categories</p>
         </div>
         <div id="divCategories">
-
-
-
         </div>
     </div>
 </section>
@@ -148,7 +148,18 @@
 <?= $this->section('js') ?>
 <script src="/assets/js/Api.js"></script>
 <script>
-    typeof document;
+    if (window.sessionStorage.getItem("taula")) {
+        var div = document.getElementById("divTaules");
+        var h5 = document.createElement("h5");
+        h5.style = "border:1px solid white;float: left;padding:5px";
+        h5.textContent = window.sessionStorage.getItem("taula");
+        div.appendChild(h5);
+        // document.getElementById("codiTaula").textContent = window.sessionStorage.getItem("taula");
+
+    } else {
+
+        Api.obtenirTaules(<?= $codi_establiment ?>, document.getElementById("divTaules"));
+    }
 
     divEstabliment = document.getElementById("establiments");
     slider = document.getElementById("slider");

@@ -537,4 +537,31 @@ class Api {
       })
       .catch((error) => console.log("error", error));
   }
+  static obtenirTaules(codi_establiment, divTaules) {
+    var myHeaders = new Headers();
+    myHeaders.append("Cookie", "ci_session=lq0dfn8vj4t0417cd3cfeekb35m8fehc");
+
+    var requestOptions = {
+      method: "GET",
+      headers: myHeaders,
+      redirect: "follow",
+    };
+
+    fetch("/api/taula/list/" + codi_establiment, requestOptions)
+      .then((response) => response.text())
+      .then((result) => {
+        var res = JSON.parse(result).data;
+        var select = document.createElement("select");
+        for (let index = 0; index < res.length; index++) {
+          // console.log(res[index].codi_taula);
+          var opt = document.createElement("option");
+          opt.value = res[index].codi_taula;
+          opt.innerHTML = res[index].codi_taula;
+          select.appendChild(opt);
+        }
+        console.log(divTaules);
+        divTaules.appendChild(select);
+      })
+      .catch((error) => console.log("error", error));
+  }
 }

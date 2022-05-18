@@ -13,5 +13,6 @@ class AddAuthGroups extends Seeder
         $authorize->createGroup('responsable de restaurant', 'Usuaris responsables de restaurant');
         $authorize->createGroup('usuari cambrer', 'Usuaris cambrers');
         $authorize->createGroup('usuari maitre', 'Usuaris maitres');
+        $authorize->createGroup('usuari client', 'Usuaris clients');
     }
 }

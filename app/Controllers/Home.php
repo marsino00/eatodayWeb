@@ -7,11 +7,12 @@ use Myth\Auth\Authentication\LocalAuthentication;
 class Home extends BaseController
 {
 
-    public function index()
+    private function mirarSessióIniciada()
     {
         $auth = service('authentication');
 
         if ($auth->check()) {
+            $data["rol"] = $auth->user()->getRoles();
             $data["ruta"] = base_url() . "/perfil";
             $data["text"] = "El meu perfil";
             $data["ruta2"] = base_url() . "/logout";
@@ -22,24 +23,19 @@ class Home extends BaseController
             $data["ruta2"] = base_url() . "/register";
             $data["text2"] = "Registrar-se";
         }
+        return $data;
+    }
+
+    public function index()
+    {
+        $data = $this->mirarSessióIniciada();
 
         return view('eatoday_web/index', $data);
     }
     public function establiments($codi_establiment = null)
     {
-        $auth = service('authentication');
+        $data = $this->mirarSessióIniciada();
 
-        if ($auth->check()) {
-            $data["ruta"] = base_url() . "/perfil";
-            $data["text"] = "El meu perfil";
-            $data["ruta2"] = base_url() . "/logout";
-            $data["text2"] = "Tancar sessió";
-        } else {
-            $data["ruta"] = base_url() . "/login";
-            $data["text"] = "Iniciar sessió";
-            $data["ruta2"] = base_url() . "/register";
-            $data["text2"] = "Registrar-se";
-        }
         if ($codi_establiment == null) {
             echo view('eatoday_web/establiments', $data);
         } else {
@@ -50,21 +46,8 @@ class Home extends BaseController
     }
     public function categories($codi_establiment = null, $id_categoria = null)
     {
-        $auth = service('authentication');
+        $data = $this->mirarSessióIniciada();
 
-        $auth = service('authentication');
-
-        if ($auth->check()) {
-            $data["ruta"] = base_url() . "/perfil";
-            $data["text"] = "El meu perfil";
-            $data["ruta2"] = base_url() . "/logout";
-            $data["text2"] = "Tancar sessió";
-        } else {
-            $data["ruta"] = base_url() . "/login";
-            $data["text"] = "Iniciar sessió";
-            $data["ruta2"] = base_url() . "/register";
-            $data["text2"] = "Registrar-se";
-        }
         $data["codi_establiment"] = $codi_establiment;
         $data["id_categoria"] = $id_categoria;
 
@@ -72,19 +55,8 @@ class Home extends BaseController
     }
     public function cartes($codi_establiment = null, $id_categoria = null, $id_carta = null)
     {
-        $auth = service('authentication');
+        $data = $this->mirarSessióIniciada();
 
-        if ($auth->check()) {
-            $data["ruta"] = base_url() . "/perfil";
-            $data["text"] = "El meu perfil";
-            $data["ruta2"] = base_url() . "/logout";
-            $data["text2"] = "Tancar sessió";
-        } else {
-            $data["ruta"] = base_url() . "/login";
-            $data["text"] = "Iniciar sessió";
-            $data["ruta2"] = base_url() . "/register";
-            $data["text2"] = "Registrar-se";
-        }
         $data["codi_establiment"] = $codi_establiment;
         $data["id_categoria"] = $id_categoria;
         $data["id_carta"] = $id_carta;
@@ -93,19 +65,8 @@ class Home extends BaseController
     }
     public function plats($codi_establiment = null, $id_categoria = null, $id_carta = null, $id_plat = null)
     {
-        $auth = service('authentication');
+        $data = $this->mirarSessióIniciada();
 
-        if ($auth->check()) {
-            $data["ruta"] = base_url() . "/perfil";
-            $data["text"] = "El meu perfil";
-            $data["ruta2"] = base_url() . "/logout";
-            $data["text2"] = "Tancar sessió";
-        } else {
-            $data["ruta"] = base_url() . "/login";
-            $data["text"] = "Iniciar sessió";
-            $data["ruta2"] = base_url() . "/register";
-            $data["text2"] = "Registrar-se";
-        }
         $data["codi_establiment"] = $codi_establiment;
         $data["id_categoria"] = $id_categoria;
         $data["id_carta"] = $id_carta;

@@ -73,5 +73,19 @@ class AddAuthUsers extends Seeder
 
         $userId = $users->insert($user);
         $authorize->addUserToGroup($userId, 'usuari maitre');
+        $row = [
+            'active'   => 1,
+            'password' => '1234',
+            'username' => 'client',
+            'email' => 'marc@marc.com',
+            'name' => 'Marc',
+            'surnames' => 'Iborra',
+            'codi_establiment' => '1',
+            // 'id_comanda' => '4',
+        ];
+        $user = new User($row);
+
+        $userId = $users->insert($user);
+        $authorize->addUserToGroup($userId, 'usuari client');
     }
 }
