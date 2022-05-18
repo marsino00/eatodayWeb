@@ -4,6 +4,8 @@ namespace App\Controllers\Api;
 
 use CodeIgniter\RESTful\ResourceController;
 use App\Models\PlatComandaModel;
+use App\Models\SuplementAplicatModel;
+use App\Models\PlatComandaSuplementAplicatModel;
 
 class ApiPlatComandaController extends ResourceController
 {
@@ -66,11 +68,20 @@ class ApiPlatComandaController extends ResourceController
     public function create()
     {
         $model = new PlatComandaModel();
-
+        $model2 = new SuplementAplicatModel();
+        $model3 = new PlatComandaSuplementAplicatModel();
         $data = $this->request->getVar('data');
         $array =  json_decode(json_encode($data, true));
+
         for ($i = 0; $i < count($array); $i++) {
-            $model->afegirPlatComanda($array[$i]->{'id_plat'}, $array[$i]->{'id_comanda'}, $array[$i]->{'estat_plat'});
+            $id_plat_comanda = $model->afegirPlatComanda($array[$i]->{'id_plat'}, $array[$i]->{'id_comanda'}, $array[$i]->{'estat_plat'});
+            if (isset($array[$i]->suplements)) {
+                $suplements = json_decode(json_encode($array[$i]->suplements, true));
+                for ($j = 0; $j < count($suplements); $j++) {
+                    $id_suplement_aplicat = $model2->afegirSuplementAplicat($suplements[$j]->descripcio, $suplements[$j]->preu);
+                    $model3->afegirRelacioPCSA($id_plat_comanda, $id_suplement_aplicat);
+                }
+            }
         }
 
 
@@ -78,7 +89,6 @@ class ApiPlatComandaController extends ResourceController
             'status' => 200,
             'error' => false,
             'message' => 'PlatComanda creat',
-
         ];
 
         return $this->respondCreated($response);

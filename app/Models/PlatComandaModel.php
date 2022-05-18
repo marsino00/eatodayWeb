@@ -57,5 +57,6 @@ class PlatComandaModel extends Model
     public function afegirPlatComanda($id_plat, $id_comanda, $estat_plat)
     {
         $this->insert(["id_plat" => $id_plat, "id_comanda" => $id_comanda, "estat_plat" => $estat_plat]);
+        return $this->insertID;
     }
 }
