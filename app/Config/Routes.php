@@ -62,7 +62,9 @@ $routes->group("api", function ($routes) {
         $routes->match(['get', 'options'], "getByClient/(:segment)", "Api\ApiComandaController::showByClient/$1");
         $routes->options("add", "Api\ApiComandaController::create");
         $routes->post("add", "Api\ApiComandaController::create", ["filter" => "jwt"]);
-        $routes->post("update/(:num)", "Api\ApiComandaController::updateEstatComanda/$1");
+
+        $routes->options("update/(:num)", "Api\ApiComandaController::updateEstatComanda/$1");
+        $routes->post("update/(:num)", "Api\ApiComandaController::updateEstatComanda/$1", ["filter" => "jwt"]);
     });
     $routes->group("platcomanda", function ($routes) {
         $routes->get("list/(:num)", "Api\ApiPlatComandaController::show/$1");
