@@ -61,9 +61,12 @@ class ComandaModel extends Model
         return $this->findAll();
     }
 
-    public function afegirComanda($estat_comanda, $comensals, $codi_taula, $id_client)
+    public function afegirComanda($estat_comanda, $comensals, $codi_taula, $email)
     {
-        $this->insert(["estat_comanda" => $estat_comanda, "comensals" => $comensals, "codi_taula" => $codi_taula, "id_client" => $id_client]);
+
+        $model = new UserModel();
+        $data = $model->obtenirUsuari($email);
+        $this->insert(["estat_comanda" => $estat_comanda, "comensals" => $comensals, "codi_taula" => $codi_taula, "id_client" => $data->id]);
         return $this->insertID;
     }
     public function changeEstatComanda($id, $estat_comanda)

@@ -4,6 +4,7 @@ namespace App\Controllers\Api;
 
 use CodeIgniter\RESTful\ResourceController;
 use App\Models\ComandaModel;
+use App\Models\UserModel;
 
 class ApiComandaController extends ResourceController
 {
@@ -103,7 +104,7 @@ class ApiComandaController extends ResourceController
             'estat_comanda' => 'required',
             'comensals' => 'required',
             'codi_taula' => 'required',
-            'id_client' => 'required',
+            'email' => 'required',
         ];
 
         if (!$this->validate($rules)) {
@@ -121,11 +122,15 @@ class ApiComandaController extends ResourceController
             $estat_comanda = $this->request->getVar('estat_comanda');
             $comensals = $this->request->getVar('comensals');
             $codi_taula = $this->request->getVar('codi_taula');
-            $id_client = $this->request->getVar('id_client');
+            $email = $this->request->getVar('email');
 
 
-            $var = $model->afegirComanda($estat_comanda, $comensals, $codi_taula, $id_client);
-
+            $var = $model->afegirComanda(
+                $estat_comanda,
+                $comensals,
+                $codi_taula,
+                $email
+            );
             $response = [
                 'status' => 200,
                 'error' => false,
@@ -134,8 +139,9 @@ class ApiComandaController extends ResourceController
                     'estat_comanda' => $estat_comanda,
                     'comensals' => $comensals,
                     'codi_taula' => $codi_taula,
-                    'id_client' => $id_client,
-                    'id_comanda' => $var
+                    'email' => $email,
+                    'id_comanda' => $var,
+                    // 'id_comanda' =>  $data->id,
                 ]
             ];
         }
