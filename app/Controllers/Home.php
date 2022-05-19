@@ -87,6 +87,13 @@ class Home extends BaseController
     public function cistella()
     {
         $data = $this->mirarSessióIniciada();
-        echo view('eatoday_web/cistella', $data);
+        $auth = service('authentication');
+
+        if (!$auth->check()) {
+            // $this->session->set('redirect_url', current_url());
+            return redirect()->route('login');
+        } else {
+            return view("eatoday_web/cistella", $data);
+        }
     }
 }

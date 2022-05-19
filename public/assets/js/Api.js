@@ -135,10 +135,6 @@ class Api {
         let li2 = document.createElement("li");
         let li3 = document.createElement("li");
         let li4 = document.createElement("li");
-        // let icon = document.createElement("i");
-        // icon.setAttribute("class", "bi bi-facebook");
-
-        // ul.appendChild(icon);
         li.textContent = "Adreça: " + JSON.parse(result).data[0].adreca;
         ul.appendChild(li);
         li2.textContent = "Telèfon: " + JSON.parse(result).data[0].telefon;
@@ -225,9 +221,11 @@ class Api {
     fetch("/api/puntuacio/list/" + codi_establiment, requestOptions)
       .then((response) => response.text())
       .then((result) => {
+        console.log(result);
         for (let index = 0; index < JSON.parse(result).data.length; index++) {
           let div = document.createElement("div");
 
+          div.setAttribute("class", "col-lg-6 menu-item filter-starters");
           let h1 = document.createElement("h1");
           h1.textContent =
             JSON.parse(result).data[index].name +
@@ -236,9 +234,9 @@ class Api {
           div.appendChild(h1);
           let h6 = document.createElement("h6");
           h6.textContent = JSON.parse(result).data[index].data_publicacio;
+          console.log(h6);
           div.appendChild(h6);
           let p = document.createElement("p");
-          div.setAttribute("class", "col-lg-6 menu-item filter-starters");
           p.textContent = JSON.parse(result).data[index].comentari;
           div.appendChild(p);
           let h3 = document.createElement("h3");
@@ -431,7 +429,7 @@ class Api {
       })
       .catch((error) => console.log("error", error));
   }
-  static obtenirSuplements(id_plat, divSuplements) {
+  static obtenirSuplements(id_plat, divSuplements, rols) {
     var myHeaders = new Headers();
     myHeaders.append("Cookie", "ci_session=7fqf75p13gs9a0kr2ul5go4068u404h9");
 
@@ -444,14 +442,37 @@ class Api {
     fetch("/api/suplement/list/" + id_plat, requestOptions)
       .then((response) => response.text())
       .then((result) => {
+        var esClient = false;
+        for (var i = 0; i < rols.length; i++) {
+          console.log(rols[i]);
+          if (rols[i] == "usuari client") {
+            esClient = true;
+          }
+        }
         for (let index = 0; index < JSON.parse(result).data.length; index++) {
           let h5 = document.createElement("h5");
           h5.textContent = JSON.parse(result).data[index].descripcio;
           let span = document.createElement("span");
-          span.textContent = JSON.parse(result).data[index].preu;
+          span.textContent = JSON.parse(result).data[index].preu + " €";
+          let input = document.createElement("input");
+          if (esClient) {
+            input.type = "checkbox";
+            input.style = "transform:scale(1.5);accent-color: tomato;";
+            input.id = JSON.parse(result).data[index].id_suplement;
+            divSuplements.appendChild(input);
+            // input.addEventListener("check", function (event) {
+            //   if (this.checked) {
+            //     console.log("Checkbox is  checked..");
+            //   } else {
+            //     console.log("Checkbox is not checked..");
+            //   }
+            // });
+          }
+
           // h5.appendChild(span);
 
           let hr = document.createElement("hr");
+
           divSuplements.appendChild(h5);
           divSuplements.appendChild(span);
           divSuplements.appendChild(hr);
@@ -460,7 +481,14 @@ class Api {
       .catch((error) => console.log("error", error));
   }
 
-  static obtenirPlat(id_carta, id_plat, divPlatImg, divPlatInfo, rols) {
+  static obtenirPlat(
+    id_carta,
+    id_plat,
+    divPlatImg,
+    divPlatInfo,
+    rols,
+    divSuplements
+  ) {
     var myHeaders = new Headers();
     myHeaders.append("Cookie", "ci_session=pibnbs85019rdkc3iobh854m0qg4n6uc");
 
@@ -493,7 +521,7 @@ class Api {
         let h3 = document.createElement("h1");
         h3.textContent = obj.nom;
         let p = document.createElement("p");
-        p.textContent = obj.preu;
+        p.textContent = obj.preu + " €";
         let p2 = document.createElement("p");
         p2.textContent = obj.descripcio_detallada;
         divPlatInfo.appendChild(h3);
@@ -514,15 +542,22 @@ class Api {
                 cistella.push(
                   JSON.parse(window.localStorage.getItem("cistella"))[index]
                 );
-                alert("Plat afegit correctament a la cistella");
               }
             }
+            var aSupl = [];
+            for (
+              let index = 0;
+              index < divSuplements.childNodes.length;
+              index++
+            ) {}
+
             var plat = {
               nom: obj.nom,
               preu: obj.preu,
               descripcio: obj.descripcio_breu,
             };
             cistella.push(plat);
+            alert("Plat afegit correctament a la cistella");
             window.localStorage.setItem("cistella", JSON.stringify(cistella));
           });
           button.textContent = "Afegir";
@@ -538,7 +573,6 @@ class Api {
     myHeaders.append(
       "Authorization",
       "Bearer " + window.sessionStorage.getItem("token")
-      // "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJleHAiOjE2NTI4MDk1MTYsImlzcyI6ImRhdy1jb21wYW55IiwiYXVkIjoiZGF3LWNvbXBhbnkudXNlci1kYiIsInN1YiI6InNlY3VyZS5qd3QudjEuZGF3IiwibmJmIjoxNjUyODA3NzE2LCJpYXQiOjE2NTI4MDc3MTYsImp0aSI6IjMwMzJlMzMxLTFjMGItNGViMS1iMmQ0LWQxYzg0Mzc0Mzc1YyIsInVpZCI6IjMiLCJuYW1lIjoiY2FtYnJlciIsImVtYWlsIjoiZEBkLmNvbSJ9.LfNqQpOM3PZcgEyaJQEJZzLTL9T9lzdawd34zGop-vY"
     );
     myHeaders.append("Content-Type", "application/json");
 

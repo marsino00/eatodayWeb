@@ -16,7 +16,7 @@
             <p>Plats</p>
         </div>
 
-        <div id="divPlats" class="row menu-container" data-aos="fade-up" data-aos-delay="200">
+        <div id="divPlats" class="row" data-aos="fade-up" data-aos-delay="200">
 
         </div>
 </section>

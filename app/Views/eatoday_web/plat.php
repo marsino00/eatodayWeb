@@ -57,9 +57,9 @@
     divPlatImg = document.getElementById("divPlatImg");
     divPlatInfo = document.getElementById("divPlatInfo");
 
-    Api.obtenirPlat(<?= $id_carta ?>, <?= $id_plat ?>, divPlatImg, divPlatInfo, <?= json_encode($rols); ?>);
+    Api.obtenirPlat(<?= $id_carta ?>, <?= $id_plat ?>, divPlatImg, divPlatInfo, <?= json_encode($rols); ?>, divSuplements);
 
     Api.obtenirAlergens(<?= $id_plat ?>, divAlergens)
-    Api.obtenirSuplements(<?= $id_plat ?>, divSuplements);
+    Api.obtenirSuplements(<?= $id_plat ?>, divSuplements, <?= json_encode($rols); ?>);
 </script>
 <?= $this->endSection() ?>

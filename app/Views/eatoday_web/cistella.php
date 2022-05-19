@@ -26,13 +26,41 @@
 
 <section class="menu section-bg">
     <div id="seccioCistella" class="container" data-aos="fade-up">
-        <div style="padding-top: 30px;" class="section-title">
-
+        <div style="padding-top: 20px;" class="section-title">
+            <h5>Usuari:
+                <?=
+                $usuari->email;
+                ?>
+            </h5>
             <p>Cistella</p>
-            <h5>Usuari: <?= $usuari->email ?></h5>
+
         </div>
 
 
+
+
+    </div>
+    <div class="container">
+        <h3>Resum de la comanda:</h3>
+
+        <p> Base: <span id="preuBase">></span> €</p>
+        <p> IVA 10%: <span id="preuIVA">></span> €</p>
+        <p><strong> Total: <span id="preuTotal">></span> €</strong></p>
+
+    </div>
+    <hr>
+    <div class="container" id="pagamentOnline" hidden>
+        <h4 style="text-decoration: underline;">Dades de pagament</h4>
+        <!-- <h5>Introduir targeta:</h5> -->
+        <label for="Número de la targeta">Número de la targeta: </label>
+        <input id="numsTargeta" maxlength="19" type="text">
+        <label for="Data de caducitat">Data de caducitat: </label>
+        <input id="dataCaducitat" maxlength="5" type="text">
+        <button class="book-a-table-btn scrollto" style="background-color:black;" id="pagar">Pagar</button>
+
+    </div>
+    <div class="container" id="pagamentFisic" hidden>
+        <button class="book-a-table-btn scrollto d-none d-lg-flex" style="background-color:black;" id="avisarCambrer">Avisar cambrer</button>
     </div>
 
 
@@ -42,12 +70,20 @@
 <script src="/assets/js/Api.js"></script>
 <script>
     if (JSON.parse(localStorage.getItem("cistella"))) {
+        console.log(window.sessionStorage.getItem("taula"));
+        if (window.sessionStorage.getItem("taula") == 0000) {
+            document.getElementById("pagamentOnline").hidden = false;
+        } else {
+            document.getElementById("pagamentFisic").hidden = false;
+
+        }
         var cistella = JSON.parse(localStorage.getItem("cistella"));
         var llistatCistella = document.getElementById("llistatCistella");
+        var preuBase = 0.00;
         for (let index = 0; index < cistella.length; index++) {
             var seccioCistella = document.getElementById("seccioCistella");
             var div = document.createElement("div");
-            div.setAttribute("class", "card my-5");
+            div.setAttribute("class", "card my-3");
             var div2 = document.createElement("div");
             div2.setAttribute("class", "container");
             div2.style = "display:flex;justify-content: space-between;";
@@ -63,6 +99,7 @@
             var span = document.createElement("span");
             span.style = "color: black;align-self: center;";
             span.textContent = cistella[index].preu + " €";
+            preuBase = preuBase + parseFloat(cistella[index].preu);
             div3.appendChild(h4);
             div3.appendChild(p);
             div2.appendChild(div3);
@@ -71,10 +108,66 @@
             var hr = document.createElement("hr");
 
             seccioCistella.appendChild(div);
-            seccioCistella.appendChild(hr);
         }
+        var hr = document.createElement("hr");
+        seccioCistella.appendChild(hr);
+
+        var varpreuBase = document.getElementById("preuBase");
+        var preuIVA = document.getElementById("preuIVA");
+        var preuTotal = document.getElementById("preuTotal");
+        preuIVA.textContent = (preuBase * 0.1).toFixed(2);
+        varpreuBase.textContent = (preuBase - preuIVA.textContent).toFixed(2);
+        preuTotal.textContent = preuBase.toFixed(2);
     } else {
 
     }
+</script>
+<script>
+    var suma = 0;
+    numsTargeta = document.getElementById("numsTargeta");
+
+    numsTargeta.addEventListener("keyup", function(evt) {
+        var caracter = numsTargeta.value.charCodeAt(numsTargeta.value.length - 1); //Comprovo l'ultim caràcter del input
+        var valorCaracter = numsTargeta.value.charAt(numsTargeta.value.length - 1);
+        suma = suma + parseInt(valorCaracter);
+        console.log(suma);
+
+        if (caracter >= 48 && caracter <= 57) {
+            console.log("És un numero");
+        } else { //Si no és un número l'elimino del input
+            evt.preventDefault();
+            numsTargeta.value = numsTargeta.value.slice(0, -1);
+
+        }
+        if (numsTargeta.value.length == 4 || numsTargeta.value.length == 9 || numsTargeta.value.length == 14) {
+            //Afegeixo el guio despres de cada 4 nums en el cas que la suma sigui 10, sino elimino els 4 ultims nums
+
+
+            numsTargeta.value = numsTargeta.value + "-";
+
+        }
+    })
+
+    dataCaducitat = document.getElementById("dataCaducitat");
+
+    dataCaducitat.addEventListener("keyup", function(evt) {
+        var caracter = dataCaducitat.value.charCodeAt(dataCaducitat.value.length - 1); //Comprovo l'ultim caràcter del input
+
+        if (caracter >= 48 && caracter <= 57) {
+            console.log("ES un numero");
+        } else { //Si no és un número l'elimino del input
+            evt.preventDefault();
+            dataCaducitat.value = dataCaducitat.value.slice(0, -1);
+
+        }
+        if (dataCaducitat.value.length == 2) {
+            if (dataCaducitat.value < 1 || dataCaducitat.value > 12) { //Comprovo que el mes es correcte
+                alert("El mes de la data de caducitat no és correcte")
+                dataCaducitat.value = "";
+            } else { //Si ho és afegeixo una barra abans de l'any
+                dataCaducitat.value = dataCaducitat.value + "/";
+            }
+        }
+    })
 </script>
 <?= $this->endSection() ?>

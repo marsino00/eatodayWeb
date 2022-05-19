@@ -98,7 +98,51 @@ class ApiPlatComandaController extends ResourceController
 
         return $this->respondCreated($response);
     }
+    public function updateEstatPlat($id = null)
+    {
+        $rules = [
+            'estat_plat' => 'required',
+        ];
 
+
+        if (!$this->validate($rules)) {
+
+            $response = [
+                'status' => 500,
+                'error' => true,
+                'message' => $this->validator->getErrors(),
+                'data' => []
+            ];
+        } else {
+
+            $model = new PlatComandaModel();
+
+            if ($model->findAll($id)) {
+                $estat_plat = $this->request->getVar('estat_plat');
+                $model->changeEstatPlat($id, $estat_plat);
+
+                $response = [
+                    'status' => 200,
+                    'error' => false,
+                    'message' => 'Estat Plat canviat correctament',
+                    'data' => [
+                        'id_comanda' => $id,
+                        'Estat comanda' => $estat_plat
+                    ]
+                ];
+            } else {
+
+                $response = [
+                    'status' => 500,
+                    "error" => true,
+                    'messages' => "No s'ha trobat comanda",
+                    'data' => []
+                ];
+            }
+        }
+
+        return $this->respondUpdated($response);
+    }
     /**
      * Return the editable properties of a resource object
      *
