@@ -39,7 +39,6 @@ class ApiPlatComandaController extends ResourceController
                 "error" => false,
                 'messages' => 'Plats Comanda trobats',
                 'data' => $array,
-                // 'aaaaaaaa' => $aaaaaaaa
 
             ];
         } else {
