@@ -68,9 +68,9 @@ class PlatComandaModel extends Model
         $this->insert(["id_plat" => $id_plat, "id_comanda" => $id_comanda, "estat_plat" => $estat_plat]);
         return $this->insertID;
     }
-    public function changeEstatPlat($id, $estat_plat)
+    public function changeEstatPlat($id, $estat_plat, $hora)
     {
 
-        $this->set('estat_plat', $estat_plat)->where('id_plat_comanda', $id)->update();
+        $this->set('estat_plat', $estat_plat)->set($hora, date('Y-m-d H:i:s ', time()))->where('id_plat_comanda', $id)->update();
     }
 }

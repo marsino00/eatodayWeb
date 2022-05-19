@@ -12,7 +12,7 @@ class Home extends BaseController
         $auth = service('authentication');
 
         if ($auth->check()) {
-
+            // dd($auth->user());
             $rols = $auth->user()->getRoles();
             $rolsaux = [];
             foreach ($rols as $rol) {
@@ -97,11 +97,11 @@ class Home extends BaseController
     {
         $data = $this->mirarSessióIniciada();
         $auth = service('authentication');
-
         if (!$auth->check()) {
             // $this->session->set('redirect_url', current_url());
             return redirect()->route('login');
         } else {
+            $data["id"] = $auth->user()->id;
             return view("eatoday_web/cistella", $data);
         }
     }

@@ -39,7 +39,6 @@
 </section>
 <?= $this->endSection() ?>
 <?= $this->section('js') ?>
-<script src="/assets/js/Api.js"></script>
 <script>
     document.getElementById("entrarCodi").addEventListener("click", function() {
         var codi_establiment = document.getElementById("codi").value.split("-")[0];

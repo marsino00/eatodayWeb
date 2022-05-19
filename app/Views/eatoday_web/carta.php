@@ -22,7 +22,6 @@
 </section>
 <?= $this->endSection() ?>
 <?= $this->section('js') ?>
-<script src="/assets/js/Api.js"></script>
 <script>
     divCartes = document.getElementById("divCartes");
 

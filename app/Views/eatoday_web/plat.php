@@ -50,7 +50,6 @@
 </section><!-- End About Section -->
 <?= $this->endSection() ?>
 <?= $this->section('js') ?>
-<script src="/assets/js/Api.js"></script>
 <script>
     divAlergens = document.getElementById("divAlergens");
     divSuplements = document.getElementById("divSuplements");

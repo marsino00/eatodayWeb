@@ -113,7 +113,7 @@
                 <div class="col-lg-8 details order-2 order-lg-1">
                   <h3>Pla estàndard</h3>
                   <p class="fst-italic">12,99 / any</p>
-                  <p>Aquest pla està pensat per a restaurants mijtans, els quals compten amb pocs establiments, però ja necessiten una gestió més elevada de la seva empresa</p>
+                  <p>Aquest pla està pensat per a restaurants mijtans, els quals compten amb pocs establiments, però ja necessiten una gestió més elevada de la seva empresa.</p>
 
                 </div>
                 <!-- <div class="col-lg-4 text-center order-1 order-lg-2">
@@ -126,7 +126,7 @@
                 <div class="col-lg-8 details order-2 order-lg-1">
                   <h3>Pla premium</h3>
                   <p class="fst-italic">19,99 / any</p>
-                  <p>Aquest pla està pensat per a restaurants grans, enfocat a una cadena molt gran d'establiments, en diferents localitats internacionals o locals.</p>
+                  <p>Aquest pla està pensat per a multinacionals del sector, les quals els seus establiments es poden trobar en gairebé qualsevol país.</p>
 
                 </div>
                 <!-- <div class="col-lg-4 text-center order-1 order-lg-2">
@@ -304,7 +304,6 @@
 
 <?= $this->endSection() ?>
 <?= $this->section('js') ?>
-<script src="/assets/js/Api.js"></script>
 <script>
   let establiments = document.getElementById("establiments");
   Api.obtenirEstabliments(establiments, "home");

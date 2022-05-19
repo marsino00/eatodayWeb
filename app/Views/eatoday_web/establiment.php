@@ -146,7 +146,6 @@
 </section><!-- End Menu Section -->
 <?= $this->endSection() ?>
 <?= $this->section('js') ?>
-<script src="/assets/js/Api.js"></script>
 <script>
     if (window.sessionStorage.getItem("taula")) {
         var div = document.getElementById("divTaules");
