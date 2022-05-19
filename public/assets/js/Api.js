@@ -374,25 +374,29 @@ class Api {
           if (esClient) {
             button.addEventListener("click", function () {
               var cistella = [];
-              if (window.localStorage.getItem("cistella")) {
+              if (window.sessionStorage.getItem("cistella")) {
                 for (
                   let index = 0;
                   index <
-                  JSON.parse(window.localStorage.getItem("cistella")).length;
+                  JSON.parse(window.sessionStorage.getItem("cistella")).length;
                   index++
                 ) {
                   cistella.push(
-                    JSON.parse(window.localStorage.getItem("cistella"))[index]
+                    JSON.parse(window.sessionStorage.getItem("cistella"))[index]
                   );
                 }
               }
               var plat = {
+                id_plat: JSON.parse(result).data[index].id_plat,
                 nom: JSON.parse(result).data[index].nom,
                 preu: JSON.parse(result).data[index].preu,
                 descripcio: JSON.parse(result).data[index].descripcio_breu,
               };
               cistella.push(plat);
-              window.localStorage.setItem("cistella", JSON.stringify(cistella));
+              window.sessionStorage.setItem(
+                "cistella",
+                JSON.stringify(cistella)
+              );
               alert("Plat afegit correctament a la cistella");
             });
             button.textContent = "Afegir";
@@ -528,19 +532,19 @@ class Api {
         divPlatInfo.appendChild(p);
         divPlatInfo.appendChild(p2);
         let button = document.createElement("button");
-        console.log(JSON.parse(window.localStorage.getItem("cistella")));
+        console.log(JSON.parse(window.sessionStorage.getItem("cistella")));
         if (esClient) {
           button.addEventListener("click", function () {
             var cistella = [];
-            if (window.localStorage.getItem("cistella")) {
+            if (window.sessionStorage.getItem("cistella")) {
               for (
                 let index = 0;
                 index <
-                JSON.parse(window.localStorage.getItem("cistella")).length;
+                JSON.parse(window.sessionStorage.getItem("cistella")).length;
                 index++
               ) {
                 cistella.push(
-                  JSON.parse(window.localStorage.getItem("cistella"))[index]
+                  JSON.parse(window.sessionStorage.getItem("cistella"))[index]
                 );
               }
             }
@@ -558,7 +562,7 @@ class Api {
             };
             cistella.push(plat);
             alert("Plat afegit correctament a la cistella");
-            window.localStorage.setItem("cistella", JSON.stringify(cistella));
+            window.sessionStorage.setItem("cistella", JSON.stringify(cistella));
           });
           button.textContent = "Afegir";
           divPlatInfo.appendChild(button);
@@ -674,6 +678,87 @@ class Api {
         }
         console.log(divTaules);
         divTaules.appendChild(select);
+      })
+      .catch((error) => console.log("error", error));
+  }
+  static crearComanda(comensals, codi_taula, id_client) {
+    var myHeaders = new Headers();
+    myHeaders.append(
+      "Authorization",
+      "Bearer " + window.sessionStorage.getItem("token")
+    );
+    myHeaders.append("Content-Type", "application/json");
+
+    var raw = JSON.stringify({
+      estat_comanda: "PAGAT",
+      comensals: comensals,
+      codi_taula: codi_taula,
+      id_client: id_client,
+    });
+
+    var requestOptions = {
+      method: "POST",
+      headers: myHeaders,
+      body: raw,
+      redirect: "follow",
+    };
+
+    fetch("/api/comanda/add", requestOptions)
+      .then((response) => response.text())
+      .then((result) => {
+        window.sessionStorage.setItem("token", JSON.parse(result).refreshToken);
+        // console.log(window.sessionStorage.getItem("token"));
+        // console.log(JSON.parse(result));
+        // console.log(result);
+        this.crearPlatComanda(JSON.parse(result).data.id_comanda);
+      })
+      .catch((error) => console.log("error", error));
+  }
+  static crearPlatComanda(id_comanda) {
+    // console.log(
+    //   JSON.parse(window.sessionStorage.getItem("cistella"))[0].id_plat
+    // );
+    var arrayPlatsComanda = [];
+    for (
+      let index = 0;
+      index < JSON.parse(window.sessionStorage.getItem("cistella")).length;
+      index++
+    ) {
+      let id_plat = JSON.parse(window.sessionStorage.getItem("cistella"))[index]
+        .id_plat;
+      // console.log(id_plat);
+      let obj = {
+        id_plat: id_plat,
+        id_comanda: id_comanda,
+        estat_plat: "DEMANAT",
+      };
+      arrayPlatsComanda.push(obj);
+    }
+    console.log(arrayPlatsComanda);
+    var myHeaders = new Headers();
+    myHeaders.append(
+      "Authorization",
+      "Bearer " + window.sessionStorage.getItem("token")
+    );
+    myHeaders.append("Content-Type", "application/json");
+
+    var raw = JSON.stringify({
+      data: arrayPlatsComanda,
+    });
+
+    var requestOptions = {
+      method: "POST",
+      headers: myHeaders,
+      body: raw,
+      redirect: "follow",
+    };
+
+    fetch("/api/platcomanda/add", requestOptions)
+      .then((response) => response.text())
+      .then((result) => {
+        console.log(result);
+        window.sessionStorage.setItem("token", JSON.parse(result).refreshToken);
+        alert("Comanda creada correctament");
       })
       .catch((error) => console.log("error", error));
   }

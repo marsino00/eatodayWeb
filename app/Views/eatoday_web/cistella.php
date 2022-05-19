@@ -26,13 +26,16 @@
 
 <section class="menu section-bg">
     <div id="seccioCistella" class="container" data-aos="fade-up">
-        <div style="padding-top: 20px;" class="section-title">
-            <h5>Usuari:
-                <?=
-                $usuari->email;
-                ?>
-            </h5>
-            <p>Cistella</p>
+        <div style="padding-top: 20px;display:flex;justify-content: space-between;" class="section-title">
+            <div>
+                <h5>Usuari:
+                    <?=
+                    $usuari->email;
+                    ?>
+                </h5>
+                <p>Cistella</p>
+            </div>
+            <button class="book-a-table-btn scrollto" style="background-color:black;" id="novaComanda">Començar nova comanda</button>
 
         </div>
 
@@ -43,41 +46,69 @@
     <div class="container">
         <h3>Resum de la comanda:</h3>
 
-        <p> Base: <span id="preuBase">></span> €</p>
-        <p> IVA 10%: <span id="preuIVA">></span> €</p>
-        <p><strong> Total: <span id="preuTotal">></span> €</strong></p>
+        <p> Base: <span id="preuBase"></span> €</p>
+        <p> IVA 10%: <span id="preuIVA"></span> €</p>
+        <p><strong> Total: <span id="preuTotal"></span> €</strong></p>
 
     </div>
     <hr>
     <div class="container" id="pagamentOnline" hidden>
-        <h4 style="text-decoration: underline;">Dades de pagament</h4>
+        <label for="Número de comensals">Introduir comensals: <input type="number" name="" id="comensalsOnline"></label>
+        <h4 style="text-decoration: underline;padding-top:20px">Dades de pagament</h4>
         <!-- <h5>Introduir targeta:</h5> -->
         <label for="Número de la targeta">Número de la targeta: </label>
         <input id="numsTargeta" maxlength="19" type="text">
         <label for="Data de caducitat">Data de caducitat: </label>
         <input id="dataCaducitat" maxlength="5" type="text">
+
         <button class="book-a-table-btn scrollto" style="background-color:black;" id="pagar">Pagar</button>
 
     </div>
     <div class="container" id="pagamentFisic" hidden>
-        <button class="book-a-table-btn scrollto d-none d-lg-flex" style="background-color:black;" id="avisarCambrer">Avisar cambrer</button>
+        <label for="Número de comensals">Introduir comensals: <input type="number" name="" id="comensalsOnline"></label>
+        <button class="book-a-table-btn scrollto" style="background-color:black;" id="avisarCambrer">Avisar cambrer</button>
     </div>
 
 
 </section>
 <?= $this->endSection() ?>
 <?= $this->section('js') ?>
-<script src="/assets/js/Api.js"></script>
 <script>
-    if (JSON.parse(localStorage.getItem("cistella"))) {
+    document.getElementById("novaComanda").addEventListener("click", function() {
+        window.sessionStorage.removeItem("taula")
+        window.sessionStorage.removeItem("cistella")
+        window.location = "/introduirCodi"
+    })
+    var cistella = window.sessionStorage.getItem("cistella");
+    console.log(JSON.parse(cistella)[0]);
+    if (JSON.parse(sessionStorage.getItem("cistella"))) {
         console.log(window.sessionStorage.getItem("taula"));
         if (window.sessionStorage.getItem("taula") == 0000) {
             document.getElementById("pagamentOnline").hidden = false;
+            document.getElementById("pagar").addEventListener("click", function() {
+                if (document.getElementById("comensalsOnline").value != "" && document.getElementById("numsTargeta").value != "" && document.getElementById("dataCaducitat").value != "") {
+                    Api.crearComanda(document.getElementById("comensalsOnline").value, window.sessionStorage.getItem("taula"), <?= $id ?>);
+
+                } else {
+                    alert("No poden existir camps buits")
+                }
+            })
+
+
         } else {
             document.getElementById("pagamentFisic").hidden = false;
+            document.getElementById("avisarCambrer").addEventListener("click", function() {
+                if (document.getElementById("comensalsOnline").value != "") {
+                    Api.crearComanda(document.getElementById("comensals").value, window.sessionStorage.getItem("taula"), <?= $id ?>);
+                } else {
+                    alert("Introdueix el número de comensals")
+
+                }
+
+            })
 
         }
-        var cistella = JSON.parse(localStorage.getItem("cistella"));
+        var cistella = JSON.parse(sessionStorage.getItem("cistella"));
         var llistatCistella = document.getElementById("llistatCistella");
         var preuBase = 0.00;
         for (let index = 0; index < cistella.length; index++) {

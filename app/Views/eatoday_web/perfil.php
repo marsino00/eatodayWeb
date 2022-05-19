@@ -67,7 +67,6 @@
 
 <?= $this->endSection() ?>
 <?= $this->section('js') ?>
-<script src="/assets/js/Api.js"></script>
 <script>
     document.getElementById("canviarPass").addEventListener("click", function() {
         Api.canviarContrasenya(" <?= $usuari->email ?>", document.getElementById("newPassword").value)

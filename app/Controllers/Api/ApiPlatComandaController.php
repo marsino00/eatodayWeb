@@ -119,7 +119,14 @@ class ApiPlatComandaController extends ResourceController
 
             if ($model->findAll($id)) {
                 $estat_plat = $this->request->getVar('estat_plat');
-                $model->changeEstatPlat($id, $estat_plat);
+                if ($estat_plat == "ELABORAT") {
+                    $hora = "hora_elaborat";
+                } elseif ($estat_plat == "DEMANAT") {
+                    $hora = "hora_demanat";
+                } else {
+                    $hora = "hora_lliurat";
+                }
+                $model->changeEstatPlat($id, $estat_plat, $hora);
 
                 $response = [
                     'status' => 200,

@@ -16,7 +16,7 @@ class AfegirPlatComandaSeeder extends Seeder
                 'id_plat_comanda' => $i, //$title => $fake->sentence(6)
                 'id_plat' => 1, //$title => $fake->sentence(6)
                 'id_comanda' => $i, //$title => $fake->sentence(6)
-                'estat_plat' => "Elaborat",  //$title => $fake->sentence(6)
+                'estat_plat' => "ELABORAT",  //$title => $fake->sentence(6)
 
             ];
 

@@ -98,9 +98,11 @@
         document.getElementById("<?= $text2 ?>").addEventListener("click", function() {
             window.sessionStorage.removeItem("token");
             window.sessionStorage.removeItem("taula");
-            window.localStorage.removeItem("cistella");
+            window.sessionStorage.removeItem("cistella");
         })
     </script>
+    <script src="/assets/js/Api.js"></script>
+
     <?= $this->renderSection('js') ?>
 
 </body>
