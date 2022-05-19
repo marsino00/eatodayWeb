@@ -12,7 +12,7 @@
         <h2>Restaurants sostenibles i propers</h2>
       </div>
       <div class="col-lg-4 d-flex align-items-center justify-content-center position-relative" data-aos="zoom-in" data-aos-delay="200">
-        <a href="https://www.youtube.com/watch?v=GlrxcuEDyF8" class="glightbox play-btn"></a>
+        <a href="/assets/video/eatoday.mp4" class="glightbox play-btn"></a>
       </div>
 
     </div>
@@ -100,10 +100,8 @@
               <div class="row">
                 <div class="col-lg-8 details order-2 order-lg-1">
                   <h3>Pla bàsic</h3>
-                  <p class="fst-italic">7,99 / mes</p>
-                  <p>Et nobis maiores eius. Voluptatibus ut enim blanditiis atque harum sint. Laborum eos ipsum ipsa
-                    odit magni. Incidunt hic ut molestiae aut qui. Est repellat minima eveniet eius et quis magni
-                    nihil. Consequatur dolorem quaerat quos qui similique accusamus nostrum rem vero</p>
+                  <p class="fst-italic">7,99 / any</p>
+                  <p>Aquest pla està pensat per a petits restaurants, els quals compten amb un o pocs establiments.</p>
                 </div>
                 <!-- <div class="col-lg-4 text-center order-1 order-lg-2">
                   <img src="assets/img/specials-1.png" alt="" class="img-fluid">
@@ -114,10 +112,9 @@
               <div class="row">
                 <div class="col-lg-8 details order-2 order-lg-1">
                   <h3>Pla estàndard</h3>
-                  <p class="fst-italic">12,99 / mes</p>
-                  <p>Ea ipsum voluptatem consequatur quis est. Illum error ullam omnis quia et reiciendis sunt sunt
-                    est. Non aliquid repellendus itaque accusamus eius et velit ipsa voluptates. Optio nesciunt eaque
-                    beatae accusamus lerode pakto madirna desera vafle de nideran pal</p>
+                  <p class="fst-italic">12,99 / any</p>
+                  <p>Aquest pla està pensat per a restaurants mijtans, els quals compten amb pocs establiments, però ja necessiten una gestió més elevada de la seva empresa</p>
+
                 </div>
                 <!-- <div class="col-lg-4 text-center order-1 order-lg-2">
                   <img src="assets/img/specials-2.png" alt="" class="img-fluid">
@@ -128,10 +125,9 @@
               <div class="row">
                 <div class="col-lg-8 details order-2 order-lg-1">
                   <h3>Pla premium</h3>
-                  <p class="fst-italic">19,99 / mes</p>
-                  <p>Iure officiis odit rerum. Harum sequi eum illum corrupti culpa veritatis quisquam. Neque
-                    necessitatibus illo rerum eum ut. Commodi ipsam minima molestiae sed laboriosam a iste odio. Earum
-                    odit nesciunt fugiat sit ullam. Soluta et harum voluptatem optio quae</p>
+                  <p class="fst-italic">19,99 / any</p>
+                  <p>Aquest pla està pensat per a restaurants grans, enfocat a una cadena molt gran d'establiments, en diferents localitats internacionals o locals.</p>
+
                 </div>
                 <!-- <div class="col-lg-4 text-center order-1 order-lg-2">
                   <img src="assets/img/specials-3.png" alt="" class="img-fluid">
@@ -204,8 +200,7 @@
             <div class="testimonial-item">
               <p>
                 <i class="bx bxs-quote-alt-left quote-icon-left"></i>
-                Proin iaculis purus consequat sem cure digni ssim donec porttitora entum suscipit rhoncus. Accusantium
-                quam, ultricies eget id, aliquam eget nibh et. Maecen aliquam, risus at semper.
+                Una iniciativa molt bona per a donar visibilitat als restaurants!
                 <i class="bx bxs-quote-alt-right quote-icon-right"></i>
               </p>
               <img src="/assets/img/testimonials/testimonials-1.jpg" class="testimonial-img" alt="">
@@ -217,8 +212,7 @@
             <div class="testimonial-item">
               <p>
                 <i class="bx bxs-quote-alt-left quote-icon-left"></i>
-                Export tempor illum tamen malis malis eram quae irure esse labore quem cillum quid cillum eram malis
-                quorum velit fore eram velit sunt aliqua noster fugiat irure amet legam anim culpa.
+                Des de que la faig servir, s'ha tornat indispensable per al meu dia a dia.
                 <i class="bx bxs-quote-alt-right quote-icon-right"></i>
               </p>
               <img src="/assets/img/testimonials/testimonials-2.jpg" class="testimonial-img" alt="">
@@ -230,38 +224,11 @@
             <div class="testimonial-item">
               <p>
                 <i class="bx bxs-quote-alt-left quote-icon-left"></i>
-                Enim nisi quem export duis labore cillum quae magna enim sint quorum nulla quem veniam duis minim
-                tempor labore quem eram duis noster aute amet eram fore quis sint minim.
+                El disseny de la web i la forma que es troba organitzada resulta molt intuitiva per al usuari.
                 <i class="bx bxs-quote-alt-right quote-icon-right"></i>
               </p>
               <img src="/assets/img/testimonials/testimonials-3.jpg" class="testimonial-img" alt="">
               <h3>Jena Karlis</h3>
-            </div>
-          </div>
-
-          <div class="swiper-slide">
-            <div class="testimonial-item">
-              <p>
-                <i class="bx bxs-quote-alt-left quote-icon-left"></i>
-                Fugiat enim eram quae cillum dolore dolor amet nulla culpa multos export minim fugiat minim velit
-                minim dolor enim duis veniam ipsum anim magna sunt elit fore quem dolore labore illum veniam.
-                <i class="bx bxs-quote-alt-right quote-icon-right"></i>
-              </p>
-              <img src="/assets/img/testimonials/testimonials-4.jpg" class="testimonial-img" alt="">
-              <h3>Matt Brandon</h3>
-            </div>
-          </div>
-
-          <div class="swiper-slide">
-            <div class="testimonial-item">
-              <p>
-                <i class="bx bxs-quote-alt-left quote-icon-left"></i>
-                Quis quorum aliqua sint quem legam fore sunt eram irure aliqua veniam tempor noster veniam enim culpa
-                labore duis sunt culpa nulla illum cillum fugiat legam esse veniam culpa fore nisi cillum quid.
-                <i class="bx bxs-quote-alt-right quote-icon-right"></i>
-              </p>
-              <img src="/assets/img/testimonials/testimonials-5.jpg" class="testimonial-img" alt="">
-              <h3>John Larson</h3>
             </div>
           </div>
 

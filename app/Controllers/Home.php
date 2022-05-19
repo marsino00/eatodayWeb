@@ -40,6 +40,15 @@ class Home extends BaseController
     {
         $data = $this->mirarSessióIniciada();
 
+        // $mpdf = new \Mpdf\Mpdf();
+        // $html = view('eatoday_web/cistella', $data);
+        // $mpdf->WriteHTML($html);
+        // $this->response->setHeader('Content-Type', 'application/pdf');
+        // $mpdf->Output('arjun.pdf', 'I'); // opens in browser
+        //$mpdf->Output('arjun.pdf','D'); // it downloads the file into the user system, with give name
+        //return view('welcome_message');
+
+
         return view('eatoday_web/index', $data);
     }
     public function establiments($codi_establiment = null)
