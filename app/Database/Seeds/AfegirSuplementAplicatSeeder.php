@@ -17,7 +17,6 @@ class AfegirSuplementAplicatSeeder extends Seeder
                 'descripcio'  => $fake->realText(100), //$desc => $fake->text(100)
                 'preu' => $fake->randomFloat()
             ];
-
             $this->db->table('suplement_aplicat')->insert($data);
         }
     }

@@ -69,6 +69,7 @@ $routes->group("api", function ($routes) {
     $routes->group("platcomanda", function ($routes) {
         $routes->get("list/(:num)", "Api\ApiPlatComandaController::show/$1");
         $routes->options("add", "Api\ApiPlatComandaController::create");
+        $routes->post("update/(:num)", "Api\ApiPlatComandaController::updateEstatPlat/$1", ["filter" => "jwt"]);
         $routes->post("add", "Api\ApiPlatComandaController::create", ["filter" => "jwt"]);
     });
     $routes->group("suplementaplicat", function ($routes) {
@@ -99,6 +100,7 @@ $routes->group("api", function ($routes) {
 $routes->get('/', 'Home::index');
 $routes->get('/perfil', 'PerfilController::index');
 $routes->get('/introduirCodi', 'ClientController::insertarCodi');
+$routes->get('/cistella', 'Home::cistella');
 $routes->get('/establiments', 'Home::establiments');
 $routes->get('/establiments/(:num)', 'Home::establiments/$1');
 $routes->get('/establiments/(:num)/categories/(:num)', 'Home::categories/$1/$2');

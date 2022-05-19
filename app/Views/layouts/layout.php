@@ -16,14 +16,14 @@
     <!-- Google /Fonts -->
     <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,300i,400,400i,600,600i,700,700i|Playfair+Display:ital,wght@0,400;0,500;0,600;0,700;1,400;1,500;1,600;1,700|Poppins:300,300i,400,400i,500,500i,600,600i,700,700i" rel="stylesheet">
 
-    <!-- Vendor /CSS Files -->
-    <link href="/assets/vendor/animate.css/animate.min.css" rel="stylesheet">
-    <link href="/assets/vendor/aos/aos.css" rel="stylesheet">
-    <link href="/assets/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
-    <link href="/assets/vendor/bootstrap-icons/bootstrap-icons.css" rel="stylesheet">
-    <link href="/assets/vendor/boxicons/css/boxicons.min.css" rel="stylesheet">
-    <link href="/assets/vendor/glightbox/css/glightbox.min.css" rel="stylesheet">
-    <link href="/assets/vendor/swiper/swiper-bundle.min.css" rel="stylesheet">
+    <!-- arxiu /CSS Files -->
+    <link href="/assets/arxiu/animate.css/animate.min.css" rel="stylesheet">
+    <link href="/assets/arxiu/aos/aos.css" rel="stylesheet">
+    <link href="/assets/arxiu/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+    <link href="/assets/arxiu/bootstrap-icons/bootstrap-icons.css" rel="stylesheet">
+    <link href="/assets/arxiu/boxicons/css/boxicons.min.css" rel="stylesheet">
+    <link href="/assets/arxiu/glightbox/css/glightbox.min.css" rel="stylesheet">
+    <link href="/assets/arxiu/swiper/swiper-bundle.min.css" rel="stylesheet">
 
     <!-- Template Main CSS File -->
     <link href="/assets/css/style.css" rel="stylesheet">
@@ -57,6 +57,8 @@
                     <li><a class="nav-link scrollto <?php if (str_contains(base_url(), "establiments")) echo 'active'; ?>" href="<?= base_url() . '/establiments' ?> ">Establiments</a></li>
                     <li><a class="nav-link scrollto <?php if (str_contains(base_url(), "#specials")) echo 'active'; ?>" href="<?= base_url() . '#specials' ?>">Donar-se d'alta</a></li>
                     <li><a class="nav-link scrollto<?php if (str_contains(base_url(), "#contact")) echo 'active'; ?>" href="<?= base_url() . '#contact' ?>">Contactar</a></li>
+                    <li><a class="nav-link scrollto<?php if (str_contains(base_url(), "introduirCodi")) echo 'active'; ?>" href="<?= base_url() . '/introduirCodi' ?>">Insertar codi</a></li>
+                    <li><a class="nav-link scrollto<?php if (str_contains(base_url(), "cistella")) echo 'active'; ?>" href="<?= base_url() . '/cistella' ?>">Veure cistella</a></li>
                 </ul>
                 <i class="bi bi-list mobile-nav-toggle"></i>
             </nav><!-- .navbar -->
@@ -76,18 +78,18 @@
                 &copy <strong><span>David Ribalaigua & Roger Marsino</span></strong>
             </div>
         </div>
-    </footer><!-- End Footer -->
+    </footer>
 
     <div id="preloader"></div>
     <a href="#" class="back-to-top d-flex align-items-center justify-content-center"><i class="bi bi-arrow-up-short"></i></a>
 
-    <!-- Vendor JS Files -->
-    <script src="/assets/vendor/aos/aos.js"></script>
-    <script src="/assets/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
-    <script src="/assets/vendor/glightbox/js/glightbox.min.js"></script>
-    <script src="/assets/vendor/isotope-layout/isotope.pkgd.min.js"></script>
-    <script src="/assets/vendor/php-email-form/validate.js"></script>
-    <script src="/assets/vendor/swiper/swiper-bundle.min.js"></script>
+    <!-- arxiu JS Files -->
+    <script src="/assets/arxiu/aos/aos.js"></script>
+    <script src="/assets/arxiu/bootstrap/js/bootstrap.bundle.min.js"></script>
+    <script src="/assets/arxiu/glightbox/js/glightbox.min.js"></script>
+    <script src="/assets/arxiu/isotope-layout/isotope.pkgd.min.js"></script>
+    <script src="/assets/arxiu/php-email-form/validate.js"></script>
+    <script src="/assets/arxiu/swiper/swiper-bundle.min.js"></script>
 
 
     <!-- Template Main JS File -->
@@ -95,6 +97,8 @@
     <script>
         document.getElementById("<?= $text2 ?>").addEventListener("click", function() {
             window.sessionStorage.removeItem("token");
+            window.sessionStorage.removeItem("taula");
+            window.localStorage.removeItem("cistella");
         })
     </script>
     <?= $this->renderSection('js') ?>

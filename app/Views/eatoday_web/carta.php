@@ -16,7 +16,7 @@
             <p>Plats</p>
         </div>
 
-        <div id="divPlats" class="row menu-container" data-aos="fade-up" data-aos-delay="200">
+        <div id="divPlats" class="row" data-aos="fade-up" data-aos-delay="200">
 
         </div>
 </section>
@@ -26,6 +26,6 @@
 <script>
     divCartes = document.getElementById("divCartes");
 
-    Api.obtenirPlats(<?= $codi_establiment ?>, <?= $id_categoria ?>, <?= $id_carta ?>, divPlats);
+    Api.obtenirPlats(<?= $codi_establiment ?>, <?= $id_categoria ?>, <?= $id_carta ?>, divPlats, <?= json_encode($rols); ?>);
 </script>
 <?= $this->endSection() ?>

@@ -126,7 +126,7 @@
             <p>Valoracions</p>
         </div>
 
-        <div id="divValoracions" class="row menu-container" data-aos="fade-up" data-aos-delay="200">
+        <div id="divValoracions" class="row" data-aos="fade-up" data-aos-delay="200">
 
             <!-- <div class="col-lg-6 menu-item filter-starters">
           <img src="assets/img/menu/lobster-bisque.jpg" class="menu-img" alt="">
@@ -164,8 +164,8 @@
     divEstabliment = document.getElementById("establiments");
     slider = document.getElementById("slider");
     slides = document.getElementById("slides");
-    divValoracions = document.getElementById("divValoracions");
     divCategories = document.getElementById("divCategories");
+    divValoracions = document.getElementById("divValoracions");
     Api.obtenirUnEstabliment(<?= $codi_establiment ?>, divEstabliment, slider, slides);
 
     Api.obtenirCategories(<?= $codi_establiment ?>, divCategories);
