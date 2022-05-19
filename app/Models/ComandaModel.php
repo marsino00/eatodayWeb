@@ -69,9 +69,10 @@ class ComandaModel extends Model
         $this->insert(["estat_comanda" => $estat_comanda, "comensals" => $comensals, "codi_taula" => $codi_taula, "id_client" => $data->id]);
         return $this->insertID;
     }
-    public function changeEstatComanda($id, $estat_comanda)
+    public function changeEstatComanda($id, $estat_comanda, $email)
     {
-
-        $this->set('estat_comanda', $estat_comanda)->where('id_comanda', $id)->update();
+        $model = new UserModel();
+        $data = $model->obtenirUsuari($email);
+        $this->set('estat_comanda', $estat_comanda)->set('id_cambrer', $data->id)->where('id_comanda', $id)->update();
     }
 }

@@ -71,6 +71,7 @@ class PlatComandaModel extends Model
     public function changeEstatPlat($id, $estat_plat, $hora)
     {
 
+
         $this->set('estat_plat', $estat_plat)->set($hora, date('Y-m-d H:i:s ', time()))->where('id_plat_comanda', $id)->update();
     }
 }

@@ -169,7 +169,8 @@ class ApiComandaController extends ResourceController
 
             if ($model->findAll($id)) {
                 $estat_comanda = $this->request->getVar('estat_comanda');
-                $model->changeEstatComanda($id, $estat_comanda);
+                $email = $this->request->getVar('email');
+                $model->changeEstatComanda($id, $estat_comanda, $email);
 
                 $response = [
                     'status' => 200,
@@ -177,7 +178,8 @@ class ApiComandaController extends ResourceController
                     'message' => 'Estat Comanda canviat correctament',
                     'data' => [
                         'id_comanda' => $id,
-                        'Estat comanda' => $estat_comanda
+                        'Estat comanda' => $estat_comanda,
+                        'email' => $email
                     ]
                 ];
             } else {
