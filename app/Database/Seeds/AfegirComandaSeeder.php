@@ -13,7 +13,7 @@ class AfegirComandaSeeder extends Seeder
         $data = [
             'id_comanda' => 1, //$title => $fake->sentence(6)
             'codi_taula' => 1, //$title => $fake->sentence(6)
-            'estat_comanda'  => "COMANDA", //$desc => $fake->text(100)
+            'estat_comanda'  => "NOPAGADA", //$desc => $fake->text(100)
             'comensals' => $fake->numberBetween(1, 6),
             'id_client' => 1,
         ];
@@ -23,7 +23,7 @@ class AfegirComandaSeeder extends Seeder
             $data = [
                 'id_comanda' => $i, //$title => $fake->sentence(6)
                 'codi_taula' => $i, //$title => $fake->sentence(6)
-                'estat_comanda'  => "FACTURA", //$desc => $fake->text(100)
+                'estat_comanda'  => "PAGADA", //$desc => $fake->text(100)
                 'comensals' => $fake->numberBetween(1, 6),
                 'id_client' => 1,
 
