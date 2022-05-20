@@ -14,7 +14,7 @@ class PuntuacioModel extends Model
     protected $returnType       = 'array';
     protected $useSoftDeletes   = false;
     protected $protectFields    = true;
-    protected $allowedFields    = ["valoracio", "comentari", "id_usuari", "codi_establiment"];
+    protected $allowedFields    = ["valoracio", "comentari",  "codi_establiment", "id_users", "data_publicacio"];
 
     // Dates
     protected $useTimestamps = false;
@@ -57,5 +57,11 @@ class PuntuacioModel extends Model
         foreach ($query->getResult() as $row) {
             return $row;
         }
+    }
+    public function afegirPuntuacio($valoracio, $comentari, $email, $codi_establiment)
+    {
+        $model = new UserModel();
+        $data = $model->obtenirUsuari($email);
+        $this->insert(['valoracio' => $valoracio, "data_publicacio" => date('Y-m-d H:i:s ', time()), 'comentari' => $comentari, 'codi_establiment' => $codi_establiment, 'id_users' => $data->id]);
     }
 }

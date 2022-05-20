@@ -314,7 +314,7 @@
         <!-- Login Form -->
         <form action="<?= route_to('login') ?>" method="post">
             <?= csrf_field() ?>
-            <input type="text" id="loginUser" name="login" class="fadeIn second <?php if (session('errors.login')) : ?>is-invalid<?php endif ?>" name="login" placeholder="Nom d'usuari o Email">
+            <input type="text" id="loginUser" name="login" class="fadeIn second <?php if (session('errors.login')) : ?>is-invalid<?php endif ?>" name="login" placeholder="Email">
             <div class="invalid-feedback">
                 <?= session('errors.login') ?>
             </div>

@@ -160,6 +160,10 @@ class Api {
         divGeneral.appendChild(div2);
         divGeneral.appendChild(div3);
         diVEstabliment.appendChild(divGeneral);
+        window.sessionStorage.setItem(
+          "codi_establiment",
+          JSON.parse(result).data[0].codi_establiment
+        );
       })
       .catch((error) => console.log("error", error));
   }
@@ -759,6 +763,38 @@ class Api {
         console.log(result);
         window.sessionStorage.setItem("token", JSON.parse(result).refreshToken);
         alert("Comanda creada correctament");
+      })
+      .catch((error) => console.log("error", error));
+  }
+  static afegirPuntuacio(valoracio, comentari, user) {
+    let email = user.email;
+    var myHeaders = new Headers();
+    myHeaders.append(
+      "Authorization",
+      "Bearer " + window.sessionStorage.getItem("token")
+    );
+    myHeaders.append("Content-Type", "application/json");
+    myHeaders.append("Cookie", "ci_session=pfpsgr1dpe989fp4kr0b3foh3rb5v8t3");
+
+    var raw = JSON.stringify({
+      valoracio: valoracio,
+      comentari: comentari,
+      email: email,
+      codi_establiment: window.sessionStorage.getItem("codi_establiment"),
+    });
+
+    var requestOptions = {
+      method: "POST",
+      headers: myHeaders,
+      body: raw,
+      redirect: "follow",
+    };
+
+    fetch("/api/puntuacio/add", requestOptions)
+      .then((response) => response.text())
+      .then((result) => {
+        alert("Valoracio creada correctament");
+        window.sessionStorage.setItem("token", JSON.parse(result).refreshToken);
       })
       .catch((error) => console.log("error", error));
   }

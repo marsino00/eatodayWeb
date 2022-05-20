@@ -9,7 +9,8 @@
         "codeigniter4/framework": "^4",
         "myth/auth": "^1.0",
         "firebase/php-jwt": "^6.1",
-        "mpdf/mpdf": "^8.1"
+        "mpdf/mpdf": "^8.1",
+        "siensis/kpacrud": "dev-master"
     },
     "require-dev": {
         "fakerphp/faker": "^1.9",

@@ -144,9 +144,46 @@
 
     </div>
 </section><!-- End Menu Section -->
+<section id="categoria" class="menu section-bg">
+    <div class="container" data-aos="fade-up">
+        <h3>Afegir una valoració</h3>
+        <div>
+            <label for="valoracio">Valoració: &nbsp;</label>
+            <input type="number" max=5 min=1 id="valoracio">
+        </div>
+        <div>
+            <label for="comentari">Comentari: </label>
+            <textarea rows="5" cols="60" id="comentari">
+         </textarea>
+        </div>
+        <button id="afegirValoracio">Afegir Valoració</button>
+    </div>
+</section><!-- End Menu Section -->
+
 <?= $this->endSection() ?>
 <?= $this->section('js') ?>
 <script>
+    document.getElementById("afegirValoracio").addEventListener("click", function() {
+        if (document.getElementById("valoracio").value != "" && document.getElementById("comentari").value != "") {
+            var rols = <?= json_encode($rols); ?>;
+            var esClient = false;
+            for (var i = 0; i < rols.length; i++) {
+                if (rols[i] == "usuari client") {
+                    esClient = true;
+                }
+            }
+            if (esClient) {
+                Api.afegirPuntuacio(document.getElementById("valoracio").value, document.getElementById("comentari").value, <?= json_encode($usuari) ?>);
+            } else {
+                alert("No es pot afegir valoracio sense iniciar sessio")
+            }
+        } else {
+            alert("No poden existir camps buits al afegir una valoració")
+
+        }
+    })
+
+
     if (window.sessionStorage.getItem("taula")) {
         var div = document.getElementById("divTaules");
         var h5 = document.createElement("h5");

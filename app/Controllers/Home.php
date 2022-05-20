@@ -31,6 +31,7 @@ class Home extends BaseController
             $data["ruta2"] = base_url() . "/register";
             $data["text2"] = "Registrar-se";
             $data["rols"] = "";
+            $data["usuari"] = "";
         }
 
         return $data;

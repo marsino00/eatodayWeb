@@ -65,7 +65,41 @@ class ApiPuntuacioController extends ResourceController
      */
     public function create()
     {
-        //
+        $rules = [
+            'valoracio' => 'required',
+            'comentari' => 'required',
+            'email' => 'required',
+            'codi_establiment' => 'required',
+        ];
+
+        if (!$this->validate($rules)) {
+
+            $response = [
+                'status' => 500,
+                'error' => true,
+                'message' => $this->validator->getErrors(),
+                'data' => []
+            ];
+        } else {
+
+            $model = new PuntuacioModel();
+
+            $valoracio = $this->request->getVar('valoracio');
+            $comentari = $this->request->getVar('comentari');
+            $email = $this->request->getVar('email');
+            $codi_establiment = $this->request->getVar('codi_establiment');
+
+
+            $model->afegirPuntuacio($valoracio, $comentari, $email, $codi_establiment);
+
+            $response = [
+                'status' => 200,
+                'error' => false,
+                'message' => 'Valoració creada'
+            ];
+        }
+
+        return $this->respondCreated($response);
     }
 
     /**

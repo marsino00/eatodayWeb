@@ -67,11 +67,9 @@ $routes->group("api", function ($routes) {
     $routes->group("platcomanda", function ($routes) {
         $routes->get("list/(:num)", "Api\ApiPlatComandaController::show/$1");
         $routes->options("add", "Api\ApiPlatComandaController::create");
-
+        $routes->post("add", "Api\ApiPlatComandaController::create", ["filter" => "jwt"]);
         $routes->options("update/(:num)", "Api\ApiPlatComandaController::updateEstatPlat/$1");
         $routes->post("update/(:num)", "Api\ApiPlatComandaController::updateEstatPlat/$1", ["filter" => "jwt"]);
-
-        $routes->post("add", "Api\ApiPlatComandaController::create", ["filter" => "jwt"]);
     });
     $routes->group("suplementaplicat", function ($routes) {
         $routes->get("list/(:num)", "Api\ApiSuplementAplicatController::show/$1");
@@ -79,6 +77,8 @@ $routes->group("api", function ($routes) {
     });
     $routes->group("puntuacio", function ($routes) {
         $routes->get("list/(:num)", "Api\ApiPuntuacioController::show/$1");
+        $routes->options("add", "Api\ApiPuntuacioController::create");
+        $routes->post("add", "Api\ApiPuntuacioController::create", ["filter" => "jwt"]);
     });
     $routes->group("user", function ($routes) {
         $routes->match(['options', 'post'], "login", "Api\ApiLoginController::login");
@@ -99,6 +99,8 @@ $routes->group("api", function ($routes) {
 
 // $routes->get('/login', 'Home::index');
 $routes->get('/', 'Home::index');
+$routes->match(['get', 'post'], '/crud', 'KpaCrudSampleController::demo_relation1N');
+
 $routes->get('/perfil', 'PerfilController::index');
 $routes->get('/introduirCodi', 'ClientController::insertarCodi');
 $routes->get('/cistella', 'Home::cistella');
