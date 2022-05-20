@@ -190,8 +190,6 @@
         h5.style = "border:1px solid white;float: left;padding:5px";
         h5.textContent = window.sessionStorage.getItem("taula");
         div.appendChild(h5);
-        // document.getElementById("codiTaula").textContent = window.sessionStorage.getItem("taula");
-
     } else {
 
         Api.obtenirTaules(<?= $codi_establiment ?>, document.getElementById("divTaules"));

@@ -102,7 +102,7 @@ class Home extends BaseController
             // $this->session->set('redirect_url', current_url());
             return redirect()->route('login');
         } else {
-            $data["id"] = $auth->user()->id;
+            $data["email"] = $auth->user()->email;
             return view("eatoday_web/cistella", $data);
         }
     }

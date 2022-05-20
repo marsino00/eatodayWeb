@@ -685,7 +685,7 @@ class Api {
       })
       .catch((error) => console.log("error", error));
   }
-  static crearComanda(comensals, codi_taula, id_client) {
+  static crearComanda(comensals, codi_taula, id_client, divPDF) {
     var myHeaders = new Headers();
     myHeaders.append(
       "Authorization",
@@ -697,7 +697,7 @@ class Api {
       estat_comanda: "PAGAT",
       comensals: comensals,
       codi_taula: codi_taula,
-      id_client: id_client,
+      email: id_client,
     });
 
     var requestOptions = {
@@ -714,7 +714,16 @@ class Api {
         // console.log(window.sessionStorage.getItem("token"));
         // console.log(JSON.parse(result));
         // console.log(result);
+        console.log("IDCP,AMDA");
+        console.log(JSON.parse(result));
         this.crearPlatComanda(JSON.parse(result).data.id_comanda);
+        var h3 = document.createElement("h3");
+        h3.textContent = "Veure PDF de la comanda";
+        var a = document.createElement("a");
+        a.href = "/comandaPDF/" + JSON.parse(result).data.id_comanda;
+        a.textContent = "Obrir PDF";
+        divPDF.appendChild(h3);
+        divPDF.appendChild(a);
       })
       .catch((error) => console.log("error", error));
   }

@@ -101,6 +101,7 @@ $routes->group("api", function ($routes) {
 $routes->get('/', 'Home::index');
 $routes->match(['get', 'post'], '/crud', 'KpaCrudSampleController::demo_relation1N');
 
+$routes->get('/comandaPDF/(:num)', 'PDFController::index/$1');
 $routes->get('/perfil', 'PerfilController::index');
 $routes->get('/introduirCodi', 'ClientController::insertarCodi');
 $routes->get('/cistella', 'Home::cistella');

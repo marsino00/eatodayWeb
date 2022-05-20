@@ -42,12 +42,13 @@ class PlatComandaModel extends Model
 
     public function getPlatComandabyIdComanda($id = null)
     {
-
+        // dd($id);
         $this->select("plat_comanda.estat_plat,plat_comanda.hora_demanat,plat_comanda.hora_elaborat,plat_comanda.hora_lliurat,plat_comanda.id_plat_comanda,plat.id_plat");
         $this->from('plat', 'plat_comanda');
         $this->join('plat_comanda', 'plat_comanda.id_plat=plat.id_plat');
         $this->where('plat_comanda.id_comanda', $id);
         $queryPlats = $this->findAll();
+        // dd($this->getLastQuery()->getQuery());
         return $queryPlats;
     }
     public function getSuplementAplicatByPlatComanda($id_plat_comanda)

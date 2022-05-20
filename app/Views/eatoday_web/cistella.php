@@ -65,10 +65,11 @@
 
     </div>
     <div class="container" id="pagamentFisic" hidden>
-        <label for="Número de comensals">Introduir comensals: <input type="number" name="" id="comensalsOnline"></label>
+        <label for="Número de comensals">Introduir comensals: <input type="number" name="" id="numComensals"></label>
         <button class="book-a-table-btn scrollto" style="background-color:black;" id="avisarCambrer">Avisar cambrer</button>
     </div>
-
+    <div id="pdf">
+    </div>
 
 </section>
 <?= $this->endSection() ?>
@@ -85,9 +86,11 @@
         console.log(window.sessionStorage.getItem("taula"));
         if (window.sessionStorage.getItem("taula") == 0000) {
             document.getElementById("pagamentOnline").hidden = false;
+            var divPDF = document.getElementById("pdf");
+
             document.getElementById("pagar").addEventListener("click", function() {
                 if (document.getElementById("comensalsOnline").value != "" && document.getElementById("numsTargeta").value != "" && document.getElementById("dataCaducitat").value != "") {
-                    Api.crearComanda(document.getElementById("comensalsOnline").value, window.sessionStorage.getItem("taula"), <?= $id ?>);
+                    Api.crearComanda(document.getElementById("comensalsOnline").value, window.sessionStorage.getItem("taula"), " <?= $email ?>", divPDF);
 
                 } else {
                     alert("No poden existir camps buits")
@@ -98,8 +101,11 @@
         } else {
             document.getElementById("pagamentFisic").hidden = false;
             document.getElementById("avisarCambrer").addEventListener("click", function() {
-                if (document.getElementById("comensalsOnline").value != "") {
-                    Api.crearComanda(document.getElementById("comensals").value, window.sessionStorage.getItem("taula"), <?= $id ?>);
+
+                var divPDF = document.getElementById("pdf");
+                console.log(document.getElementById("numComensals").value);
+                if (document.getElementById("numComensals").value != "") {
+                    Api.crearComanda(document.getElementById("numComensals").value, window.sessionStorage.getItem("taula"), "<?= $email ?>", divPDF);
                 } else {
                     alert("Introdueix el número de comensals")
 
