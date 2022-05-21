@@ -122,6 +122,12 @@ class UserModel extends Model
 
         return $data;
     }
+
+
+
+    /**
+     * Crida a la bd per a obtenir un usuari per email o per username 
+     */
     public function getUserByMailOrUsername($email)
     {
 
@@ -129,21 +135,36 @@ class UserModel extends Model
 
         return $this->orWhere('email', $email)->first();
     }
+
+    /**
+     * Crida a la bd per a crear un usuari
+     */
     public function crearUsuari($email, $username, $password)
     {
 
         $this->insert(["email" => $email, "username" => $username, "password_hash" => $password, "active" => 1]);
     }
 
+    /**
+     * Crida a la bd per a modificar la contrasenya d'un usuari
+     */
     public function modificarContrasenya($email, $password)
     {
         $this->set('password_hash', Password::hash($password))->where('email', $email)->update();
     }
+
+    /**
+     * Crida a la bd per a modificar les dades d'un usuari
+     */
     public function modificarUsuari($email, $name, $surnames)
     {
         $this->set(['name' => $name, 'surnames' => $surnames])->where('email', $email)->update();
     }
 
+
+    /**
+     * Crida a la bd per a obtenir les dades  d'un usuari a partir del seu email
+     */
     public function obtenirUsuari($email)
     {
         $query = $this->query("SELECT id,email,username,name,surnames  FROM users WHERE email='$email'");
@@ -151,6 +172,10 @@ class UserModel extends Model
             return $row;
         }
     }
+
+    /**
+     * Crida a la bd per a obtenir els rols  d'un usuari a partir del seu email
+     */
     public function obtenirRols($email)
     {
         $this->select('auth_groups.name');

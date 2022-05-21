@@ -1,6 +1,8 @@
 <?= $this->extend('layouts/layout') ?>
 
 <?= $this->section('sections') ?>
+<!-- Vista del llistat d'establiments -->
+
 <section id="why-us" class="why-us">
     <div class="container" data-aos="fade-up">
 

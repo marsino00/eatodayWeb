@@ -1,6 +1,7 @@
 <?= $this->extend('layouts/layout') ?>
 
 <?= $this->section('sections') ?>
+<!-- Vista de la pàgina principal -->
 
 
 <!-- ======= Hero Section ======= -->

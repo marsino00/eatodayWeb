@@ -39,6 +39,11 @@ class AlergenModel extends Model
     protected $afterFind      = [];
     protected $beforeDelete   = [];
     protected $afterDelete    = [];
+
+
+    /**
+     * Consulta a la bd per trobar un alergen a partir del idplat
+     */
     public function getAlergenbyIdPlat($id = null)
     {
         $this->select('alergen.codi_alergen,alergen.descripcio');

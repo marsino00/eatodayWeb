@@ -1,4 +1,5 @@
 class Api {
+  /** Obtinc un llistat d'establiments i a partir del retorn de la API empleno el div passat per paràmetre */
   static obtenirEstabliments(establiments, ruta) {
     var myHeaders = new Headers();
     myHeaders.append("Cookie", "ci_session=ppkii8asklu3hft850re0tfpjqruh905");
@@ -55,6 +56,8 @@ class Api {
       })
       .catch((error) => console.log("error", error));
   }
+  /** Obtinc un establiment i a partir del retorn de la API empleno el div passat per paràmetre */
+
   static obtenirUnEstabliment(
     codi_establiment,
     diVEstabliment,
@@ -167,6 +170,8 @@ class Api {
       })
       .catch((error) => console.log("error", error));
   }
+  /** Obtinc un llistat de categories i a partir del retorn de la API empleno el div passat per paràmetre */
+
   static obtenirCategories(codi_establiment, divCategories) {
     var myHeaders = new Headers();
     myHeaders.append("Cookie", "ci_session=pibnbs85019rdkc3iobh854m0qg4n6uc");
@@ -212,6 +217,8 @@ class Api {
       .catch((error) => console.log("error", error));
   }
 
+  /** Obtinc un llistat de valoracions i a partir del retorn de la API empleno el div passat per paràmetre */
+
   static obtenirValoracions(codi_establiment, divValoracions) {
     var myHeaders = new Headers();
     myHeaders.append("Cookie", "ci_session=7fqf75p13gs9a0kr2ul5go4068u404h9");
@@ -256,6 +263,8 @@ class Api {
       })
       .catch((error) => console.log("error", error));
   }
+
+  /** Obtinc un llistat de cartes i a partir del retorn de la API empleno el div passat per paràmetre */
 
   static obtenirCartes(codi_establiment, id_categoria, divCartes) {
     var myHeaders = new Headers();
@@ -303,6 +312,8 @@ class Api {
       })
       .catch((error) => console.log("error", error));
   }
+
+  /** Obtinc un llistat de plats i a partir del retorn de la API empleno el div passat per paràmetre */
 
   static obtenirPlats(
     codi_establiment,
@@ -385,6 +396,9 @@ class Api {
                   JSON.parse(window.sessionStorage.getItem("cistella")).length;
                   index++
                 ) {
+                  /*
+                   * Afegeixo els elements a la cistella
+                   */
                   cistella.push(
                     JSON.parse(window.sessionStorage.getItem("cistella"))[index]
                   );
@@ -414,6 +428,9 @@ class Api {
       })
       .catch((error) => console.log("error", error));
   }
+
+  /** Obtinc un llistat de alergens i a partir del retorn de la API empleno el div passat per paràmetre */
+
   static obtenirAlergens(id_plat, divAlergens) {
     var myHeaders = new Headers();
     myHeaders.append("Cookie", "ci_session=7fqf75p13gs9a0kr2ul5go4068u404h9");
@@ -437,6 +454,9 @@ class Api {
       })
       .catch((error) => console.log("error", error));
   }
+
+  /** Obtinc un llistat de suplements i a partir del retorn de la API empleno el div passat per paràmetre */
+
   static obtenirSuplements(id_plat, divSuplements, rols) {
     var myHeaders = new Headers();
     myHeaders.append("Cookie", "ci_session=7fqf75p13gs9a0kr2ul5go4068u404h9");
@@ -468,17 +488,7 @@ class Api {
             input.style = "transform:scale(1.5);accent-color: tomato;";
             input.id = JSON.parse(result).data[index].id_suplement;
             divSuplements.appendChild(input);
-            // input.addEventListener("check", function (event) {
-            //   if (this.checked) {
-            //     console.log("Checkbox is  checked..");
-            //   } else {
-            //     console.log("Checkbox is not checked..");
-            //   }
-            // });
           }
-
-          // h5.appendChild(span);
-
           let hr = document.createElement("hr");
 
           divSuplements.appendChild(h5);
@@ -488,6 +498,7 @@ class Api {
       })
       .catch((error) => console.log("error", error));
   }
+  /** Obtinc un plat i a partir del retorn de la API empleno el div passat per paràmetre */
 
   static obtenirPlat(
     id_carta,
@@ -575,6 +586,8 @@ class Api {
       .catch((error) => console.log("error", error));
   }
 
+  /** A partir del email d'un usuari, actualitzo la contrasenya del mateix  */
+
   static canviarContrasenya(email, newPassword) {
     var myHeaders = new Headers();
 
@@ -606,6 +619,8 @@ class Api {
       .catch((error) => alert(error));
   }
 
+  /** A partir del email d'un usuari, actualitzo les dades del mateix  */
+
   static canviarUser(email, name, surnames) {
     var myHeaders = new Headers();
     myHeaders.append(
@@ -634,6 +649,9 @@ class Api {
       })
       .catch((error) => console.log("error", error));
   }
+
+  /** A partir del email i la contrasenya d'un usuari, inicio sessió  */
+
   static logIn(email, password) {
     var myHeaders = new Headers();
     myHeaders.append("Content-Type", "application/json");
@@ -658,6 +676,9 @@ class Api {
       })
       .catch((error) => console.log("error", error));
   }
+
+  /** Obtinc un llistat de taules i a partir del retorn de la API empleno el div passat per paràmetre */
+
   static obtenirTaules(codi_establiment, divTaules) {
     var myHeaders = new Headers();
     myHeaders.append("Cookie", "ci_session=lq0dfn8vj4t0417cd3cfeekb35m8fehc");
@@ -673,8 +694,11 @@ class Api {
       .then((result) => {
         var res = JSON.parse(result).data;
         var select = document.createElement("select");
+        select.addEventListener("change", function () {
+          var x = select.value;
+          window.sessionStorage.setItem("taula", "000" + x);
+        });
         for (let index = 0; index < res.length; index++) {
-          // console.log(res[index].codi_taula);
           var opt = document.createElement("option");
           opt.value = res[index].codi_taula;
           opt.innerHTML = res[index].codi_taula;
@@ -685,6 +709,10 @@ class Api {
       })
       .catch((error) => console.log("error", error));
   }
+  /** A partir dels paràmetres per POST, creo una comanda, després crido a la crida API
+   * per a partir del id_comanda, crear un plat_comanda
+   */
+
   static crearComanda(comensals, codi_taula, id_client, divPDF) {
     var myHeaders = new Headers();
     myHeaders.append(
@@ -711,11 +739,7 @@ class Api {
       .then((response) => response.text())
       .then((result) => {
         window.sessionStorage.setItem("token", JSON.parse(result).refreshToken);
-        // console.log(window.sessionStorage.getItem("token"));
-        // console.log(JSON.parse(result));
-        // console.log(result);
-        console.log("IDCP,AMDA");
-        console.log(JSON.parse(result));
+        console.log(window.sessionStorage.getItem("token"));
         this.crearPlatComanda(JSON.parse(result).data.id_comanda);
         var h3 = document.createElement("h3");
         h3.textContent = "Veure PDF de la comanda";
@@ -728,9 +752,8 @@ class Api {
       .catch((error) => console.log("error", error));
   }
   static crearPlatComanda(id_comanda) {
-    // console.log(
-    //   JSON.parse(window.sessionStorage.getItem("cistella"))[0].id_plat
-    // );
+    console.log(window.sessionStorage.getItem("token"));
+    console.log(id_comanda);
     var arrayPlatsComanda = [];
     for (
       let index = 0;

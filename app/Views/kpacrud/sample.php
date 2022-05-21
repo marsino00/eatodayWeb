@@ -1,4 +1,5 @@
 <?php
+
 /**
  * @example
  * <pre>
@@ -33,41 +34,50 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Kpa CRUDGen sample</title>
+    <title><?= "Gestió " . $title ?? 'Administració' ?></title>
 </head>
 
 <body>
 
     <nav class="navbar navbar-expand-lg navbar-light bg-light">
-        <a class="navbar-brand" href="#">KpaCrud Demo</a>
+        <a class="navbar-brand" href="#">Panell d'administració</a>
         <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
             <span class="navbar-toggler-icon"></span>
         </button>
         <div class="collapse navbar-collapse" id="navbarNav">
             <ul class="navbar-nav">
                 <li class="nav-item">
-                    <a class="nav-link" href="<?=base_url('/samplekpcrud');?>">FullView table</a>
+                    <a class="nav-link" href="<?= base_url('/crud/usuaris'); ?>">Usuaris</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="<?=base_url('/samplekpcrud2');?>">ListView table</a>
+                    <a class="nav-link" href="<?= base_url('/crud/establiments'); ?>">Establiments</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="<?=base_url('/samplekpcrud/1n');?>">Relation 1N</a>
+                    <a class="nav-link" href="<?= base_url('/crud/categories'); ?>">Categories</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="<?=base_url('/samplekpcrud/self1n');?>">Selft relation 1N</a>
+                    <a class="nav-link" href="<?= base_url('/crud/cartes'); ?>">Cartes</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="<?=base_url('/samplekpcrud/multikey');?>">MultiKey</a>
+                    <a class="nav-link" href="<?= base_url('/crud/plats'); ?>">Plats</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="<?=base_url('/samplekpcrud/nm');?>">Relation NM</a>
+                    <a class="nav-link" href="<?= base_url('/crud/alergens'); ?>">Alergens</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="<?= base_url('/crud/suplements'); ?>">Suplements</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="<?= base_url('/crud/taules'); ?>">Taules</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="<?= base_url('/crud/missatges'); ?>">Missatges</a>
                 </li>
             </ul>
         </div>
     </nav>
 
-    <h1><?=$title??'Demo CrudGen'?></h1>
+    <h1><?= $title ?? 'Demo CrudGen' ?></h1>
     <div class="container-lg">
         <?= $output ?>
     </div>

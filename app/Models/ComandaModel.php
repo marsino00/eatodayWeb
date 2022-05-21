@@ -39,6 +39,11 @@ class ComandaModel extends Model
     protected $afterFind      = [];
     protected $beforeDelete   = [];
     protected $afterDelete    = [];
+
+
+    /**
+     * Consulta a la bd per obtenir totes les comandes
+     */
     public function getAllComandes()
     {
         $query = $this->query("SELECT * from comanda WHERE estat_comanda!='FINALITZADA' && estat_comanda!='NOPAGADA'");
@@ -48,10 +53,19 @@ class ComandaModel extends Model
         }
         return $comandes;
     }
+
+
+    /**
+     * Consulta a la bd per trobar comandes a partir del codi de taula
+     */
     public function getComandabyCodiTaula($id = null)
     {
         return $this->where("codi_taula", $id)->select("*")->findAll();
     }
+
+    /**
+     * Consulta a la bd per trobar comandes a partir del email d'un client
+     */
     public function getComandabyClient($email = null)
     {
         $this->select('comanda.id_comanda,comanda.estat_comanda,comanda.comensals,comanda.codi_taula');
@@ -61,6 +75,10 @@ class ComandaModel extends Model
         return $this->findAll();
     }
 
+
+    /**
+     * Consulta a la bd per afegir una comanda a partir d'un pàrametres concrets
+     */
     public function afegirComanda($estat_comanda, $comensals, $codi_taula, $email)
     {
 
@@ -69,6 +87,10 @@ class ComandaModel extends Model
         $this->insert(["estat_comanda" => $estat_comanda, "comensals" => $comensals, "codi_taula" => $codi_taula, "id_client" => $data->id]);
         return $this->insertID;
     }
+
+    /**
+     * Consulta a la bd per canviar l'estat d'una comanda
+     */
     public function changeEstatComanda($id, $estat_comanda, $email)
     {
         $model = new UserModel();

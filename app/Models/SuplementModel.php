@@ -40,6 +40,11 @@ class SuplementModel extends Model
     protected $beforeDelete   = [];
     protected $afterDelete    = [];
 
+
+
+    /**
+     * Crida a la bd per a partir d'un id_plat, obtenir els suplements  del mateix
+     */
     public function getSuplementbyIdPlat($id = null)
     {
         $this->select('suplement.id_suplement,suplement.descripcio,suplement.preu');

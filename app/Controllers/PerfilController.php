@@ -6,6 +6,10 @@ use App\Controllers\BaseController;
 
 class PerfilController extends BaseController
 {
+
+    /**
+     * Retorna la vista del perfil d'un usuari i miro si hi ha la sessió iniciada
+     */
     public function index()
     {
         $auth = service('authentication');

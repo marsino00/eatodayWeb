@@ -6,6 +6,9 @@ use App\Controllers\BaseController;
 
 class ClientController extends BaseController
 {
+    /**
+     * Retorna la vista d'insertar codi i miro si hi ha la sessió iniciada
+     */
     public function insertarCodi()
     {
         $auth = service('authentication');

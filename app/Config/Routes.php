@@ -25,7 +25,7 @@ $routes->setAutoRoute(false);
 
 /*
  * --------------------------------------------------------------------
- * Route Definitions
+ * Rutes de les diferents crides API
  * --------------------------------------------------------------------
  */
 
@@ -95,11 +95,28 @@ $routes->group("api", function ($routes) {
     });
 });
 
+/*
+ * --------------------------------------------------------------------
+ * Rutes per a la administracio de les diferents taules 
+ * --------------------------------------------------------------------
+ */
+$routes->group("crud", function ($routes) {
+    $routes->match(['get', 'post'], 'usuaris', 'KpaCrudController::users');
+    $routes->match(['get', 'post'], 'establiments', 'KpaCrudController::establiment');
+    $routes->match(['get', 'post'], 'categories', 'KpaCrudController::categoria');
+    $routes->match(['get', 'post'], 'cartes', 'KpaCrudController::carta');
+    $routes->match(['get', 'post'], 'plats', 'KpaCrudController::plat');
+    $routes->match(['get', 'post'], 'alergens', 'KpaCrudController::alergen');
+    $routes->match(['get', 'post'], 'suplements', 'KpaCrudController::suplement');
+    $routes->match(['get', 'post'], 'taules', 'KpaCrudController::taula');
+    $routes->match(['get', 'post'], 'missatges', 'KpaCrudController::missatge');
+});
 
 
 // $routes->get('/login', 'Home::index');
 $routes->get('/', 'Home::index');
-$routes->match(['get', 'post'], '/crud', 'KpaCrudSampleController::demo_relation1N');
+
+
 
 $routes->get('/comandaPDF/(:num)', 'PDFController::index/$1');
 $routes->get('/perfil', 'PerfilController::index');

@@ -40,6 +40,11 @@ class TaulaModel extends Model
     protected $beforeDelete   = [];
     protected $afterDelete    = [];
 
+
+
+    /**
+     * Crida a la bd per a partir d'un codi_establiment, obtenir les taules del mateix
+     */
     public function getTaulesbyCodiEstabliment($id = null)
     {
         return $this->where("codi_establiment", $id)->select("*")->findAll();

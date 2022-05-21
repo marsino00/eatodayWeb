@@ -40,6 +40,10 @@ class SuplementAplicatModel extends Model
     protected $beforeDelete   = [];
     protected $afterDelete    = [];
 
+
+    /**
+     * Crida a la bd per a partir d'un id_plat_comanda, obtenir els suplements aplicats del mateix
+     */
     public function getSuplementbyIdPlatComanda($id = null)
     {
         $this->select('suplement_aplicat.id_suplement_aplicat,suplement_aplicat.descripcio,suplement_aplicat.preu');
@@ -50,6 +54,9 @@ class SuplementAplicatModel extends Model
         return $this->findAll();
     }
 
+    /**
+     * Crida a la bd per afeir un suplement_aplicat
+     */
     public function afegirSuplementAplicat($descripcio, $preu)
     {
         $this->insert(["descripcio" => $descripcio, "preu" => $preu]);

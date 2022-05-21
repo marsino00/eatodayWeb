@@ -40,6 +40,10 @@ class CategoriaModel extends Model
     protected $beforeDelete   = [];
     protected $afterDelete    = [];
 
+
+    /**
+     * Consulta a la bd per trobar categories a partir del codi_establiment
+     */
     public function getCategoriesbyCodiEstabliment($id = null)
     {
         return $this->where("codi_establiment", $id)->select("*")->findAll();

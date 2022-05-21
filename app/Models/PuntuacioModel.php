@@ -40,6 +40,10 @@ class PuntuacioModel extends Model
     protected $beforeDelete   = [];
     protected $afterDelete    = [];
 
+
+    /**
+     * Crida a la bd per a partir d'un codi_establiment, obtenir les puntuacions corresponents
+     */
     public function obtenirPuntuacio($codi_establiment)
     {
         $this->select("puntuacio.id_puntuacio,puntuacio.valoracio,puntuacio.comentari,date_format(puntuacio.data_publicacio, '%d/%m/%Y') as data_publicacio,users.name,users.surnames");
@@ -50,6 +54,10 @@ class PuntuacioModel extends Model
 
         return $this->findAll();
     }
+
+    /**
+     * Crida a la bd per a partir d'un codi_establiment, obtenir la puntuacio mitjana del mateix
+     */
     public function getPuntuacio($codi_establiment)
     {
         $query = $this->query("SELECT cast(avg(valoracio) as DECIMAL (2,1)) AS vm from puntuacio where codi_establiment=$codi_establiment");
@@ -58,6 +66,10 @@ class PuntuacioModel extends Model
             return $row;
         }
     }
+
+    /**
+     * Crida a la bd per a afegir una puntuacio, amb els seus atributs corresponents
+     */
     public function afegirPuntuacio($valoracio, $comentari, $email, $codi_establiment)
     {
         $model = new UserModel();

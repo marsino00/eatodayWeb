@@ -17,8 +17,17 @@
 		</folder>
 		<api>
 			<source dsn=".">
+			<path>
+				app/Config/Routes.php
+				</path>
 				<path>
-					app
+					app/Controllers
+				</path>
+				<path>
+					app/Models
+				</path>
+				<path>
+					app/Views
 				</path>
 			</source>
 			<extensions>

@@ -7,6 +7,7 @@
 </style>
 <?= $this->endSection() ?>
 <?= $this->section('sections') ?>
+<!-- Vista del plat -->
 
 <section id="about" class="about">
     <div class="container" data-aos="fade-up">
@@ -20,22 +21,6 @@
                 <div id="divPlatInfo">
 
                 </div>
-                <!-- <h3>CheeseBurguer</h3>
-                <p class="fst-italic">
-                    Hamburguesa amb formatge amb carn de vedella de les vaques del Pirineu
-                </p>
-                <ul>
-                    <li><i class="bi bi-circle-fill"></i> Experiències culinàries úniques</li>
-                    <li><i class="bi bi-circle-fill"></i> Àpats de qualitat</li>
-                    <li><i class="bi bi-circle-fill"></i> Comandes al establiment i per emportar</li>
-                </ul> -->
-
-                <!-- <p>
-              Ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in
-              voluptate
-              velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in
-              culpa qui officia deserunt mollit anim id est laborum
-            </p> -->
                 <div style="padding-top: 50px;" id="divAlergens">
                     <h3>Alergens</h3>
                 </div>
@@ -55,6 +40,8 @@
     divSuplements = document.getElementById("divSuplements");
     divPlatImg = document.getElementById("divPlatImg");
     divPlatInfo = document.getElementById("divPlatInfo");
+
+    /** Realitzo les crides API corresponents */
 
     Api.obtenirPlat(<?= $id_carta ?>, <?= $id_plat ?>, divPlatImg, divPlatInfo, <?= json_encode($rols); ?>, divSuplements);
 

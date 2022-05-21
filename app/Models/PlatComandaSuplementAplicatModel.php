@@ -39,6 +39,11 @@ class PlatComandaSuplementAplicatModel extends Model
     protected $afterFind      = [];
     protected $beforeDelete   = [];
     protected $afterDelete    = [];
+
+
+    /**
+     * Crida a la bd per a crear la relacio entre pat_comanda i suplement_aplicat
+     */
     public function afegirRelacioPCSA($id_plat_comanda, $id_suplement_aplicat)
     {
         $this->insert(["id_plat_comanda" => $id_plat_comanda, "id_suplement_aplicat" => $id_suplement_aplicat]);

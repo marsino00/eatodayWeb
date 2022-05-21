@@ -40,6 +40,10 @@ class CartaModel extends Model
     protected $beforeDelete   = [];
     protected $afterDelete    = [];
 
+
+    /**
+     * Consulta a la bd per trobar una carta a partir del idcategoria
+     */
     public function getCartabyIdCategoria($id = null)
     {
         $this->select('carta.id_carta,carta.nom,carta.descripcio,carta.actiu');

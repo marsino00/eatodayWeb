@@ -8,6 +8,7 @@
 <?= $this->endSection() ?>
 
 <?= $this->section('sections') ?>
+<!-- Vista de la categoria -->
 
 <section id="categoria" class="menu section-bg">
     <div class="container" data-aos="fade-up">

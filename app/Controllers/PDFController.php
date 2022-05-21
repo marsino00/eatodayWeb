@@ -7,6 +7,10 @@ use App\Models\PlatComandaModel;
 
 class PDFController extends BaseController
 {
+
+    /**
+     * Controlador que a partir de la llibreria MPDF retorna la vista d'un pdf a partir d'un html.
+     */
     public function index($id = null)
     {
         $model = new PlatComandaModel();

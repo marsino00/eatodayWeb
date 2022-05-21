@@ -40,6 +40,10 @@ class PlatComandaModel extends Model
     protected $beforeDelete   = [];
     protected $afterDelete    = [];
 
+
+    /**
+     * Crida a la bd per a obtenir els plat_comanda d'un id_comanda concret
+     */
     public function getPlatComandabyIdComanda($id = null)
     {
         // dd($id);
@@ -51,6 +55,10 @@ class PlatComandaModel extends Model
         // dd($this->getLastQuery()->getQuery());
         return $queryPlats;
     }
+
+    /**
+     * Crida a la bd per a obtenir els suplements aplicats d'un id_ plat_comanda concret
+     */
     public function getSuplementAplicatByPlatComanda($id_plat_comanda)
     {
         $this->select('suplement_aplicat.id_suplement_aplicat,suplement_aplicat.descripcio,suplement_aplicat.preu');
@@ -61,14 +69,18 @@ class PlatComandaModel extends Model
         return $this->findAll();
     }
 
-
-
-
+    /**
+     * Crida a la bd per a oafegir un plat comanda, retorno el id generat del plat_comanda
+     */
     public function afegirPlatComanda($id_plat, $id_comanda, $estat_plat)
     {
         $this->insert(["id_plat" => $id_plat, "id_comanda" => $id_comanda, "estat_plat" => $estat_plat]);
         return $this->insertID;
     }
+
+    /**
+     * Crida a la bd per a canviar l'estat d'un plat concret
+     */
     public function changeEstatPlat($id, $estat_plat, $hora)
     {
 

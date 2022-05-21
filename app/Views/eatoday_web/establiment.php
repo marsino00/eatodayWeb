@@ -91,6 +91,8 @@
 </style>
 <?= $this->endSection() ?>
 <?= $this->section('sections') ?>
+<!-- Vista del establiment -->
+
 <section id="establiment" class="about">
     <div class="container" data-aos="fade-up">
         <div class="row">
@@ -127,19 +129,6 @@
         </div>
 
         <div id="divValoracions" class="row" data-aos="fade-up" data-aos-delay="200">
-
-            <!-- <div class="col-lg-6 menu-item filter-starters">
-          <img src="assets/img/menu/lobster-bisque.jpg" class="menu-img" alt="">
-          <div class="menu-content">
-            <a href="#">Lobster Bisque</a><span>$5.95</span>
-          </div>
-          <div class="menu-ingredients">
-            Lorem, deren, trataro, filede, nerada
-          </div>
-        </div> -->
-
-
-
         </div>
 
     </div>
@@ -163,6 +152,10 @@
 <?= $this->endSection() ?>
 <?= $this->section('js') ?>
 <script>
+    /**
+     * Al clicar a afegir valoracio, primer miro si te rol client,
+     * sino mostro alerta, cosa que també realitzo si no hi ha tots els camps emplenats 
+     */
     document.getElementById("afegirValoracio").addEventListener("click", function() {
         if (document.getElementById("valoracio").value != "" && document.getElementById("comentari").value != "") {
             var rols = <?= json_encode($rols); ?>;
@@ -183,7 +176,7 @@
         }
     })
 
-
+    /** Obtinc el codi taula i el mostro, si no hi es mostro un desplegable amb els codis taula disponibles */
     if (window.sessionStorage.getItem("taula")) {
         var div = document.getElementById("divTaules");
         var h5 = document.createElement("h5");
@@ -191,6 +184,7 @@
         h5.textContent = window.sessionStorage.getItem("taula");
         div.appendChild(h5);
     } else {
+        /** Realitzo les crides API corresponents */
 
         Api.obtenirTaules(<?= $codi_establiment ?>, document.getElementById("divTaules"));
     }

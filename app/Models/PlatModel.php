@@ -40,7 +40,9 @@ class PlatModel extends Model
     protected $beforeDelete   = [];
     protected $afterDelete    = [];
 
-
+    /**
+     * Funció per a obtenir les imatges d'un plat concret
+     */
     public function obtenirArxius($path)
     {
         if (!file_exists($path)) {
@@ -59,7 +61,9 @@ class PlatModel extends Model
         return $arrayElements;
     }
 
-
+    /**
+     * Crido a la funcio anterior per trobar la ruta concreta i recorrer els fitxers de la mateixa
+     */
     public function getFile($codi_establiment, $tipus, $id_plat)
     {
         $ruta = WRITEPATH .  "uploads" . DIRECTORY_SEPARATOR . $codi_establiment . DIRECTORY_SEPARATOR . "fotos" . DIRECTORY_SEPARATOR . $tipus . DIRECTORY_SEPARATOR . $id_plat;
@@ -82,6 +86,10 @@ class PlatModel extends Model
         return $fotosEstabliment;
     }
 
+
+    /**
+     * Crida a la bd per a partir d'un id_carta, obtenir els palts corresponents
+     */
     public function getPlatbyIdCarta($id = null)
     {
         $this->select('plat.id_plat,plat.nom,plat.descripcio_breu,plat.descripcio_detallada,plat.preu');
@@ -115,6 +123,10 @@ class PlatModel extends Model
         return $plats;
     }
 
+
+    /**
+     * Crida a la bd per a partir d'un id_plat_comanda, obtenir els palts corresponents
+     */
     public function getPlatbyIdPlatComanda($id = null)
     {
         $this->select('plat.id_plat,plat.nom,plat.descripcio_breu,plat.descripcio_detallada,plat.preu');
@@ -148,20 +160,5 @@ class PlatModel extends Model
             array_push($plats, $row);
         }
         return $plats;
-
-
-
-
-
-
-
-        // $this->select('plat.id_plat,plat.nom,plat.descripcio_breu,plat.descripcio_detallada,plat.preu');
-        // $this->from('plat', 'plat_comanda');
-        // $this->join('plat_comanda', 'plat_comanda.id_plat=plat.id_plat');
-        // $this->where('plat_comanda.id_plat_comanda', $id);
-        // $queryPlats = $this->findAll();
-        // foreach ($queryPlats as $row) {
-        //     return $row;
-        // }
     }
 }

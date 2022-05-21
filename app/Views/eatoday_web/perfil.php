@@ -5,6 +5,8 @@
 <?= $this->endSection() ?>
 
 <?= $this->section('sections') ?>
+<!-- Vista del perfil del usuari -->
+
 <section class="contact">
     <div class="container" data-aos="fade-up">
 
@@ -68,6 +70,8 @@
 <?= $this->endSection() ?>
 <?= $this->section('js') ?>
 <script>
+    /** Realitzo les crides API corresponents */
+
     document.getElementById("canviarPass").addEventListener("click", function() {
         Api.canviarContrasenya(" <?= $usuari->email ?>", document.getElementById("newPassword").value)
     })

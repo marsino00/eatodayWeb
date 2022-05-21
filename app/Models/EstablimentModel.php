@@ -41,10 +41,11 @@ class EstablimentModel extends Model
     protected $afterFind      = [];
     protected $beforeDelete   = [];
     protected $afterDelete    = [];
-    // public function create($nom_establiment, $tipus_establiment, $descripcio, $pais, $adreca,$telefon,$horari, $fotografies, $logo){
 
 
-    // }
+    /**
+     * Funció per a obtenir les imatges d'un establiment concret
+     */
     public function obtenirArxius($path)
     {
         if (!file_exists($path)) {
@@ -63,7 +64,9 @@ class EstablimentModel extends Model
         return $arrayElements;
     }
 
-
+    /**
+     * Crido a la funcio anterior per trobar la ruta concreta i recorrer els fitxers de la mateixa
+     */
     public function getFile($codi_establiment, $tipus)
     {
         $ruta = WRITEPATH .  "uploads" . DIRECTORY_SEPARATOR . $codi_establiment . DIRECTORY_SEPARATOR . "fotos" . DIRECTORY_SEPARATOR . $tipus;
@@ -85,6 +88,10 @@ class EstablimentModel extends Model
         }
         return $fotosEstabliment;
     }
+
+    /**
+     * Crida a la bd per a obtenir tots els establiments
+     */
     public function getAllEstabliments()
     {
         $query = $this->query("SELECT * from establiment");
@@ -99,6 +106,9 @@ class EstablimentModel extends Model
         return $establiments;
     }
 
+    /**
+     * Crida a la bd per a obtenir  dades d'un establiment a partir del codi del mateix
+     */
     public function getEstablimentbyId($id = null)
     {
         $query = $this->query("SELECT * from establiment where codi_establiment=$id");
@@ -115,6 +125,10 @@ class EstablimentModel extends Model
         return $establiments;
     }
 
+
+    /**
+     * Crida a la bd per a obtenir les cartes d'un id_categoria concret
+     */
     public function getCartabyIdCategoria($id = null)
     {
         $query = $this->query("SELECT carta.id_carta,carta.nom,carta.descripcio,carta.actiu FROM categoria INNER JOIN carta  ON categoria.codi_establiment=carta.codi_establiment WHERE establiment.codi_establiment=$id");
@@ -122,5 +136,15 @@ class EstablimentModel extends Model
         foreach ($query->getResult() as $row) {
             return $row;
         }
+    }
+
+    /**
+     * Crida a la bd per a obtenir el nom i codi d'un llistat d'establiments
+     */
+    public function obtenirEstabliments()
+    {
+        $query = $this->query("SELECT nom_establiment,codi_establiment from establiment");
+
+        return  $query->getResultArray();
     }
 }

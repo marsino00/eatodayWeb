@@ -23,6 +23,7 @@
 <?= $this->endSection() ?>
 
 <?= $this->section('sections') ?>
+<!-- Vista de la cistella -->
 
 <section class="menu section-bg">
     <div id="seccioCistella" class="container" data-aos="fade-up">
@@ -76,12 +77,20 @@
 <?= $this->section('js') ?>
 <script>
     document.getElementById("novaComanda").addEventListener("click", function() {
+        // A clickar a nova comanda m'elimina els elements anteriors
         window.sessionStorage.removeItem("taula")
         window.sessionStorage.removeItem("cistella")
         window.location = "/introduirCodi"
     })
     var cistella = window.sessionStorage.getItem("cistella");
-    console.log(JSON.parse(cistella)[0]);
+    // console.log(JSON.parse(cistella)[0]);
+
+    //
+    /**
+     * Obtinc els items de la cistella i el codi de taula,
+     * En cas de ser 0000 serà online i permetrà introduir la targeta
+     * de crèdit
+     */
     if (JSON.parse(sessionStorage.getItem("cistella"))) {
         console.log(window.sessionStorage.getItem("taula"));
         if (window.sessionStorage.getItem("taula") == 0000) {
@@ -114,6 +123,9 @@
             })
 
         }
+        /** Obtinc els elements de la cistella i els mostro,
+         * també calculo el iva i mostro el total
+         */
         var cistella = JSON.parse(sessionStorage.getItem("cistella"));
         var llistatCistella = document.getElementById("llistatCistella");
         var preuBase = 0.00;
@@ -170,7 +182,7 @@
         console.log(suma);
 
         if (caracter >= 48 && caracter <= 57) {
-            console.log("És un numero");
+            // console.log("És un numero");
         } else { //Si no és un número l'elimino del input
             evt.preventDefault();
             numsTargeta.value = numsTargeta.value.slice(0, -1);
@@ -191,7 +203,7 @@
         var caracter = dataCaducitat.value.charCodeAt(dataCaducitat.value.length - 1); //Comprovo l'ultim caràcter del input
 
         if (caracter >= 48 && caracter <= 57) {
-            console.log("ES un numero");
+            // console.log("ES un numero");
         } else { //Si no és un número l'elimino del input
             evt.preventDefault();
             dataCaducitat.value = dataCaducitat.value.slice(0, -1);

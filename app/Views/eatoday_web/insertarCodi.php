@@ -14,6 +14,7 @@
 <?= $this->endSection() ?>
 
 <?= $this->section('sections') ?>
+<!-- Vista d'insertar codi -->
 
 <section class="contact">
 
@@ -40,6 +41,9 @@
 <?= $this->endSection() ?>
 <?= $this->section('js') ?>
 <script>
+    /**
+     * M'introdueix un guionet entre el codi_establiment i el codi_taula
+     */
     document.getElementById("entrarCodi").addEventListener("click", function() {
         var codi_establiment = document.getElementById("codi").value.split("-")[0];
         window.sessionStorage.setItem("taula", document.getElementById("codi").value.split("-")[1]);
