@@ -827,6 +827,8 @@ class Api {
       .then((result) => {
         alert("Valoracio creada correctament");
         window.sessionStorage.setItem("token", JSON.parse(result).refreshToken);
+        window.location.href =
+          "/establiments/" + window.sessionStorage.getItem("codi_establiment");
       })
       .catch((error) => console.log("error", error));
   }
