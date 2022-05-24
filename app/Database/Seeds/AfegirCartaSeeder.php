@@ -21,8 +21,8 @@ class AfegirCartaSeeder extends Seeder
         for ($i = 2; $i < 11; $i++) {
             $data = [
                 'id_carta' => $i, //$title => $fake->sentence(6)
-                'nom' => $fake->realText(10),  //$title => $fake->sentence(6)
-                'descripcio'  => $fake->realText(50), //$desc => $fake->text(100)
+                'nom' => "carta" . $i,  //$title => $fake->sentence(6)
+                'descripcio'  => "descripcio de la carta " . $i, //$desc => $fake->text(100)
                 'actiu'  => 1,
             ];
 

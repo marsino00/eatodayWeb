@@ -20,7 +20,7 @@ class AfegirSuplementSeeder extends Seeder
         for ($i = 2; $i < 11; $i++) {
             $data = [
                 'id_suplement' => $i, //$title => $fake->sentence(6)
-                'descripcio'  => $fake->realText(10), //$desc => $fake->text(100)
+                'descripcio'  => 'Suplement ' . $i, //$desc => $fake->text(100)
                 'preu' => $fake->randomFloat()
             ];
 

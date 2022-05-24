@@ -383,7 +383,7 @@ class KpaCrudController extends BaseController
         ]);
 
         $data['output'] = $crud->render();
-        $data["title"] = "Gestió de Suplements";
+        $data["title"] = "Gestió de Taules";
 
         return view('kpacrud/sample', $data);
     }

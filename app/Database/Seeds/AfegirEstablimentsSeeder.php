@@ -28,9 +28,9 @@ class AfegirEstablimentsSeeder extends Seeder
         for ($i = 2; $i < 11; $i++) {
             $data = [
                 'codi_establiment' => $i, //$title => $fake->sentence(6)
-                'nom_establiment' => $fake->realText(10),  //$title => $fake->sentence(6)
-                'tipus_establiment'  => $fake->realText(10), //$desc => $fake->text(100)
-                'descripcio'  => $fake->realText(75), //$desc => $fake->text(100)
+                'nom_establiment' => 'establiment' . $i,  //$title => $fake->sentence(6)
+                'tipus_establiment'  => 'Menjar ràpid', //$desc => $fake->text(100)
+                'descripcio'  => "descripcio del establiment " . $i, //$desc => $fake->text(100)
                 'pais'  => $fake->country(), //$desc => $fake->text(100)
                 'adreca'  => $fake->address(), //$desc => $fake->text(100)
                 'telefon'  => $fake->phoneNumber(), //$desc => $fake->text(100)

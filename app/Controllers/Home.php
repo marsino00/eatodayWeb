@@ -58,9 +58,14 @@ class Home extends BaseController
     public function establiments($codi_establiment = null)
     {
         $data = $this->mirarSessióIniciada();
-        $data["codi_establiment"] = $codi_establiment;
 
-        echo view('eatoday_web/establiment', $data);
+        if ($codi_establiment == null) {
+            echo view('eatoday_web/establiments', $data);
+        } else {
+            $data["codi_establiment"] = $codi_establiment;
+
+            echo view('eatoday_web/establiment', $data);
+        }
     }
     /**
      * Retorna la vista amb el llistat de categories

@@ -23,9 +23,9 @@ class AfegirPlatSeeder extends Seeder
         for ($i = 2; $i < 11; $i++) {
             $data = [
                 'id_plat' => $i, //$title => $fake->sentence(6)
-                'nom' => $fake->realText(10),  //$title => $fake->sentence(6)
-                'descripcio_breu'  => $fake->realText(25), //$desc => $fake->text(100)
-                'descripcio_detallada'  => $fake->realText(50), //$desc => $fake->text(100)
+                'nom' => 'plat' . $i,  //$title => $fake->sentence(6)
+                'descripcio_breu'  => 'descripcio breu del plat' . $i, //$desc => $fake->text(100)
+                'descripcio_detallada'  => 'descripcio detallada del plat' . $i, //$desc => $fake->text(100)
                 'preu'  => $fake->randomFloat(),
                 'tipus'  => "Beguda",
             ];

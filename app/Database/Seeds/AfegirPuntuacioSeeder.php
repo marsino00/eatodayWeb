@@ -25,7 +25,7 @@ class AfegirPuntuacioSeeder extends Seeder
             $data = [
                 'id_puntuacio' => $i, //$title => $fake->sentence(6)
                 'valoracio' => $fake->numberBetween(1, 5),  //$title => $fake->sentence(6)
-                'comentari'  => $fake->realText(50), //$desc => $fake->text(100)
+                'comentari'  => 'Descripció del comentari ' . $i, //$desc => $fake->text(100)
                 'data_publicacio'  => $fake->date(), //$desc => $fake->text(100)
                 'id_users'  => $fake->numberBetween(1, 4),
                 'codi_establiment'  => 1,

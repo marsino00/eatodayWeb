@@ -22,12 +22,12 @@ class AfegirAlergenSeeder extends Seeder
 
             $data = [
                 'codi_alergen' => $i,
-                'descripcio'  => $fake->text(10),
+                'descripcio'  => "alergen" . $i,
             ];
-            $cont  = [
-                'codi_alergen' => 1,
-                'descripcio'  => 'gluten',
-            ];
+            // $cont  = [
+            //     'codi_alergen' => 1,
+            //     'descripcio'  => 'gluten',
+            // ];
 
             $this->db->table('alergen')->insert($data);
         }
