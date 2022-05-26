@@ -9,7 +9,9 @@ use CodeIgniter\Filters\DebugToolbar;
 use CodeIgniter\Filters\Honeypot;
 use CodeIgniter\Filters\InvalidChars;
 use CodeIgniter\Filters\SecureHeaders;
+use App\Filters\ValidaUsuarisFilter;
 use App\Filters\CorsFilter;
+use App\Filters\RoleFilter;
 
 class Filters extends BaseConfig
 {
@@ -26,11 +28,11 @@ class Filters extends BaseConfig
         'invalidchars'  => InvalidChars::class,
         'secureheaders' => SecureHeaders::class,
         'login'      => \Myth\Auth\Filters\LoginFilter::class,
-        'role'       => \Myth\Auth\Filters\RoleFilter::class,
+        'role'       => RoleFilter::class,
         'permission' => \Myth\Auth\Filters\PermissionFilter::class,
         'Cors' => CorsFilter::class,
         'jwt' => JWTFilter::class,
-
+        'Autentica' => ValidaUsuarisFilter::class,
 
     ];
 

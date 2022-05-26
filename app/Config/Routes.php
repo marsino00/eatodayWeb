@@ -29,6 +29,7 @@ $routes->setAutoRoute(false);
  * --------------------------------------------------------------------
  */
 
+$auth = service('authorization');
 
 $routes->group("api", function ($routes) {
     $routes->group("establiment", function ($routes) {
@@ -56,7 +57,7 @@ $routes->group("api", function ($routes) {
     });
     $routes->group("comanda", function ($routes) {
         $routes->get("list", "Api\ApiComandaController::index");
-        $routes->get("getByTable/(:num)", "Api\ApiComandaController::showByTable/$1");
+        $routes->get("getByTable/(:num)", "Api\ApiComandaController::showByTable/$1", ["filter" => "jwtRole:usuari client"]);
         $routes->match(['get', 'options'], "getByClient/(:segment)", "Api\ApiComandaController::showByClient/$1");
         $routes->options("add", "Api\ApiComandaController::create");
         $routes->post("add", "Api\ApiComandaController::create", ["filter" => "jwt"]);
@@ -85,7 +86,7 @@ $routes->group("api", function ($routes) {
         $routes->match(['options', 'post'], "register", "Api\ApiLoginController::register");
 
         $routes->options("modifyPassword", "Api\ApiLoginController::modifyPassword");
-        $routes->post("modifyPassword", "Api\ApiLoginController::modifyPassword", ["filter" => "jwt"]);
+        $routes->post("modifyPassword", "Api\ApiLoginController::modifyPassword", ["filter" => "jwt", 'role:administrador principal']);
         $routes->options("modifyUser", "Api\ApiLoginController::modifyUser");
         $routes->post("modifyUser", "Api\ApiLoginController::modifyUser", ["filter" => "jwt"]);
         $routes->options("getUser", "Api\ApiLoginController::getUserByEmail");

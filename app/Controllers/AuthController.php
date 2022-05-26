@@ -103,6 +103,8 @@ class AuthController extends Controller
 			"name" => $this->auth->user()->username,
 			"email" => $this->auth->user()->email
 		);
+		$token = newTokenJWT($cfgAPI->config(), $data);
+
 		return redirect()->to($redirectURL)->withCookies()->with('message', lang('Auth.loginSuccess'));
 	}
 

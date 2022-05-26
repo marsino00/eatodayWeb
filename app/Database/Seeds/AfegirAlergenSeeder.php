@@ -9,25 +9,14 @@ class AfegirAlergenSeeder extends Seeder
 {
     public function run()
     {
-        $fake = Factory::create("es_ES");
-
-        $cont  = [
-            'codi_alergen' => 1,
-            'descripcio'  => 'gluten',
-        ];
-
-        $this->db->table('alergen')->insert($cont);
-
-        for ($i = 2; $i < 11; $i++) {
+        // $fake = Factory::create("es_ES");
+        $arrayAlergens = ["", "Tramús", "Api", "Cacauets", "Cereals que contenen gluten", "Crustacis", "Fruits de closca", "Grand de sèsam", "Ous", "Llet", "Mol·luscs", "Mostassa", "Peix", "Soja", "Sulfits"];
+        for ($i = 1; $i < count($arrayAlergens); $i++) {
 
             $data = [
                 'codi_alergen' => $i,
-                'descripcio'  => "alergen" . $i,
+                'descripcio'  => $arrayAlergens[$i],
             ];
-            // $cont  = [
-            //     'codi_alergen' => 1,
-            //     'descripcio'  => 'gluten',
-            // ];
 
             $this->db->table('alergen')->insert($data);
         }

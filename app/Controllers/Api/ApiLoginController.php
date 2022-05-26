@@ -138,28 +138,33 @@ class ApiLoginController extends ResourceController
                 'status' => 500,
                 'error' => true,
                 'message' => $this->validator->getErrors(),
-                'data' => []
+                'data' => [],
+
             ];
         } else {
 
             $model = new UserModel();
 
+            $token_data = json_decode($this->request->header("token-data")->getValue());
             $email = $this->request->getVar('email');
-            $password = $this->request->getVar('password');
-            // $name = $this->request->getVar('name');
-            // $surnames = $this->request->getVar('surnames');
-            // , $name, $surnames
-            $model->modificarContrasenya($email, $password);
-            $response = [
-                'status' => 200,
-                'error' => false,
-                'message' => 'Contrasenya canviada correctament',
-                'data' => [
-                    'email' => $email,
-                    // 'name' => $name,
-                    // 'surnames' => $surnames,
-                ]
-            ];
+            if ($token_data->email == $email) {
+                $password = $this->request->getVar('password');
+                $model->modificarContrasenya($email, $password);
+                $response = [
+                    'status' => 200,
+                    'error' => false,
+                    'message' => 'Contrasenya canviada correctament',
+                    'data' => [
+                        'email' => $email,
+                    ],
+                ];
+            } else {
+                $response = [
+                    'status' => 500,
+                    'error' => true,
+                    'message' => 'Usuari diferent',
+                ];
+            }
         }
 
         return $this->respondCreated($response);

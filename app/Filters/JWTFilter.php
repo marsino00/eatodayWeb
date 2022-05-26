@@ -30,6 +30,8 @@ class JWTFilter implements FilterInterface
      */
     public function before(RequestInterface $request, $arguments = null)
     {
+        // dd("jwt");
+
         helper("jwt");
 
         $model = new \App\Models\TokensModel();

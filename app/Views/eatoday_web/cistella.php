@@ -94,12 +94,13 @@
     if (JSON.parse(sessionStorage.getItem("cistella"))) {
         console.log(window.sessionStorage.getItem("taula"));
         if (window.sessionStorage.getItem("taula") == 0000) {
+
             document.getElementById("pagamentOnline").hidden = false;
             var divPDF = document.getElementById("pdf");
 
             document.getElementById("pagar").addEventListener("click", function() {
                 if (document.getElementById("comensalsOnline").value != "" && document.getElementById("numsTargeta").value != "" && document.getElementById("dataCaducitat").value != "") {
-                    Api.crearComanda(document.getElementById("comensalsOnline").value, window.sessionStorage.getItem("taula"), " <?= $email ?>", divPDF);
+                    Api.crearComanda(document.getElementById("comensalsOnline").value, window.sessionStorage.getItem("taula"), "<?= $email ?>", divPDF);
 
                 } else {
                     alert("No poden existir camps buits")

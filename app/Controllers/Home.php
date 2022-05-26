@@ -24,6 +24,7 @@ class Home extends BaseController
             }
             $data["rols"] = $rolsaux;
             $data["usuari"] = $auth->user();
+
             $data["ruta"] = base_url() . "/perfil";
             $data["text"] = "El meu perfil";
             $data["ruta2"] = base_url() . "/logout";
