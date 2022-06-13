@@ -122,269 +122,326 @@ class KpaCrudController extends BaseController
 
     public function establiment()
     {
+        $esAdmin = $this->mirarSessióIniciada();
+        if ($esAdmin) {
 
-        $crud = new KpaCrud(); //loads default configuration
+            $crud = new KpaCrud(); //loads default configuration
 
-        $crud->setTable('establiment');
-        $crud->setPrimaryKey('codi_establiment');
+            $crud->setTable('establiment');
+            $crud->setPrimaryKey('codi_establiment');
 
 
-        $crud->setColumns(['codi_establiment', 'nom_establiment', 'tipus_establiment', 'descripcio', 'pais', 'adreca', 'telefon', 'horari']);
-        $crud->setColumnsInfo([
-            // 'codi_establiment' => ['name' => 'Codi'],
-            'nom_establiment' => [
-                'name' => 'Nom establiment',
+            $crud->setColumns(['codi_establiment', 'nom_establiment', 'tipus_establiment', 'descripcio', 'pais', 'adreca', 'telefon', 'horari']);
+            $crud->setColumnsInfo([
+                // 'codi_establiment' => ['name' => 'Codi'],
+                'nom_establiment' => [
+                    'name' => 'Nom establiment',
 
-            ],
-            'tipus_establiment' => [
-                'name' => "Tipus d'establiment",
-            ],
-            'descripcio' => [
-                'name' => "Descripció",
-                'type' => KpaCrud::TEXTAREA_FIELD_TYPE,
+                ],
+                'tipus_establiment' => [
+                    'name' => "Tipus d'establiment",
+                ],
+                'descripcio' => [
+                    'name' => "Descripció",
+                    'type' => KpaCrud::TEXTAREA_FIELD_TYPE,
 
-            ], 'pais' => [
-                'name' => "País",
-            ], 'adreca' => [
-                'name' => "Adreça",
-            ], 'telefon' => [
-                'name' => "Telèfon",
-            ], 'horari' => [
-                'name' => "Horari",
-            ],
-        ]);
+                ], 'pais' => [
+                    'name' => "País",
+                ], 'adreca' => [
+                    'name' => "Adreça",
+                ], 'telefon' => [
+                    'name' => "Telèfon",
+                ], 'horari' => [
+                    'name' => "Horari",
+                ],
+            ]);
 
-        $data['output'] = $crud->render();
-        $data["title"] = "Gestió d'Establiments";
+            $data['output'] = $crud->render();
+            $data["title"] = "Gestió d'Establiments";
 
-        return view('kpacrud/sample', $data);
+            return view('kpacrud/sample', $data);
+        } else {
+            return redirect()->to(base_url() . "/login");
+        }
     }
 
     /** A partir de la llibreria KPACrud, crea i retorna la vista per a la gestió de categories */
 
     public function categoria()
     {
+        $esAdmin = $this->mirarSessióIniciada();
+        if ($esAdmin) {
 
-        $crud = new KpaCrud(); //loads default configuration
+            $crud = new KpaCrud(); //loads default configuration
 
-        $crud->setTable('categoria');
-        $crud->setPrimaryKey('id_categoria');
+            $crud->setTable('categoria');
+            $crud->setPrimaryKey('id_categoria');
 
 
-        $crud->setColumns(['id_categoria', 'nom', 'descripcio']);
+            $crud->setColumns(['id_categoria', 'nom', 'descripcio']);
 
-        $model = new EstablimentModel();
-        $a = $model->obtenirEstabliments();
-        $array = [];
-        for ($i = 0; $i < count($a); $i++) {
-            array_push($array, [$a[$i]["codi_establiment"] => $a[$i]["nom_establiment"]]);
-        }
-        $crud->setColumnsInfo([
-            'nom' => [
-                'name' => 'Nom de la categoria',
+            $model = new EstablimentModel();
+            $a = $model->obtenirEstabliments();
+            $array = [];
+            for ($i = 0; $i < count($a); $i++) {
+                array_push($array, [$a[$i]["codi_establiment"] => $a[$i]["nom_establiment"]]);
+            }
+            $crud->setColumnsInfo([
+                'nom' => [
+                    'name' => 'Nom de la categoria',
 
-            ],
-
-            'descripcio' => [
-                'name' => "Descripció",
-                'type' => KpaCrud::TEXTAREA_FIELD_TYPE,
-
-            ],
-            'active' => [
-                'name' => 'Actiu',
-                'type' => KpaCrud::DROPDOWN_FIELD_TYPE,
-                'options' => ['' => "Tria opcio", 1 => 'Actiu', 0 => 'No actiu'],
-                'html_atts' => [
-                    "required",
                 ],
-                'default' => '0',
-            ],
-            'codi_establiment' => [
-                'name' => 'Establiment',
-                'type' => KpaCrud::DROPDOWN_FIELD_TYPE,
-                'options' => $array,
-            ],
-        ]);
 
-        $data['output'] = $crud->render();
-        $data["title"] = "Gestió de Categories";
+                'descripcio' => [
+                    'name' => "Descripció",
+                    'type' => KpaCrud::TEXTAREA_FIELD_TYPE,
 
-        return view('kpacrud/sample', $data);
+                ],
+                'active' => [
+                    'name' => 'Actiu',
+                    'type' => KpaCrud::DROPDOWN_FIELD_TYPE,
+                    'options' => ['' => "Tria opcio", 1 => 'Actiu', 0 => 'No actiu'],
+                    'html_atts' => [
+                        "required",
+                    ],
+                    'default' => '0',
+                ],
+                'codi_establiment' => [
+                    'name' => 'Establiment',
+                    'type' => KpaCrud::DROPDOWN_FIELD_TYPE,
+                    'options' => $array,
+                ],
+            ]);
+
+            $data['output'] = $crud->render();
+            $data["title"] = "Gestió de Categories";
+
+            return view('kpacrud/sample', $data);
+        } else {
+            return redirect()->to(base_url() . "/login");
+        }
     }
 
     /** A partir de la llibreria KPACrud, crea i retorna la vista per a la gestió de cartes */
 
     public function carta()
     {
+        $esAdmin = $this->mirarSessióIniciada();
+        if ($esAdmin) {
 
-        $crud = new KpaCrud(); //loads default configuration
+            $crud = new KpaCrud(); //loads default configuration
 
-        $crud->setTable('carta');
-        $crud->setPrimaryKey('id_carta');
+            $crud->setTable('carta');
+            $crud->setPrimaryKey('id_carta');
 
 
-        $crud->setColumns(['id_carta', 'nom', 'descripcio']);
+            $crud->setColumns(['id_carta', 'nom', 'descripcio']);
 
-        $model = new EstablimentModel();
+            $model = new EstablimentModel();
 
-        $crud->setColumnsInfo([
-            'nom' => [
-                'name' => 'Nom de la carta',
+            $crud->setColumnsInfo([
+                'nom' => [
+                    'name' => 'Nom de la carta',
 
-            ],
-
-            'descripcio' => [
-                'name' => "Descripció",
-                'type' => KpaCrud::TEXTAREA_FIELD_TYPE,
-
-            ],
-            'active' => [
-                'name' => 'Actiu',
-                'type' => KpaCrud::DROPDOWN_FIELD_TYPE,
-                'options' => ['' => "Tria opcio", 1 => 'Actiu', 0 => 'No actiu'],
-                'html_atts' => [
-                    "required",
                 ],
-                'default' => '0',
-            ],
 
-        ]);
+                'descripcio' => [
+                    'name' => "Descripció",
+                    'type' => KpaCrud::TEXTAREA_FIELD_TYPE,
 
-        $data['output'] = $crud->render();
-        $data["title"] = "Gestió de Cartes";
+                ],
+                'active' => [
+                    'name' => 'Actiu',
+                    'type' => KpaCrud::DROPDOWN_FIELD_TYPE,
+                    'options' => ['' => "Tria opcio", 1 => 'Actiu', 0 => 'No actiu'],
+                    'html_atts' => [
+                        "required",
+                    ],
+                    'default' => '0',
+                ],
 
-        return view('kpacrud/sample', $data);
+            ]);
+
+            $data['output'] = $crud->render();
+            $data["title"] = "Gestió de Cartes";
+
+            return view('kpacrud/sample', $data);
+        } else {
+            return redirect()->to(base_url() . "/login");
+        }
     }
 
     /** A partir de la llibreria KPACrud, crea i retorna la vista per a la gestió de plats */
 
     public function plat()
     {
+        $esAdmin = $this->mirarSessióIniciada();
+        if ($esAdmin) {
 
-        $crud = new KpaCrud(); //loads default configuration
+            $crud = new KpaCrud(); //loads default configuration
 
-        $crud->setTable('plat');
-        $crud->setPrimaryKey('id_plat');
-
-
-        $crud->setColumns(['id_plat', 'nom', 'tipus', 'descripcio_breu', 'preu']);
+            $crud->setTable('plat');
+            $crud->setPrimaryKey('id_plat');
 
 
-        $crud->setColumnsInfo([
-            'nom' => [
-                'name' => 'Nom del plat',
+            $crud->setColumns(['id_plat', 'nom', 'tipus', 'descripcio_breu', 'preu']);
 
-            ],
-            // 
 
-        ]);
+            $crud->setColumnsInfo([
+                'nom' => [
+                    'name' => 'Nom del plat',
 
-        $data['output'] = $crud->render();
-        $data["title"] = "Gestió de Plats";
+                ],
+                // 
 
-        return view('kpacrud/sample', $data);
+            ]);
+
+            $data['output'] = $crud->render();
+            $data["title"] = "Gestió de Plats";
+
+            return view('kpacrud/sample', $data);
+        } else {
+            return redirect()->to(base_url() . "/login");
+        }
     }
 
     /** A partir de la llibreria KPACrud, crea i retorna la vista per a la gestió d'alergens */
 
     public function alergen()
     {
+        $esAdmin = $this->mirarSessióIniciada();
+        if ($esAdmin) {
 
-        $crud = new KpaCrud(); //loads default configuration
+            $crud = new KpaCrud(); //loads default configuration
 
-        $crud->setTable('alergen');
-        $crud->setPrimaryKey('codi_alergen');
+            $crud->setTable('alergen');
+            $crud->setPrimaryKey('codi_alergen');
 
 
-        $crud->setColumns(['codi_alergen', 'descripcio']);
+            $crud->setColumns(['codi_alergen', 'descripcio']);
 
-        $model = new EstablimentModel();
+            $model = new EstablimentModel();
 
-        $crud->setColumnsInfo([
+            $crud->setColumnsInfo([
 
-            'descripcio' => [
-                'name' => "Descripció",
-                'type' => KpaCrud::TEXTAREA_FIELD_TYPE,
+                'descripcio' => [
+                    'name' => "Descripció",
+                    'type' => KpaCrud::TEXTAREA_FIELD_TYPE,
 
-            ],
+                ],
 
-        ]);
+            ]);
 
-        $data['output'] = $crud->render();
-        $data["title"] = "Gestió d'Alergens";
+            $data['output'] = $crud->render();
+            $data["title"] = "Gestió d'Alergens";
 
-        return view('kpacrud/sample', $data);
+            return view('kpacrud/sample', $data);
+        } else {
+            return redirect()->to(base_url() . "/login");
+        }
     }
 
     /** A partir de la llibreria KPACrud, crea i retorna la vista per a la gestió de suplements */
 
     public function suplement()
     {
+        $esAdmin = $this->mirarSessióIniciada();
+        if ($esAdmin) {
 
-        $crud = new KpaCrud(); //loads default configuration
+            $crud = new KpaCrud(); //loads default configuration
 
-        $crud->setTable('suplement');
-        $crud->setPrimaryKey('id_suplement');
-
-
-        $crud->setColumns(['id_suplement',  'descripcio', 'preu']);
-
-        $model = new EstablimentModel();
-
-        $crud->setColumnsInfo([
-            'nom' => [
-                'name' => 'Nom del Suplement',
-
-            ],
-
-            'descripcio' => [
-                'name' => "Descripció",
-                'type' => KpaCrud::TEXTAREA_FIELD_TYPE,
-
-            ],
+            $crud->setTable('suplement');
+            $crud->setPrimaryKey('id_suplement');
 
 
-        ]);
+            $crud->setColumns(['id_suplement',  'descripcio', 'preu']);
 
-        $data['output'] = $crud->render();
-        $data["title"] = "Gestió de Suplements";
+            $model = new EstablimentModel();
 
-        return view('kpacrud/sample', $data);
+            $crud->setColumnsInfo([
+                'nom' => [
+                    'name' => 'Nom del Suplement',
+
+                ],
+
+                'descripcio' => [
+                    'name' => "Descripció",
+                    'type' => KpaCrud::TEXTAREA_FIELD_TYPE,
+
+                ],
+
+
+            ]);
+
+            $data['output'] = $crud->render();
+            $data["title"] = "Gestió de Suplements";
+
+            return view('kpacrud/sample', $data);
+        } else {
+            return redirect()->to(base_url() . "/login");
+        }
     }
 
     /** A partir de la llibreria KPACrud, crea i retorna la vista per a la gestió de taules */
 
     public function taula()
     {
-        $model = new EstablimentModel();
-        $a = $model->obtenirEstabliments();
-        $array = [];
-        for ($i = 0; $i < count($a); $i++) {
-            array_push($array, [$a[$i]["codi_establiment"] => $a[$i]["nom_establiment"]]);
+        $esAdmin = $this->mirarSessióIniciada();
+        if ($esAdmin) {
+
+            $model = new EstablimentModel();
+            $a = $model->obtenirEstabliments();
+            $array = [];
+            for ($i = 0; $i < count($a); $i++) {
+                array_push($array, [$a[$i]["codi_establiment"] => $a[$i]["nom_establiment"]]);
+            }
+
+            $crud = new KpaCrud(); //loads default configuration
+
+            $crud->setTable('taula');
+            $crud->setPrimaryKey('codi_taula');
+
+
+            $crud->setColumns(['codi_taula',  'codi_establiment']);
+
+            $model = new EstablimentModel();
+
+            $crud->setColumnsInfo([
+                'codi_establiment' => [
+                    'name' => 'Establiment',
+                    'type' => KpaCrud::DROPDOWN_FIELD_TYPE,
+                    'options' => $array,
+                ],
+
+            ]);
+
+            $data['output'] = $crud->render();
+            $data["title"] = "Gestió de Taules";
+
+            return view('kpacrud/sample', $data);
+        } else {
+            return redirect()->to(base_url() . "/login");
         }
+    }
 
-        $crud = new KpaCrud(); //loads default configuration
+    public function tema()
+    {
+        $esAdmin = $this->mirarSessióIniciada();
+        if ($esAdmin) {
 
-        $crud->setTable('taula');
-        $crud->setPrimaryKey('codi_taula');
+            $crud = new KpaCrud(); //loads default configuration
 
+            $crud->setTable('tema');
+            $crud->setPrimaryKey('id_tema');
 
-        $crud->setColumns(['codi_taula',  'codi_establiment']);
+            $crud->setColumns(['id_tema',  'descripcio']);
 
-        $model = new EstablimentModel();
+            $data['output'] = $crud->render();
+            $data["title"] = "Gestió de Temes";
 
-        $crud->setColumnsInfo([
-            'codi_establiment' => [
-                'name' => 'Establiment',
-                'type' => KpaCrud::DROPDOWN_FIELD_TYPE,
-                'options' => $array,
-            ],
-
-        ]);
-
-        $data['output'] = $crud->render();
-        $data["title"] = "Gestió de Taules";
-
-        return view('kpacrud/sample', $data);
+            return view('kpacrud/sample', $data);
+        } else {
+            return redirect()->to(base_url() . "/login");
+        }
     }
 }

@@ -291,7 +291,7 @@
             <div class="error-message"></div>
             <div class="sent-message">Your message has been sent. Thank you!</div>
           </div>
-          <div class="text-center"><button type="submit">Enviar missatge</button></div>
+          <div class="text-center"><button id="enviarMissatge" type="submit">Enviar missatge</button></div>
         </form>
 
       </div>
@@ -308,9 +308,16 @@
 <script>
   let establiments = document.getElementById("establiments");
   Api.obtenirEstabliments(establiments, "home");
+
+
+  let selectTema = document.getElementById("tema");
+  Api.ObtenirTemes(selectTema);
+
+  document.getElementById("enviarMissatge").addEventListener("click", function() {
+    console.log(selectTema.options[selectTema.selectedIndex].value);
+  })
 </script>
 <?= $this->endSection() ?>
-
 
 </body>
 

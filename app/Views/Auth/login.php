@@ -300,7 +300,6 @@
 
 
 <?= $this->section('login_content') ?>
-<?= view('App\Auth\_message_block') ?>
 
 <div class="wrapper fadeInDown">
     <div id="formContent">

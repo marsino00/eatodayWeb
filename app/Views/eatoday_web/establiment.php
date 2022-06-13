@@ -1,6 +1,15 @@
 <?= $this->extend('layouts/layout') ?>
 <?= $this->section('css') ?>
 <style>
+    #afegirValoracio {
+        background: #e75454;
+        border: 0;
+        padding: 10px 35px;
+        color: #fff;
+        transition: 0.4s;
+        border-radius: 50px;
+    }
+
     h4:hover {
         color: tomato;
     }
@@ -135,17 +144,27 @@
 </section><!-- End Menu Section -->
 <section id="categoria" class="menu section-bg">
     <div class="container" data-aos="fade-up">
-        <h3>Afegir una valoració</h3>
-        <div>
-            <label for="valoracio">Valoració: &nbsp;</label>
-            <input type="number" max=5 min=1 id="valoracio">
+        <div class="section-title">
+            <p>Afegir una valoració</p>
         </div>
-        <div>
+        <div class="form-group mt-3">
+            <label for="valoracio">Valoració: &nbsp;</label>
+            <!-- <input type="email" class="form-control" name="email" id="email" placeholder="El teu Email" required> -->
+
+            <select class="form-control" id="valoracio" style="background-color: black;color:white;">
+                <option value="1">1</option>
+                <option value="2">2</option>
+                <option value="3">3</option>
+                <option value="4">4</option>
+                <option selected value="5">5</option>
+            </select>
+        </div>
+        <div class="form-group mt-3">
             <label for="comentari">Comentari: </label>
-            <textarea rows="5" cols="60" id="comentari">
+            <textarea class="form-control" style="background-color: black;color:white;" rows="3" id="comentari">
          </textarea>
         </div>
-        <button id="afegirValoracio">Afegir Valoració</button>
+        <button class="form-group mt-3" id="afegirValoracio">Afegir Valoració</button>
     </div>
 </section><!-- End Menu Section -->
 

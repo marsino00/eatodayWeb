@@ -81,6 +81,9 @@ $routes->group("api", function ($routes) {
         $routes->options("add", "Api\ApiPuntuacioController::create");
         $routes->post("add", "Api\ApiPuntuacioController::create", ["filter" => "jwt"]);
     });
+    $routes->group("tema", function ($routes) {
+        $routes->get("list", "Api\ApiTemaController::index");
+    });
     $routes->group("user", function ($routes) {
         $routes->match(['options', 'post'], "login", "Api\ApiLoginController::login");
         $routes->match(['options', 'post'], "register", "Api\ApiLoginController::register");
@@ -111,6 +114,7 @@ $routes->group("crud", function ($routes) {
     $routes->match(['get', 'post'], 'suplements', 'KpaCrudController::suplement');
     $routes->match(['get', 'post'], 'taules', 'KpaCrudController::taula');
     $routes->match(['get', 'post'], 'missatges', 'KpaCrudController::missatge');
+    $routes->match(['get', 'post'], 'temes', 'KpaCrudController::tema');
 });
 
 
@@ -123,6 +127,8 @@ $routes->get('/comandaPDF/(:num)', 'PDFController::index/$1');
 $routes->get('/perfil', 'PerfilController::index');
 $routes->get('/introduirCodi', 'ClientController::insertarCodi');
 $routes->get('/cistella', 'Home::cistella');
+$routes->get('/comandes', 'ComandesController::index');
+
 $routes->get('/establiments', 'Home::establiments');
 $routes->get('/establiments/(:num)', 'Home::establiments/$1');
 $routes->get('/establiments/(:num)/categories/(:num)', 'Home::categories/$1/$2');

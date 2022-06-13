@@ -832,4 +832,27 @@ class Api {
       })
       .catch((error) => console.log("error", error));
   }
+
+  static ObtenirTemes(tema) {
+    var myHeaders = new Headers();
+    myHeaders.append("Cookie", "ci_session=hnilujpq46n6qfm42kc7ih5vhkaak0ae");
+
+    var requestOptions = {
+      method: "GET",
+      headers: myHeaders,
+      redirect: "follow",
+    };
+
+    fetch("/api/tema/list", requestOptions)
+      .then((response) => response.text())
+      .then((result) => {
+        for (var i = 0; i < JSON.parse(result).data.length; i++) {
+          var ele = document.createElement("option");
+          ele.value = JSON.parse(result).data[i].id_tema;
+          ele.innerHTML = JSON.parse(result).data[i].descripcio;
+          tema.appendChild(ele);
+        }
+      })
+      .catch((error) => console.log("error", error));
+  }
 }

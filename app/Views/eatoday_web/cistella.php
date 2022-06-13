@@ -69,7 +69,8 @@
         <label for="Número de comensals">Introduir comensals: <input type="number" name="" id="numComensals"></label>
         <button class="book-a-table-btn scrollto" style="background-color:black;" id="avisarCambrer">Avisar cambrer</button>
     </div>
-    <div id="pdf">
+    <hr>
+    <div class="container" id="pdf">
     </div>
 
 </section>
@@ -80,7 +81,7 @@
         // A clickar a nova comanda m'elimina els elements anteriors
         window.sessionStorage.removeItem("taula")
         window.sessionStorage.removeItem("cistella")
-        window.location = "/introduirCodi"
+        window.location = "/introduirCodi";
     })
     var cistella = window.sessionStorage.getItem("cistella");
     // console.log(JSON.parse(cistella)[0]);

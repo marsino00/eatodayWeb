@@ -18,12 +18,9 @@ class ClientController extends BaseController
             $data["text"] = "El meu perfil";
             $data["ruta2"] = base_url() . "/logout";
             $data["text2"] = "Tancar sessió";
+            return view("eatoday_web/insertarCodi", $data);
         } else {
-            $data["ruta"] = base_url() . "/login";
-            $data["text"] = "Iniciar sessió";
-            $data["ruta2"] = base_url() . "/register";
-            $data["text2"] = "Registrar-se";
+            return  redirect()->to(base_url() . "/login");
         }
-        return view("eatoday_web/insertarCodi", $data);
     }
 }

@@ -73,7 +73,7 @@ class AuthController extends Controller
 		}
 
 		if (!$this->validate($rules)) {
-			return redirect()->back()->withInput()->with('errors', $this->validator->getErrors());
+			return redirect()->to(base_url() . "/login")->withInput()->with('errors', $this->validator->getErrors());
 		}
 
 		$login = $this->request->getPost('login');
@@ -85,7 +85,7 @@ class AuthController extends Controller
 
 		// Try to log them in...
 		if (!$this->auth->attempt([$type => $login, 'password' => $password], $remember)) {
-			return redirect()->back()->withInput()->with('error', $this->auth->error() ?? lang('Auth.badAttempt'));
+			return redirect()->to(base_url() . "/login")->withInput()->with('error', $this->auth->error() ?? lang('Auth.badAttempt'));
 		}
 
 		// Is the user being forced to reset their password?

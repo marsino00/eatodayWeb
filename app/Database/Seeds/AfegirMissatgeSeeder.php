@@ -17,6 +17,8 @@ class AfegirMissatgeSeeder extends Seeder
             'data_publicacio'  => date('d-m-y h:i:s'),
             'codi_establiment'  => 1,
             'id_users'  => 1,
+            'id_tema' => 1
+
         ];
 
         $this->db->table('missatge')->insert($cont);
@@ -29,6 +31,7 @@ class AfegirMissatgeSeeder extends Seeder
                 'data_publicacio'  => date('d-m-y h:i:s'),
                 'codi_establiment'  => 1,
                 'id_users'  => 1,
+                'id_tema' => 1
             ];
 
             $this->db->table('missatge')->insert($data);

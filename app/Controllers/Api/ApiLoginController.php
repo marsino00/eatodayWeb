@@ -187,22 +187,31 @@ class ApiLoginController extends ResourceController
         } else {
 
             $model = new UserModel();
-
+            $token_data = json_decode($this->request->header("token-data")->getValue());
             $email = $this->request->getVar('email');
-            $name = $this->request->getVar('name');
-            $surnames = $this->request->getVar('surnames');
-            // , $name, $surnames
-            $model->modificarUsuari($email, $name, $surnames);
-            $response = [
-                'status' => 200,
-                'error' => false,
-                'message' => 'Usuari modificat correctament',
-                'data' => [
-                    'email' => $email,
-                    'name' => $name,
-                    'surnames' => $surnames,
-                ]
-            ];
+            if ($token_data->email == $email) {
+
+                $name = $this->request->getVar('name');
+                $surnames = $this->request->getVar('surnames');
+                // , $name, $surnames
+                $model->modificarUsuari($email, $name, $surnames);
+                $response = [
+                    'status' => 200,
+                    'error' => false,
+                    'message' => 'Usuari modificat correctament',
+                    'data' => [
+                        'email' => $email,
+                        'name' => $name,
+                        'surnames' => $surnames,
+                    ]
+                ];
+            } else {
+                $response = [
+                    'status' => 500,
+                    'error' => true,
+                    'message' => 'Usuari diferent',
+                ];
+            }
         }
 
         return $this->respondCreated($response);

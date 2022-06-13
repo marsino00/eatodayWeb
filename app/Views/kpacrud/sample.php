@@ -70,7 +70,12 @@
                 <li class="nav-item">
                     <a class="nav-link" href="<?= base_url('/crud/taules'); ?>">Taules</a>
                 </li>
-
+                <li class="nav-item">
+                    <a class="nav-link" href="<?= base_url('/crud/temes'); ?>">Temes</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="<?= base_url(); ?>">Tornar al Home</a>
+                </li>
             </ul>
         </div>
     </nav>

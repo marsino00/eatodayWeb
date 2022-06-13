@@ -29,11 +29,15 @@ class CrearTaulaMissatges extends Migration
                 'unsigned' => true,
                 'null' => false
             ],
+            'id_tema'          => [
+                'type'           => 'INT',
+            ],
 
         ]);
         $this->forge->addPrimaryKey('id_missatge', true);
         $this->forge->addForeignKey('codi_establiment', 'establiment', 'codi_establiment');
         $this->forge->addForeignKey('id_users', 'users', 'id');
+        $this->forge->addForeignKey('id_tema', 'tema', 'id_tema');
 
         $this->forge->createTable('missatge');
     }

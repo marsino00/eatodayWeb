@@ -19,6 +19,7 @@ class InstallSeeder2 extends Seeder
         $this->call("AfegirPuntuacioSeeder");
         $this->call("AfegirPlatSuplementSeeder");
         $this->call("AfegirPlatAlergenSeeder");
+        $this->call("AfegirTemaSeeder");
         $this->call("AfegirMissatgeSeeder");
     }
 }
