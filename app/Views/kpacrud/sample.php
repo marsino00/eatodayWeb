@@ -35,9 +35,19 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title><?= "Gestió " . $title ?? 'Administració' ?></title>
+    <style>
+        #body {
+            background-color: dimgray;
+            color: white;
+        }
+
+        tr {
+            background-color: white;
+        }
+    </style>
 </head>
 
-<body>
+<body id="body">
 
     <nav class="navbar navbar-expand-lg navbar-light bg-light">
         <a class="navbar-brand" href="#">Panell d'administració</a>
