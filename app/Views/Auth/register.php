@@ -5,6 +5,8 @@
     body {
         font-family: "Poppins", sans-serif;
         height: 100vh;
+        background-color: dimgray;
+
     }
 
     a {
@@ -36,7 +38,6 @@
         width: 100%;
         min-height: 100%;
         padding: 20px;
-
     }
 
     #formContent {
